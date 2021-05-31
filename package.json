@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@storybook/addon-knobs": "^6.2.9",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -18,6 +20,7 @@
     "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-i18next": "^11.10.0",
     "react-scripts": "4.0.3",
     "storybook": "^6.2.9",
     "styled-components": "^5.3.0",
@@ -29,6 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "postinstall": "link-module-alias",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -47,6 +51,10 @@
         }
       }
     ]
+  },
+  "_moduleAliases": {
+    "~src": "./src",
+    "~components": "./src/components"
   },
   "browserslist": {
     "production": [
