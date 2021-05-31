@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useState } from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { withKnobs } from "@storybook/addon-knobs";
 import { Search, SearchProps } from "./Search";
@@ -10,8 +10,6 @@ export default {
 } as Meta;
 
 export const Default: Story<SearchProps> = () => {
-  const filterTodos = useCallback((value) => {
-    console.log(value);
-  }, []);
-  return <Search filterTodos={filterTodos}></Search>;
+  const [value, onChangeValue] = useState("");
+  return <Search onChange={onChangeValue} value={value}></Search>;
 };

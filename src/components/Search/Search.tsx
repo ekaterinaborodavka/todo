@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
+
+import { COLORS } from "~src/colors";
 
 const StyledSerchContainer = styled.div`
   width: 40%;
@@ -8,16 +10,17 @@ const StyledSerchContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #c3ddf7;
+  background-color: ${COLORS.search};
   border-radius: 5px;
   &:hover {
-    background-color: white;
+    background-color: ${COLORS.white};
   }
 `;
 
 const StyledSerch = styled.input`
   width: 80%;
   margin: 0.7rem auto;
+  padding-left: 1rem;
   border: none;
   background-color: transparent;
   outline: none;
@@ -25,61 +28,51 @@ const StyledSerch = styled.input`
     color: transparent;
   }
   &:focus::placeholder {
-    color: grey;
+    color: ${COLORS.grey};
     font-weight: bold;
+  }
+  &:focus + i {
+    opacity: 1;
   }
 `;
 
 const StyledIconSearch = styled.i`
   margin-left: 1.5rem;
-  color: #4b6fef;
-  -webkit-text-stroke: 1px #c3ddf7;
+  color: ${COLORS.searchIcon};
+  -webkit-text-stroke: 1px ${COLORS.search};
 `;
 const StyledIconClose = styled.i`
   margin-right: 1.5rem;
-  color: #4b6fef;
-  -webkit-text-stroke: 1.5px #c3ddf7;
+  color: ${COLORS.searchIcon};
+  opacity: 0;
+  -webkit-text-stroke: 1.5px ${COLORS.search};
 `;
 
 export interface SearchProps {
   // eslint-disable-next-line no-unused-vars
-  filterTodos: (value: string) => void;
+  onChange: (value: string) => void;
+  value: string;
 }
 
-export const Search: React.FC<SearchProps> = ({ filterTodos }) => {
+export const Search: React.FC<SearchProps> = ({ onChange, value }) => {
   const { t } = useTranslation();
-  const [focus, setFocus] = useState(false);
-  const [value, setValue] = useState("");
-
-  const focusInput = useCallback(() => {
-    setFocus(true);
-  }, [setFocus]);
-
-  const blurInput = useCallback(() => {
-    setFocus(false);
-    setValue("");
-  }, [setFocus]);
 
   const onInputChange = useCallback(
     ({ target }) => {
-      setValue(target.value);
-      filterTodos(target.value);
+      onChange(target.value);
     },
-    [filterTodos]
+    [onChange]
   );
+
+  const onClearInput = useCallback(() => {
+    onChange("");
+  }, [onChange]);
 
   return (
     <StyledSerchContainer>
       <StyledIconSearch className="fa fa-search fa-flip-horizontal"></StyledIconSearch>
-      <StyledSerch
-        type="text"
-        placeholder={t("Поиск")}
-        onFocus={focusInput}
-        onBlur={blurInput}
-        onChange={onInputChange}
-        value={value}
-      />
-      {focus ? <StyledIconClose className="fa fa-times"></StyledIconClose> : null}
+      <StyledSerch type="text" placeholder={t("Search")} onChange={onInputChange} value={value} />
+      <StyledIconClose className="fa fa-times" onClick={onClearInput}></StyledIconClose>
     </StyledSerchContainer>
   );
 };
