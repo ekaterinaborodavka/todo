@@ -9,7 +9,7 @@ const StyledContainer = styled.div`
 const StyledTitle = styled.span`
   font-family: Segoe UI;
   color: white;
-  margin-left: 2rem;
+  margin-left: 4rem;
   font-weight: 600;
   line-height: 3rem;
 `;

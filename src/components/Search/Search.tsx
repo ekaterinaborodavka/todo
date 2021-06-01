@@ -5,13 +5,13 @@ import styled from "styled-components/macro";
 import { COLORS } from "~src/colors";
 
 const StyledSerchContainer = styled.div`
-  width: 40%;
-  margin: auto;
+  width: 25%;
+  margin: 0.5rem auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: ${COLORS.search};
-  border-radius: 5px;
+  border-radius: 2px;
   &:hover {
     background-color: ${COLORS.white};
   }
@@ -19,7 +19,7 @@ const StyledSerchContainer = styled.div`
 
 const StyledSerch = styled.input`
   width: 80%;
-  margin: 0.7rem auto;
+  margin: 0.5rem auto;
   padding-left: 1rem;
   border: none;
   background-color: transparent;

@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components/macro";
 
+import { COLORS } from "~src/colors";
+
 const StyledNavContainer = styled.div`
   width: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0078d7;
 `;
 
 const StyledButton = styled.button`
@@ -15,20 +16,20 @@ const StyledButton = styled.button`
   background-color: transparent;
   border: 1px solid transparent;
   &:hover {
-    background-color: #005a9e;
+    background-color: ${COLORS.headerButtonHover};
   }
 `;
 
 const StyledIcons = styled.i`
   font-size: 1.2rem;
   color: white;
-  -webkit-text-stroke: 0.5px #0078d7;
+  -webkit-text-stroke: 0.5px ${COLORS.header};
 `;
 
 const StyledIconsThin = styled.i`
   font-size: 1.2rem;
   color: white;
-  -webkit-text-stroke: 2px #0078d7;
+  -webkit-text-stroke: 2px ${COLORS.header};
 `;
 
 export const HeaderNav: React.FC = () => {
