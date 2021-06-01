@@ -38,12 +38,12 @@ const StyledSerch = styled.input`
 
 const StyledIconSearch = styled.i`
   margin-left: 1.5rem;
-  color: ${COLORS.searchIcon};
+  color: ${COLORS.blue};
   -webkit-text-stroke: 1px ${COLORS.search};
 `;
 const StyledIconClose = styled.i`
   margin-right: 1.5rem;
-  color: ${COLORS.searchIcon};
+  color: ${COLORS.blue};
   opacity: 0;
   -webkit-text-stroke: 1.5px ${COLORS.search};
 `;
