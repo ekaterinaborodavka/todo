@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
-import { useTranslation } from "react-i18next";
 
 import { COLORS } from "~src/colors";
+import { SidebarContext } from "~src/context/sidebarContext";
 
-const StyledIcon = styled.i`
+const StyledIcon = styled.i<{ color: string }>`
   color: ${(props) => props.color};
 `;
 
@@ -12,19 +12,27 @@ const StyledItem = styled.li`
   list-style: none;
   display: flex;
   align-items: center;
-  margin: 1.5rem auto;
+  margin: 0rem auto;
+  padding: 0.5rem 1.5rem;
   &:hover {
-    background-color: ${COLORS.white};
+    background-color: ${COLORS.lightGrey};
   }
 `;
 
-const StyledTitle = styled.span`
+const StyledTitle = styled.span<{ color: string }>`
   color: ${(props) => props.color};
   margin-left: 1rem;
+  width: 85%;
+  white-space: nowrap;
 `;
 
-const StyledTitleContainer = styled.div`
-  width: 80%;
+const StyledCount = styled.div`
+  width: 10%;
+`;
+
+const StyledContent = styled.div<{ isOpened: boolean }>`
+  width: 100%;
+  display: ${(props) => (props.isOpened ? "flex" : "none")};
 `;
 
 export interface SidebarLeftContentItemProps {
@@ -35,16 +43,17 @@ export interface SidebarLeftContentItemProps {
 }
 
 export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ color, icon, title }) => {
-  const { t } = useTranslation();
+  const { isSidebarOpened } = useContext(SidebarContext);
+
   return (
     <StyledItem>
       <div>
         <StyledIcon color={color} className={icon} />
       </div>
-      <StyledTitleContainer color={color}>
-        <StyledTitle color={color}>{t(title)}</StyledTitle>
-      </StyledTitleContainer>
-      <div></div>
+      <StyledContent isOpened={isSidebarOpened}>
+        <StyledTitle color={color}>{title}</StyledTitle>
+        <StyledCount></StyledCount>
+      </StyledContent>
     </StyledItem>
   );
 };

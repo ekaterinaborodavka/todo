@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
 
+import { SidebarContext } from "~src/context/sidebarContext";
 import {
   SidebarLeftFooterItem,
   SidebarLeftFooterItemProps,
@@ -10,21 +11,22 @@ export interface StyledListProps {
   direction?: boolean;
 }
 
-const StyledList = styled.div<{ direction: boolean }>`
-  padding-left: 1rem;
+const StyledList = styled.div<{ isOpened: boolean }>`
+  margin-bottom: 4rem;
   display: flex;
   justify-content: space-between;
-  flex-direction: ${(props) => (props.direction ? "row" : "column")};
+  flex-direction: ${(props) => (props.isOpened ? "row" : "column")};
 `;
 
 export interface SidebarFooterListProps {
   content: SidebarLeftFooterItemProps[];
-  open: boolean;
 }
 
-export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ content, open }) => {
+export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ content }) => {
+  const { isSidebarOpened } = useContext(SidebarContext);
+
   return (
-    <StyledList direction={open}>
+    <StyledList isOpened={isSidebarOpened}>
       {content.map((item) => (
         <SidebarLeftFooterItem key={item.id} {...item} />
       ))}

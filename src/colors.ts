@@ -4,6 +4,8 @@ export enum COLORS {
   // eslint-disable-next-line no-unused-vars
   grey = "grey",
   // eslint-disable-next-line no-unused-vars
+  lightGrey = "#EDEDED",
+  // eslint-disable-next-line no-unused-vars
   green = "#5ca52d",
   // eslint-disable-next-line no-unused-vars
   blue = "#3e69e4",

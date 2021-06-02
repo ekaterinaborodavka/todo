@@ -7,7 +7,7 @@ import {
 } from "~components/SidebarLeftContentItem/SidebarLeftContentItem";
 
 const StyledList = styled.ul`
-  padding-left: 1rem;
+  padding-left: 0rem;
 `;
 
 export interface SidebarLeftListProps {

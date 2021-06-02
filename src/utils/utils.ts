@@ -23,31 +23,31 @@ export const sidebarContent = [
   {
     id: 1,
     icon: Icons.sun,
-    title: "MyDay",
+    title: "Мой День",
     color: "grey",
   },
   {
     id: 2,
     icon: Icons.star,
-    title: "Important",
+    title: "Важно",
     color: "grey",
   },
   {
     id: 3,
     icon: Icons.calendar,
-    title: "Planned",
+    title: "Запланировано",
     color: "grey",
   },
   {
     id: 4,
     icon: Icons.user,
-    title: "Appointed",
+    title: "Назначенные Вам",
     color: "green",
   },
   {
     id: 5,
     icon: Icons.home,
-    title: "Tasks",
+    title: "Задачи",
     color: "blue",
   },
 ];

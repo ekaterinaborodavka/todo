@@ -13,7 +13,10 @@ const StyledIcon = styled.i`
 `;
 
 const StyledItem = styled.div`
-  margin: 1rem 0rem;
+  padding: 0.5rem 1.2rem;
+  &:hover {
+    background-color: ${COLORS.lightGrey};
+  }
 `;
 
 export const SidebarLeftFooterItem: React.FC<SidebarLeftFooterItemProps> = ({ icon }) => {
