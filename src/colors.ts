@@ -2,6 +2,8 @@ export enum COLORS {
   // eslint-disable-next-line no-unused-vars
   white = "white",
   // eslint-disable-next-line no-unused-vars
+  black = "black",
+  // eslint-disable-next-line no-unused-vars
   grey = "grey",
   // eslint-disable-next-line no-unused-vars
   lightGrey = "#EDEDED",
@@ -17,4 +19,36 @@ export enum COLORS {
   headerButtonHover = "#005a9e",
   // eslint-disable-next-line no-unused-vars
   bgSidebarLeft = "#f4f4f4",
+  // eslint-disable-next-line no-unused-vars
+  optionText = "#34373d",
+  // eslint-disable-next-line no-unused-vars
+  themeBlue = "#3e69e4",
+  // eslint-disable-next-line no-unused-vars
+  themeRed = "#d2534e",
+  // eslint-disable-next-line no-unused-vars
+  themePurple = "#7a45bf",
+  // eslint-disable-next-line no-unused-vars
+  themeGreen = "#5ca52d",
+  // eslint-disable-next-line no-unused-vars
+  themeSkyBlue = "#228be8",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonBlueGradBottom = "#765ee6",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonBlueGradLeft = "#1c9fff",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonRedGradBottom = "#e84f53",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonRedGradLeft = "#ebbd94",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonPurpleGradBottom = "#954db0",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonPurpleGradLeft = "#7159f0",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonGreenGradBottom = "#51a03e",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonGreenGradLeft = "#aadf5d",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonSkyBlueGradBottom = "#558deb",
+  // eslint-disable-next-line no-unused-vars
+  themeButtonSkyBlueGradLeft = "#53d2e5",
 }

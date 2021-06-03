@@ -1,6 +1,12 @@
 {
     "Search": "Поиск",
     "ToDo": "To Do",
-    "CreateList": "Создать список"
+    "CreateList": "Создать список",
+    "Tasks":"Задачи",
+    "Sorting": "Сортировка",
+    "ListOptions":"Параметры списка",
+    "ChangeTheme": "Изменить тему",
+    "Printing": "Печать списка",
+    "SortingOrder": "Порядок сортировки"
   }
   
