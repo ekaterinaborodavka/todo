@@ -113,7 +113,7 @@ export const ListOptions: React.FC = () => {
               <i className="fa fa-angle-right" />
             </StyledButton>
             <StyledThemeList isShowThemeMenu={isShowThemeMenu} onMouseOver={showThemeMenu} onMouseOut={hideThemeMenu}>
-              <ThemeList thems={themeButtons} />
+              <ThemeList themes={themeButtons} />
             </StyledThemeList>
           </StyledListItem>
           <StyledListItem>

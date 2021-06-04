@@ -94,7 +94,7 @@ export const SidebarLeft: React.FC = () => {
           <StyledButton onClick={toggleSidebar}>
             <StyledIconArrow className={`fa fa-angle-right ${isSidebarOpened ? "fa-flip-horizontal" : null}`} />
           </StyledButton>
-          <SidebarLeftContentList content={sidebarContent} />
+          <SidebarLeftContentList contentSidebar={sidebarContent} />
           <StyledCreate>
             <StyledButton>
               <StyledIconPlus className="fa fa-plus" />
@@ -108,7 +108,7 @@ export const SidebarLeft: React.FC = () => {
             )}
           </StyledCreate>
         </StyledContent>
-        <SidebarLeftFooterList content={sidebarFooter} />
+        <SidebarLeftFooterList contentFooter={sidebarFooter} />
       </StyledSidebar>
     </SidebarContext.Provider>
   );

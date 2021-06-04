@@ -11,14 +11,14 @@ const StyledList = styled.ul`
 `;
 
 export interface SidebarLeftListProps {
-  content: SidebarLeftContentItemProps[];
+  contentSidebar: SidebarLeftContentItemProps[];
 }
 
-export const SidebarLeftContentList: React.FC<SidebarLeftListProps> = ({ content }) => {
+export const SidebarLeftContentList: React.FC<SidebarLeftListProps> = ({ contentSidebar }) => {
   return (
     <StyledList>
-      {content.map((item, index) => (
-        <SidebarLeftContentItem key={index} {...item} />
+      {contentSidebar.map((content) => (
+        <SidebarLeftContentItem key={content.title} {...content} />
       ))}
     </StyledList>
   );

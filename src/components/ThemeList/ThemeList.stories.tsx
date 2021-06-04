@@ -12,5 +12,5 @@ export default {
 } as Meta;
 
 export const Default: Story<ThemeListProps> = () => {
-  return <ThemeList thems={themeButtons}></ThemeList>;
+  return <ThemeList themes={themeButtons} />;
 };

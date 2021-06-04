@@ -4,7 +4,6 @@ import styled from "styled-components/macro";
 import { COLORS } from "~src/colors";
 
 export interface SidebarLeftFooterItemProps {
-  id?: number;
   icon: string;
 }
 

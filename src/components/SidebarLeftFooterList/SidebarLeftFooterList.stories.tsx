@@ -12,5 +12,5 @@ export default {
 } as Meta;
 
 export const Default: Story<SidebarFooterListProps> = () => {
-  return <SidebarLeftFooterList content={sidebarFooter}></SidebarLeftFooterList>;
+  return <SidebarLeftFooterList contentFooter={sidebarFooter}></SidebarLeftFooterList>;
 };

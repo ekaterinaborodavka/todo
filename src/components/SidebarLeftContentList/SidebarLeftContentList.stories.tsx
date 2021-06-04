@@ -12,5 +12,5 @@ export default {
 } as Meta;
 
 export const Default: Story<SidebarLeftListProps> = () => {
-  return <SidebarLeftContentList content={sidebarContent}></SidebarLeftContentList>;
+  return <SidebarLeftContentList contentSidebar={sidebarContent}></SidebarLeftContentList>;
 };

@@ -1,4 +1,6 @@
 import { COLORS } from "~src/colors";
+import { ThemeNames } from "~src/types";
+
 export enum Icons {
   // eslint-disable-next-line no-unused-vars
   sun = "fa fa-sun-o",
@@ -29,31 +31,31 @@ export const sidebarContent = [
     id: 1,
     icon: Icons.sun,
     title: "Мой День",
-    color: "grey",
+    color: COLORS.grey,
   },
   {
     id: 2,
     icon: Icons.star,
     title: "Важно",
-    color: "grey",
+    color: COLORS.grey,
   },
   {
     id: 3,
     icon: Icons.calendar,
     title: "Запланировано",
-    color: "grey",
+    color: COLORS.grey,
   },
   {
     id: 4,
     icon: Icons.user,
     title: "Назначенные Вам",
-    color: "green",
+    color: COLORS.green,
   },
   {
     id: 5,
     icon: Icons.home,
     title: "Задачи",
-    color: "blue",
+    color: COLORS.blue,
   },
 ];
 
@@ -83,31 +85,31 @@ export const sidebarFooter = [
 export const themeButtons = [
   {
     id: 11,
-    theme: COLORS.themeBlue,
+    theme: ThemeNames.blue,
     colorGradBottom: COLORS.themeButtonBlueGradBottom,
     colorGradLeft: COLORS.themeButtonBlueGradLeft,
   },
   {
     id: 12,
-    theme: COLORS.themePurple,
+    theme: ThemeNames.purple,
     colorGradBottom: COLORS.themeButtonPurpleGradBottom,
     colorGradLeft: COLORS.themeButtonPurpleGradLeft,
   },
   {
     id: 13,
-    theme: COLORS.themeRed,
+    theme: ThemeNames.red,
     colorGradBottom: COLORS.themeButtonRedGradBottom,
     colorGradLeft: COLORS.themeButtonRedGradLeft,
   },
   {
     id: 14,
-    theme: COLORS.themeGreen,
+    theme: ThemeNames.green,
     colorGradBottom: COLORS.themeButtonGreenGradBottom,
     colorGradLeft: COLORS.themeButtonGreenGradLeft,
   },
   {
     id: 15,
-    theme: COLORS.themeSkyBlue,
+    theme: ThemeNames.skyBlue,
     colorGradBottom: COLORS.themeButtonSkyBlueGradBottom,
     colorGradLeft: COLORS.themeButtonSkyBlueGradLeft,
   },

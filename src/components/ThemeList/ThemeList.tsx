@@ -9,14 +9,14 @@ const StyledItem = styled.li`
 `;
 
 export interface ThemeListProps {
-  thems: ThemeListItemProps[];
+  themes: ThemeListItemProps[];
 }
 
-export const ThemeList: React.FC<ThemeListProps> = ({ thems }) => {
+export const ThemeList: React.FC<ThemeListProps> = ({ themes }) => {
   return (
     <StyledItem>
-      {thems.map((item, index) => (
-        <ThemeListItem key={index} {...item} />
+      {themes.map((theme) => (
+        <ThemeListItem key={theme.theme} {...theme} />
       ))}
     </StyledItem>
   );

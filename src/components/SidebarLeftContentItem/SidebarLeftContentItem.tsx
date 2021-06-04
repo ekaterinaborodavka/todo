@@ -36,7 +36,6 @@ const StyledContent = styled.div<{ isOpened: boolean }>`
 `;
 
 export interface SidebarLeftContentItemProps {
-  id?: number;
   icon: string;
   title: string;
   color: string;

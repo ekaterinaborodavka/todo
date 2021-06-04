@@ -19,16 +19,16 @@ const StyledList = styled.div<{ isOpened: boolean }>`
 `;
 
 export interface SidebarFooterListProps {
-  content: SidebarLeftFooterItemProps[];
+  contentFooter: SidebarLeftFooterItemProps[];
 }
 
-export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ content }) => {
+export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ contentFooter }) => {
   const { isSidebarOpened } = useContext(SidebarContext);
 
   return (
     <StyledList isOpened={isSidebarOpened}>
-      {content.map((item, index) => (
-        <SidebarLeftFooterItem key={index} {...item} />
+      {contentFooter.map((content, index) => (
+        <SidebarLeftFooterItem key={index} {...content} />
       ))}
     </StyledList>
   );
