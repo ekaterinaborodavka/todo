@@ -8,14 +8,13 @@ import { COLORS } from "~src/colors";
 import { SidebarContext } from "~src/context/sidebarContext";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
-  width: ${(props) => (props.isOpened ? "20%" : "4%")};
+  width: ${(props) => (props.isOpened ? "20%" : "70px")};
   transition: all 0.2s linear;
-  position: fixed;
-  height: 100%;
   background-color: ${COLORS.bgSidebarLeft};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100vh;
 `;
 
 const StyledContent = styled.div`
@@ -101,7 +100,7 @@ export const SidebarLeft: React.FC = () => {
               <StyledIconPlus className="fa fa-plus" />
             </StyledButton>
             {showCreateInput ? (
-              <StyledCreateInput autoFocus onBlur={onHideCreateInput} type="text" placeholder={t("CreateList")} />
+              <StyledCreateInput autoFocus placeholder={t("CreateList")} onBlur={onHideCreateInput} type="text" />
             ) : (
               <StyledCreateTitle onClick={onShowCreateInput} isOpened={isSidebarOpened}>
                 {t("CreateList")}

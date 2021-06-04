@@ -1,16 +1,35 @@
-import React, { useCallback, useState } from "react";
-import styled from "styled-components/macro";
+import React, { useCallback, useState, useContext } from "react";
+import styled, { keyframes } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
+import ClickAwayListener from "react-click-away-listener";
 
 import { COLORS } from "~src/colors";
 import { ThemeList } from "~components/ThemeList/ThemeList";
 import { themeButtons } from "~src/utils/utils";
+import { MainTitleContext } from "~src/context/mainTitleContext";
 
-const StyledContainer = styled.div`
-  width: 15%;
+const slideDown = keyframes`
+0% {
+  transform: translateY(-10%);
+  opacity: 0;
+}      
+100% {
+  transform: translateY(0%);
+} 
+`;
+
+const StyledContainer = styled.div<{ isShowOptions: boolean }>`
+  width: 200px;
   border-radius: 2px;
   box-shadow: 0px 4px 8px 2px rgba(45, 47, 51, 0.2);
   font-family: Segoe UI;
+  position: absolute;
+  background-color: ${COLORS.white};
+  top: 80%;
+  left: 4%;
+  z-index: 10;
+  display: ${(props) => (props.isShowOptions ? "block" : "none")};
+  animation: ${slideDown} 0.5s linear;
 `;
 
 const StyledTitle = styled.h4`
@@ -57,14 +76,16 @@ const StyledThemeList = styled.ul<{ isShowThemeMenu: boolean }>`
   width: 170%;
   left: 100%;
   top: 0;
-  z-index: 1;
+  z-index: 10;
   padding: 0.6rem;
-  display: ${(props) => (props.isShowThemeMenu ? null : "none")};
+  display: ${(props) => (props.isShowThemeMenu ? "block" : "none")};
+  animation: ${slideDown} 0.7s linear;
 `;
 
 export const ListOptions: React.FC = () => {
   const { t } = useTranslation();
   const [isShowThemeMenu, setIsShowThemeMenu] = useState(false);
+  const { isShowOptions, setIsShowOptions } = useContext(MainTitleContext);
 
   const showThemeMenu = useCallback(() => {
     setIsShowThemeMenu(true);
@@ -74,27 +95,35 @@ export const ListOptions: React.FC = () => {
     setIsShowThemeMenu(false);
   }, [setIsShowThemeMenu]);
 
+  const onCloseOptions = useCallback(() => {
+    if (isShowOptions) {
+      setIsShowOptions(false);
+    }
+  }, [setIsShowOptions, isShowOptions]);
+
   return (
-    <StyledContainer>
-      <StyledTitle>{t("ListOptions")}</StyledTitle>
-      <StyledList>
-        <StyledListItem>
-          <StyledButton type="button" onMouseOver={showThemeMenu} onMouseOut={hideThemeMenu}>
-            <i className="fa fa-paint-brush" />
-            <StyledListText>{t("ChangeTheme")}</StyledListText>
-            <i className="fa fa-angle-right" />
-          </StyledButton>
-          <StyledThemeList isShowThemeMenu={isShowThemeMenu} onMouseOver={showThemeMenu} onMouseOut={hideThemeMenu}>
-            <ThemeList thems={themeButtons} />
-          </StyledThemeList>
-        </StyledListItem>
-        <StyledListItem>
-          <StyledButton type="button">
-            <i className="fa fa-print" />
-            <StyledListText>{t("Printing")}</StyledListText>
-          </StyledButton>
-        </StyledListItem>
-      </StyledList>
-    </StyledContainer>
+    <ClickAwayListener onClickAway={onCloseOptions}>
+      <StyledContainer isShowOptions={isShowOptions}>
+        <StyledTitle>{t("ListOptions")}</StyledTitle>
+        <StyledList>
+          <StyledListItem>
+            <StyledButton type="button" onMouseOver={showThemeMenu} onMouseOut={hideThemeMenu}>
+              <i className="fa fa-paint-brush" />
+              <StyledListText>{t("ChangeTheme")}</StyledListText>
+              <i className="fa fa-angle-right" />
+            </StyledButton>
+            <StyledThemeList isShowThemeMenu={isShowThemeMenu} onMouseOver={showThemeMenu} onMouseOut={hideThemeMenu}>
+              <ThemeList thems={themeButtons} />
+            </StyledThemeList>
+          </StyledListItem>
+          <StyledListItem>
+            <StyledButton type="button">
+              <i className="fa fa-print" />
+              <StyledListText>{t("Printing")}</StyledListText>
+            </StyledButton>
+          </StyledListItem>
+        </StyledList>
+      </StyledContainer>
+    </ClickAwayListener>
   );
 };

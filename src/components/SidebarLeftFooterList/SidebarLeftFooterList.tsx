@@ -27,8 +27,8 @@ export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ conten
 
   return (
     <StyledList isOpened={isSidebarOpened}>
-      {content.map((item) => (
-        <SidebarLeftFooterItem key={item.id} {...item} />
+      {content.map((item, index) => (
+        <SidebarLeftFooterItem key={index} {...item} />
       ))}
     </StyledList>
   );

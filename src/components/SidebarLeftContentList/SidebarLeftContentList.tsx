@@ -17,8 +17,8 @@ export interface SidebarLeftListProps {
 export const SidebarLeftContentList: React.FC<SidebarLeftListProps> = ({ content }) => {
   return (
     <StyledList>
-      {content.map((item) => (
-        <SidebarLeftContentItem key={item.id} {...item} />
+      {content.map((item, index) => (
+        <SidebarLeftContentItem key={index} {...item} />
       ))}
     </StyledList>
   );

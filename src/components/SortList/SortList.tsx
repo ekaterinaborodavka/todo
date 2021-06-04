@@ -1,14 +1,31 @@
-import React from "react";
-import styled from "styled-components/macro";
+import React, { useContext, useCallback } from "react";
+import styled, { keyframes } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
+import ClickAwayListener from "react-click-away-listener";
 
 import { SortListItem, SortListItemProps } from "~components/SortListItem/SortListItem";
 import { COLORS } from "~src/colors";
+import { MainTitleContext } from "~src/context/mainTitleContext";
 
-const StyledListContainer = styled.div`
-  width: 20%;
+const slideDown = keyframes`
+0% {
+  transform: translateY(-10%);
+  opacity: 0;
+}      
+100% {
+  transform: translateY(0%);
+} 
+`;
+
+const StyledListContainer = styled.div<{ isShowSortList: boolean }>`
+  width: 250px;
   border-radius: 2px;
   box-shadow: 0px 4px 8px 2px rgba(45, 47, 51, 0.2);
+  display: ${(props) => (props.isShowSortList ? "block" : "none")};
+  position: absolute;
+  top: 100%;
+  right: 15%;
+  animation: ${slideDown} 0.5s linear;
 `;
 
 const StyledList = styled.ul`
@@ -33,14 +50,24 @@ export interface SortListProps {
 
 export const SortList: React.FC<SortListProps> = ({ sortVariant }) => {
   const { t } = useTranslation();
+  const { isShowSortList, setIsShowSortList } = useContext(MainTitleContext);
+
+  const onCloseSortList = useCallback(() => {
+    if (isShowSortList) {
+      setIsShowSortList(false);
+    }
+  }, [setIsShowSortList, isShowSortList]);
+
   return (
-    <StyledListContainer>
-      <StyledTitle>{t("SortingOrder")}</StyledTitle>
-      <StyledList>
-        {sortVariant.map((item) => (
-          <SortListItem key={item.id} {...item} />
-        ))}
-      </StyledList>
-    </StyledListContainer>
+    <ClickAwayListener onClickAway={onCloseSortList}>
+      <StyledListContainer isShowSortList={isShowSortList}>
+        <StyledTitle>{t("SortingOrder")}</StyledTitle>
+        <StyledList>
+          {sortVariant.map((item, index) => (
+            <SortListItem key={index} {...item} />
+          ))}
+        </StyledList>
+      </StyledListContainer>
+    </ClickAwayListener>
   );
 };

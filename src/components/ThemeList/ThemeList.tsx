@@ -15,8 +15,8 @@ export interface ThemeListProps {
 export const ThemeList: React.FC<ThemeListProps> = ({ thems }) => {
   return (
     <StyledItem>
-      {thems.map((item) => (
-        <ThemeListItem key={item.id} {...item} />
+      {thems.map((item, index) => (
+        <ThemeListItem key={index} {...item} />
       ))}
     </StyledItem>
   );

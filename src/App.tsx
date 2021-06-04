@@ -1,12 +1,23 @@
 import React from "react";
+import styled from "styled-components/macro";
 
-import { Header, SidebarLeft } from "~components";
+import { Header, MainHeader, SidebarLeft } from "~components";
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 100vh;
+`;
 
 export const App: React.FC = () => {
   return (
     <>
       <Header />
-      <SidebarLeft />
+      <StyledContainer>
+        <SidebarLeft />
+        <MainHeader />
+      </StyledContainer>
     </>
   );
 };
