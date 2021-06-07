@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled, { ThemeProvider } from "styled-components/macro";
 
@@ -8,6 +8,7 @@ import { ListOptions, SortList } from "~components";
 import { sortVariant } from "~src/utils/utils";
 import { theme } from "~src/theme/theme";
 import { ThemeNames } from "~src/types";
+import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
@@ -62,17 +63,9 @@ const StyledButton = styled.button`
 
 export const MainHeader: React.FC = () => {
   const { t } = useTranslation();
-  const [isShowOptions, setIsShowOptions] = useState(false);
-  const [isShowSortList, setIsShowSortList] = useState(false);
   const [themeVariant, setThemeVariant] = useState(ThemeNames.blue);
-
-  const toggleOptions = useCallback(() => {
-    setIsShowOptions(!isShowOptions);
-  }, [setIsShowOptions, isShowOptions]);
-
-  const toggleSortList = useCallback(() => {
-    setIsShowSortList(!isShowSortList);
-  }, [setIsShowSortList, isShowSortList]);
+  const { flag: isShowOptions, toggleFlag: toggleOptions, setFlagFalse: setIsShowOptions } = useStateFlags(false);
+  const { flag: isShowSortList, toggleFlag: toggleSortList, setFlagFalse: setIsShowSortList } = useStateFlags(false);
 
   return (
     <MainTitleContext.Provider

@@ -1,7 +1,7 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
-import ClickAwayListener from "react-click-away-listener";
+import { ClickOutsideListener } from "~components";
 
 import { SortListItem, SortListItemProps } from "~components/SortListItem/SortListItem";
 import { COLORS } from "~src/colors";
@@ -52,14 +52,8 @@ export const SortList: React.FC<SortListProps> = ({ sortVariant }) => {
   const { t } = useTranslation();
   const { isShowSortList, setIsShowSortList } = useContext(MainTitleContext);
 
-  const onCloseSortList = useCallback(() => {
-    if (isShowSortList) {
-      setIsShowSortList(false);
-    }
-  }, [setIsShowSortList, isShowSortList]);
-
   return (
-    <ClickAwayListener onClickAway={onCloseSortList}>
+    <ClickOutsideListener isShow={isShowSortList} setIsShow={setIsShowSortList}>
       <StyledListContainer isShowSortList={isShowSortList}>
         <StyledTitle>{t("SortingOrder")}</StyledTitle>
         <StyledList>
@@ -68,6 +62,6 @@ export const SortList: React.FC<SortListProps> = ({ sortVariant }) => {
           ))}
         </StyledList>
       </StyledListContainer>
-    </ClickAwayListener>
+    </ClickOutsideListener>
   );
 };

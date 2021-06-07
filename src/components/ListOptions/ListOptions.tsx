@@ -1,12 +1,13 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useContext } from "react";
 import styled, { keyframes } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
-import ClickAwayListener from "react-click-away-listener";
 
 import { COLORS } from "~src/colors";
 import { ThemeList } from "~components/ThemeList/ThemeList";
 import { themeButtons } from "~src/utils/utils";
 import { MainTitleContext } from "~src/context/mainTitleContext";
+import { ClickOutsideListener } from "~components";
+import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const slideDown = keyframes`
 0% {
@@ -84,35 +85,21 @@ const StyledThemeList = styled.ul<{ isShowThemeMenu: boolean }>`
 
 export const ListOptions: React.FC = () => {
   const { t } = useTranslation();
-  const [isShowThemeMenu, setIsShowThemeMenu] = useState(false);
   const { isShowOptions, setIsShowOptions } = useContext(MainTitleContext);
-
-  const showThemeMenu = useCallback(() => {
-    setIsShowThemeMenu(true);
-  }, [setIsShowThemeMenu]);
-
-  const hideThemeMenu = useCallback(() => {
-    setIsShowThemeMenu(false);
-  }, [setIsShowThemeMenu]);
-
-  const onCloseOptions = useCallback(() => {
-    if (isShowOptions) {
-      setIsShowOptions(false);
-    }
-  }, [setIsShowOptions, isShowOptions]);
+  const { flag: isShowThemeMenu, setFlagFalse, setFlagTrue } = useStateFlags(false);
 
   return (
-    <ClickAwayListener onClickAway={onCloseOptions}>
+    <ClickOutsideListener isShow={isShowOptions} setIsShow={setIsShowOptions}>
       <StyledContainer isShowOptions={isShowOptions}>
         <StyledTitle>{t("ListOptions")}</StyledTitle>
         <StyledList>
           <StyledListItem>
-            <StyledButton type="button" onMouseOver={showThemeMenu} onMouseOut={hideThemeMenu}>
+            <StyledButton type="button" onMouseOver={setFlagTrue} onMouseOut={setFlagFalse}>
               <i className="fa fa-paint-brush" />
               <StyledListText>{t("ChangeTheme")}</StyledListText>
               <i className="fa fa-angle-right" />
             </StyledButton>
-            <StyledThemeList isShowThemeMenu={isShowThemeMenu} onMouseOver={showThemeMenu} onMouseOut={hideThemeMenu}>
+            <StyledThemeList isShowThemeMenu={isShowThemeMenu} onMouseOver={setFlagTrue} onMouseOut={setFlagFalse}>
               <ThemeList themes={themeButtons} />
             </StyledThemeList>
           </StyledListItem>
@@ -124,6 +111,6 @@ export const ListOptions: React.FC = () => {
           </StyledListItem>
         </StyledList>
       </StyledContainer>
-    </ClickAwayListener>
+    </ClickOutsideListener>
   );
 };

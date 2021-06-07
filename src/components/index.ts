@@ -10,3 +10,4 @@ export * from "./ListOptions/ListOptions";
 export * from "./ThemeListItem/ThemeListItem";
 export * from "./SortListItem/SortListItem";
 export * from "./SortList/SortList";
+export * from "./ClickOutsideListener/ClickOutsideListener";

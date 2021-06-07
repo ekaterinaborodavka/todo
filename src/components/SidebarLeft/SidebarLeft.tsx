@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
@@ -6,6 +6,7 @@ import { SidebarLeftContentList, SidebarLeftFooterList } from "~components";
 import { sidebarContent, sidebarFooter } from "~src/utils/utils";
 import { COLORS } from "~src/colors";
 import { SidebarContext } from "~src/context/sidebarContext";
+import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
   width: ${(props) => (props.isOpened ? "20%" : "70px")};
@@ -72,20 +73,12 @@ const StyledCreateInput = styled.input`
 
 export const SidebarLeft: React.FC = () => {
   const { t } = useTranslation();
-  const [isSidebarOpened, setIsSIdebarOpened] = useState(false);
-  const [showCreateInput, setShowCreateInput] = useState(false);
-
-  const toggleSidebar = useCallback(() => {
-    setIsSIdebarOpened(!isSidebarOpened);
-  }, [setIsSIdebarOpened, isSidebarOpened]);
-
-  const onShowCreateInput = useCallback(() => {
-    setShowCreateInput(true);
-  }, [setShowCreateInput]);
-
-  const onHideCreateInput = useCallback(() => {
-    setShowCreateInput(false);
-  }, [setShowCreateInput]);
+  const { flag: isSidebarOpened, toggleFlag: toggleSidebar } = useStateFlags(false);
+  const {
+    flag: showCreateInput,
+    setFlagFalse: onHideCreateInput,
+    setFlagTrue: onShowCreateInput,
+  } = useStateFlags(false);
 
   return (
     <SidebarContext.Provider value={{ isSidebarOpened }}>
