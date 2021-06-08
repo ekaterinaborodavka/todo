@@ -12,7 +12,6 @@ export interface StyledListProps {
 }
 
 const StyledList = styled.div<{ isOpened: boolean }>`
-  margin-bottom: 4rem;
   display: flex;
   justify-content: space-between;
   flex-direction: ${(props) => (props.isOpened ? "row" : "column")};

@@ -74,7 +74,7 @@ const StyledThemeList = styled.ul<{ isShowThemeMenu: boolean }>`
   box-shadow: 0px 4px 8px 2px rgba(45, 47, 51, 0.2);
   position: absolute;
   background-color: ${COLORS.white};
-  width: 170%;
+  width: 140%;
   left: 100%;
   top: 0;
   z-index: 10;

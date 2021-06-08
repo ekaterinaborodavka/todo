@@ -1,8 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
 import { COLORS } from "~src/colors";
+import { Context } from "~src/context/context";
+import { search } from "~src/utils/todoUtils";
 
 const StyledSerchContainer = styled.div`
   width: 25%;
@@ -48,30 +50,27 @@ const StyledIconClose = styled.i`
   -webkit-text-stroke: 1.5px ${COLORS.search};
 `;
 
-export interface SearchProps {
-  // eslint-disable-next-line no-unused-vars
-  onChange: (value: string) => void;
-  value: string;
-}
-
-export const Search: React.FC<SearchProps> = ({ onChange, value }) => {
+export const Search: React.FC = () => {
   const { t } = useTranslation();
+  const { todos, setFilterTodos, searchValue, setSearchValue } = useContext(Context);
 
   const onInputChange = useCallback(
     ({ target }) => {
-      onChange(target.value);
+      setSearchValue(target.value);
+      setFilterTodos(search(todos, target.value));
     },
-    [onChange]
+    [setSearchValue, setFilterTodos, todos]
   );
 
   const onClearInput = useCallback(() => {
-    onChange("");
-  }, [onChange]);
+    setSearchValue("");
+    setFilterTodos([]);
+  }, [setSearchValue, setFilterTodos]);
 
   return (
     <StyledSerchContainer>
       <StyledIconSearch className="fa fa-search fa-flip-horizontal"></StyledIconSearch>
-      <StyledSerch type="text" placeholder={t("Search")} onChange={onInputChange} value={value} />
+      <StyledSerch type="text" placeholder={t("Search")} onChange={onInputChange} value={searchValue} />
       <StyledIconClose className="fa fa-times" onClick={onClearInput}></StyledIconClose>
     </StyledSerchContainer>
   );

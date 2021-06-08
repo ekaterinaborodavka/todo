@@ -15,7 +15,7 @@ const StyledSidebar = styled.div<{ isOpened: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
 `;
 
 const StyledContent = styled.div`

@@ -1,7 +1,8 @@
 import React, { useContext, useCallback } from "react";
 import styled from "styled-components/macro";
+
 import { COLORS } from "~src/colors";
-import { MainTitleContext } from "~src/context/mainTitleContext";
+import { Context } from "~src/context/context";
 import { ThemeNames } from "~src/types";
 
 const StyledButton = styled.button<{ colorGradLeft: string; colorGradBottom: string }>`
@@ -31,7 +32,7 @@ export interface ThemeListItemProps {
 
 // TODO to use styled-themes here
 export const ThemeListItem: React.FC<ThemeListItemProps> = ({ colorGradBottom, colorGradLeft, theme }) => {
-  const { setThemeVariant, themeVariant } = useContext(MainTitleContext);
+  const { setThemeVariant, themeVariant } = useContext(Context);
 
   const onChangeTheme = useCallback(() => {
     setThemeVariant(theme);

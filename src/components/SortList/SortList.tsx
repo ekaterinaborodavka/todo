@@ -26,6 +26,7 @@ const StyledListContainer = styled.div<{ isShowSortList: boolean }>`
   top: 100%;
   right: 15%;
   animation: ${slideDown} 0.5s linear;
+  z-index: 10;
 `;
 
 const StyledList = styled.ul`

@@ -10,3 +10,10 @@ export enum ThemeNames {
   // eslint-disable-next-line no-unused-vars
   skyBlue = "skyBlue",
 }
+
+export interface Todo {
+  id: number;
+  title: string;
+  impotant: boolean;
+  completed: boolean;
+}

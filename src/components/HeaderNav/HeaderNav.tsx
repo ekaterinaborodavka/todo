@@ -23,13 +23,13 @@ const StyledButton = styled.button`
 const StyledIcons = styled.i`
   font-size: 1.2rem;
   color: white;
-  -webkit-text-stroke: 0.5px ${COLORS.header};
+  -webkit-text-stroke: ${(props) => `0.5px ${props.theme.color}`};
 `;
 
 const StyledIconsThin = styled.i`
   font-size: 1.2rem;
   color: white;
-  -webkit-text-stroke: 2px ${COLORS.header};
+  -webkit-text-stroke: ${(props) => `2px ${props.theme.color}`};
 `;
 
 export const HeaderNav: React.FC = () => {

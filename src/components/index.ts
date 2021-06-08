@@ -11,3 +11,7 @@ export * from "./ThemeListItem/ThemeListItem";
 export * from "./SortListItem/SortListItem";
 export * from "./SortList/SortList";
 export * from "./ClickOutsideListener/ClickOutsideListener";
+export * from "./AddInput/AddInput";
+export * from "./Main/Main";
+export * from "./TodoListItem/TodoListItem";
+export * from "./TodoList/TodoList";
