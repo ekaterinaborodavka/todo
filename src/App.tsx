@@ -15,9 +15,9 @@ const StyledContainer = styled.div`
 
 export const App: React.FC = () => {
   const [themeVariant, setThemeVariant] = useState(ThemeNames.blue);
-  const [todos, setTodos] = useState<Todo[] | []>([]);
+  const [todos, setTodos] = useState<Todo[]>([] as Todo[]);
   const [searchValue, setSearchValue] = useState("");
-  const [filterTodos, setFilterTodos] = useState<Todo[] | []>([]);
+  const [filterTodos, setFilterTodos] = useState<Todo[]>([] as Todo[]);
 
   return (
     <Context.Provider

@@ -57,7 +57,7 @@ const StyledIconCircle = styled.i`
 export const AddInput: React.FC = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState("");
-  const { flag, setFlagFalse, setFlagTrue } = useStateFlags(false);
+  const { flag: focusInput, setFlagFalse: onBlur, setFlagTrue: onFocus } = useStateFlags(false);
   const { todos, setTodos } = useContext(Context);
 
   const addTodo = useCallback(() => {
@@ -73,13 +73,13 @@ export const AddInput: React.FC = () => {
   );
 
   return (
-    <StyledContainer isBorder={flag}>
+    <StyledContainer isBorder={focusInput}>
       <StyledIconButton>
-        {flag ? <StyledIconCircle className="fa fa-circle-thin" /> : <StyledIconPlus className="fa fa-plus" />}
+        {focusInput ? <StyledIconCircle className="fa fa-circle-thin" /> : <StyledIconPlus className="fa fa-plus" />}
       </StyledIconButton>
       <StyledInput
-        onFocus={setFlagTrue}
-        onBlur={setFlagFalse}
+        onFocus={onFocus}
+        onBlur={onBlur}
         type="text"
         placeholder={t("AddTodo")}
         value={value}

@@ -5,9 +5,9 @@ interface ContextProps {
   setThemeVariant: React.Dispatch<React.SetStateAction<ThemeNames>>;
   themeVariant: ThemeNames;
   todos: Todo[];
-  setTodos: React.Dispatch<React.SetStateAction<[] | Todo[]>>;
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   filterTodos: Todo[];
-  setFilterTodos: React.Dispatch<React.SetStateAction<[] | Todo[]>>;
+  setFilterTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 }
