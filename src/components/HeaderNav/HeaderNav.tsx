@@ -16,7 +16,8 @@ const StyledButton = styled.button`
   background-color: transparent;
   border: 1px solid transparent;
   &:hover {
-    background-color: ${COLORS.headerButtonHover};
+    background-color: ${COLORS.lightGrey};
+    opacity: 0.5;
   }
 `;
 

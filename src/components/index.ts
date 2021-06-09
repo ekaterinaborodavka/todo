@@ -15,3 +15,4 @@ export * from "./AddInput/AddInput";
 export * from "./Main/Main";
 export * from "./TodoListItem/TodoListItem";
 export * from "./TodoList/TodoList";
+export * from "./TodoList/TodoList";

@@ -8,6 +8,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${(props) => props.theme.color};
+  position: relative;
 `;
 
 export const Header: React.FC = () => {
