@@ -1,31 +1,18 @@
-import React, { useContext } from "react";
-import styled, { keyframes } from "styled-components/macro";
+import React from "react";
+import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
-import { ClickOutsideListener } from "~components";
 
 import { SortListItem, SortListItemProps } from "~components/SortListItem/SortListItem";
 import { COLORS } from "~src/colors";
-import { MainTitleContext } from "~src/context/mainTitleContext";
 
-const slideDown = keyframes`
-0% {
-  transform: translateY(-10%);
-  opacity: 0;
-}      
-100% {
-  transform: translateY(0%);
-} 
-`;
-
-const StyledListContainer = styled.div<{ isShowSortList: boolean }>`
+const StyledListContainer = styled.div`
   width: 250px;
+  position: absolute;
+  top: 1rem;
+  right: -1rem;
+  background-color: ${COLORS.white};
   border-radius: 2px;
   box-shadow: 0px 4px 8px 2px rgba(45, 47, 51, 0.2);
-  display: ${(props) => (props.isShowSortList ? "block" : "none")};
-  position: absolute;
-  top: 100%;
-  right: 15%;
-  animation: ${slideDown} 0.5s linear;
   z-index: 10;
 `;
 
@@ -51,18 +38,15 @@ export interface SortListProps {
 
 export const SortList: React.FC<SortListProps> = ({ sortVariant }) => {
   const { t } = useTranslation();
-  const { isShowSortList, setIsShowSortList } = useContext(MainTitleContext);
 
   return (
-    <ClickOutsideListener isShow={isShowSortList} setIsShow={setIsShowSortList}>
-      <StyledListContainer isShowSortList={isShowSortList}>
-        <StyledTitle>{t("SortingOrder")}</StyledTitle>
-        <StyledList>
-          {sortVariant.map((item, index) => (
-            <SortListItem key={index} {...item} />
-          ))}
-        </StyledList>
-      </StyledListContainer>
-    </ClickOutsideListener>
+    <StyledListContainer>
+      <StyledTitle>{t("SortingOrder")}</StyledTitle>
+      <StyledList>
+        {sortVariant.map((item, index) => (
+          <SortListItem key={index} {...item} />
+        ))}
+      </StyledList>
+    </StyledListContainer>
   );
 };

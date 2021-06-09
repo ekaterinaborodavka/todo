@@ -1,12 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
 import { COLORS } from "~src/colors";
 import { ThemeList } from "~components/ThemeList/ThemeList";
 import { themeButtons } from "~src/utils/utils";
-import { MainTitleContext } from "~src/context/mainTitleContext";
-import { ClickOutsideListener } from "~components";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const slideDown = keyframes`
@@ -19,18 +17,15 @@ const slideDown = keyframes`
 } 
 `;
 
-const StyledContainer = styled.div<{ isShowOptions: boolean }>`
+const StyledContainer = styled.div`
   width: 200px;
+  position: absolute;
+  top: 1rem;
+  right: -4rem;
+  background-color: ${COLORS.white};
   border-radius: 2px;
   box-shadow: 0px 4px 8px 2px rgba(45, 47, 51, 0.2);
-  font-family: Segoe UI;
-  position: absolute;
-  background-color: ${COLORS.white};
-  top: 80%;
-  left: 4%;
   z-index: 10;
-  display: ${(props) => (props.isShowOptions ? "block" : "none")};
-  animation: ${slideDown} 0.5s linear;
 `;
 
 const StyledTitle = styled.h4`
@@ -85,32 +80,29 @@ const StyledThemeList = styled.ul<{ isShowThemeMenu: boolean }>`
 
 export const ListOptions: React.FC = () => {
   const { t } = useTranslation();
-  const { isShowOptions, setIsShowOptions } = useContext(MainTitleContext);
   const { flag: isShowThemeMenu, setFlagFalse, setFlagTrue } = useStateFlags(false);
 
   return (
-    <ClickOutsideListener isShow={isShowOptions} setIsShow={setIsShowOptions}>
-      <StyledContainer isShowOptions={isShowOptions}>
-        <StyledTitle>{t("ListOptions")}</StyledTitle>
-        <StyledList>
-          <StyledListItem>
-            <StyledButton type="button" onMouseOver={setFlagTrue} onMouseOut={setFlagFalse}>
-              <i className="fa fa-paint-brush" />
-              <StyledListText>{t("ChangeTheme")}</StyledListText>
-              <i className="fa fa-angle-right" />
-            </StyledButton>
-            <StyledThemeList isShowThemeMenu={isShowThemeMenu} onMouseOver={setFlagTrue} onMouseOut={setFlagFalse}>
-              <ThemeList themes={themeButtons} />
-            </StyledThemeList>
-          </StyledListItem>
-          <StyledListItem>
-            <StyledButton type="button">
-              <i className="fa fa-print" />
-              <StyledListText>{t("Printing")}</StyledListText>
-            </StyledButton>
-          </StyledListItem>
-        </StyledList>
-      </StyledContainer>
-    </ClickOutsideListener>
+    <StyledContainer>
+      <StyledTitle>{t("ListOptions")}</StyledTitle>
+      <StyledList>
+        <StyledListItem>
+          <StyledButton type="button" onMouseOver={setFlagTrue} onMouseOut={setFlagFalse}>
+            <i className="fa fa-paint-brush" />
+            <StyledListText>{t("ChangeTheme")}</StyledListText>
+            <i className="fa fa-angle-right" />
+          </StyledButton>
+          <StyledThemeList isShowThemeMenu={isShowThemeMenu} onMouseOver={setFlagTrue} onMouseOut={setFlagFalse}>
+            <ThemeList themes={themeButtons} />
+          </StyledThemeList>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledButton type="button">
+            <i className="fa fa-print" />
+            <StyledListText>{t("Printing")}</StyledListText>
+          </StyledButton>
+        </StyledListItem>
+      </StyledList>
+    </StyledContainer>
   );
 };
