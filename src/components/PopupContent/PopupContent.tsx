@@ -13,16 +13,15 @@ const slideDown = keyframes`
 `;
 
 const Wrapper = styled.span`
-  font-family: Segoe UI;
   position: relative;
   animation: ${slideDown} 0.5s linear;
 `;
 
-interface PopupMenuProps {
+interface PopupContentProps {
   onClose: () => void;
 }
 
-export const PopupMenu: React.FC<PopupMenuProps> = ({ onClose, children }) => {
+export const PopupContent: React.FC<PopupContentProps> = ({ onClose, children }) => {
   return (
     <ClickAwayListener onClickAway={onClose}>
       <Wrapper>{children}</Wrapper>

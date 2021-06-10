@@ -9,13 +9,14 @@ import { SidebarContext } from "~src/context/sidebarContext";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
-  width: ${(props) => (props.isOpened ? "20%" : "70px")};
+  width: ${(props) => (props.isOpened ? "25%" : "60px")};
   transition: all 0.2s linear;
   background-color: ${COLORS.bgSidebarLeft};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  overflow: hidden;
 `;
 
 const StyledContent = styled.div`
@@ -47,10 +48,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledCreateTitle = styled.span<{ isOpened: boolean }>`
+const StyledCreateTitle = styled.span`
   color: ${COLORS.blue};
-  padding: 0.5rem;
-  display: ${(props) => (props.isOpened ? null : "none")};
+  padding: 0.5rem 1rem;
   white-space: nowrap;
 `;
 
@@ -60,7 +60,7 @@ const StyledCreate = styled.div`
 
 const StyledCreateInput = styled.input`
   width: 65%;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: 1px solid transparent;
   background-color: ${COLORS.bgSidebarLeft};
   outline: none;
@@ -95,9 +95,7 @@ export const SidebarLeft: React.FC = () => {
             {showCreateInput ? (
               <StyledCreateInput autoFocus placeholder={t("CreateList")} onBlur={onHideCreateInput} type="text" />
             ) : (
-              <StyledCreateTitle onClick={onShowCreateInput} isOpened={isSidebarOpened}>
-                {t("CreateList")}
-              </StyledCreateTitle>
+              <StyledCreateTitle onClick={onShowCreateInput}>{t("CreateList")}</StyledCreateTitle>
             )}
           </StyledCreate>
         </StyledContent>
