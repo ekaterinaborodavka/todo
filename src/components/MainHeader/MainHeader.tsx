@@ -2,8 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
-import { ListOptions, SortList, Popup, OptionButton, SortButton } from "~components";
-import { sortVariant } from "~src/utils/utils";
+import { OptionsContent, Popup, OptionButton, SortButton, DropDownList, ListOptions, ThemeList } from "~components";
+import { Icons, parametersList, themeButtons, sortVariant } from "~src/utils/utils";
 
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
@@ -43,12 +43,19 @@ export const MainHeader: React.FC = () => {
       <StyledTaskContainer>
         <StyledTitle>{t("Tasks")}</StyledTitle>
         <Popup button={OptionButton}>
-          <ListOptions />
+          <OptionsContent title={t("ListOptions")}>
+            <DropDownList icon={Icons.paintBrush} title={t("ChangeTheme")}>
+              <ThemeList themes={themeButtons} />
+            </DropDownList>
+            <ListOptions options={parametersList} />
+          </OptionsContent>
         </Popup>
       </StyledTaskContainer>
       <StyledSortContainer>
         <Popup button={SortButton}>
-          <SortList sortVariant={sortVariant} />
+          <OptionsContent title={t("Printing")} width={"250px"}>
+            <ListOptions options={sortVariant} />
+          </OptionsContent>
         </Popup>
       </StyledSortContainer>
     </StyledContainer>

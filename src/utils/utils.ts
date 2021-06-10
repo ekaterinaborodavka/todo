@@ -24,6 +24,12 @@ export enum Icons {
   calendarPlus = "fa fa-calendar-plus-o",
   // eslint-disable-next-line no-unused-vars
   arrows = "fa fa-arrows-v",
+  // eslint-disable-next-line no-unused-vars
+  paintBrush = "fa fa-paint-brush",
+  // eslint-disable-next-line no-unused-vars
+  angleRight = "fa fa-angle-right",
+  // eslint-disable-next-line no-unused-vars
+  print = "fa fa-print",
 }
 
 export const sidebarContent = [
@@ -140,5 +146,13 @@ export const sortVariant = [
     id: 20,
     icon: Icons.calendarPlus,
     title: "По дате создания",
+  },
+];
+
+export const parametersList = [
+  {
+    id: 1,
+    icon: Icons.print,
+    title: "Печать списка",
   },
 ];

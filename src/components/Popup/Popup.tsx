@@ -18,8 +18,8 @@ export const Popup: React.FC<PopupProps> = ({ button: Button, children }) => {
 
   return (
     <>
-      <Button onClick={togglePopup} />
       {isShowPopup ? <PopupContent onClose={onClose}>{children}</PopupContent> : null}
+      <Button onClick={togglePopup} />
     </>
   );
 };
