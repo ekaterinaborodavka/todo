@@ -1,15 +1,13 @@
 {
-    "Search": "Поиск",
-    "ToDo": "To Do",
-    "CreateList": "Создать список",
-    "Tasks":"Задачи",
-    "Sorting": "Сортировка",
-    "ListOptions":"Параметры списка",
-    "ChangeTheme": "Изменить тему",
-    "Printing": "Печать списка",
-    "SortingOrder": "Порядок сортировки",
-    "AddTodo": "Добавить задачу",
-    "Add": "Добавить",
-    "SearchByValue": "Поиск по запросу '{{value}}'"
-  }
-  
+  "Search": "Поиск",
+  "ToDo": "To Do",
+  "CreateList": "Создать список",
+  "Tasks": "Задачи",
+  "Sorting": "Сортировка",
+  "ListOptions": "Параметры списка",
+  "ChangeTheme": "Изменить тему",
+  "Printing": "Печать списка",
+  "SortingOrder": "Порядок сортировки",
+  "AddTodo": "Добавить задачу",
+  "Add": "Добавить"
+}

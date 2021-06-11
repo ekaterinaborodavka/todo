@@ -14,6 +14,9 @@ const StyledContainer = styled.div`
   border-bottom: 1px solid ${COLORS.lightGrey};
   box-shadow-bottom: inset 0 1px 0 0 ${COLORS.lightGrey};
   cursor: pointer;
+  &:hover {
+    background-color: ${COLORS.lightGrey};
+  }
 `;
 
 const StyledButton = styled.button`
