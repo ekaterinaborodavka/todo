@@ -3,7 +3,7 @@ import { Meta, Story } from "@storybook/react/types-6-0";
 import { withKnobs, text, optionsKnob } from "@storybook/addon-knobs";
 
 import { SidebarLeftContentItem, SidebarLeftContentItemProps } from "./SidebarLeftContentItem";
-import { Icons } from "~src/utils/utils";
+import { Icons, TypeTodo } from "~src/utils/utils";
 
 export default {
   title: "SidebarLeftContentItem",
@@ -29,6 +29,7 @@ export const Default: Story<SidebarLeftContentItemProps> = () => {
       title={text("Title", "MyDay")}
       icon={optionsKnob("Icon", Icons, Icons.sun, { display: "select" })}
       color={optionsKnob("Color", ICONS_COLORS, ICONS_COLORS.grey, { display: "select" })}
+      typeTodo={optionsKnob("typeTodo", TypeTodo, TypeTodo.all, { display: "select" })}
     ></SidebarLeftContentItem>
   );
 };

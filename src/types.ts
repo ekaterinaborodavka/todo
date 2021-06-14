@@ -16,4 +16,7 @@ export interface Todo {
   title: string;
   impotant: boolean;
   completed: boolean;
+  myDay: boolean;
+  planned: boolean;
+  assigned: boolean;
 }
