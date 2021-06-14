@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from "react";
+import React, { useCallback, useState, useContext, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
@@ -30,6 +30,7 @@ const StyledIconButton = styled.button`
   border: 1px solid transparent;
   background-color: transparent;
   margin: 0 1rem 1rem 0;
+  cursor: pointer;
 `;
 
 const StyledAddButton = styled.button`
@@ -39,6 +40,7 @@ const StyledAddButton = styled.button`
   text-transform: uppercase;
   color: ${(props) => props.theme.color};
   margin-bottom: 1rem;
+  cursor: pointer;
 `;
 
 const StyledIconPlus = styled.i`
@@ -53,38 +55,63 @@ const StyledIconCircle = styled.i`
   color: ${COLORS.grey};
 `;
 
+const StyledForm = styled.form`
+  width: 100%;
+  display: flex;
+`;
+
 export const AddInput: React.FC = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState("");
   const { flag: focusInput, setFlagFalse: onBlur, setFlagTrue: onFocus } = useStateFlags(false);
   const { addTodo } = useContext(Context);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const onAddTodo = useCallback(() => {
-    addTodo(value);
-    setValue("");
-  }, [value, addTodo, setValue]);
+  const onAddTodo = useCallback(
+    (e: React.FormEvent<HTMLFormElement> | React.FocusEvent<HTMLInputElement>) => {
+      e.preventDefault();
+      if (value.trim()) {
+        addTodo(value);
+        setValue("");
+      }
+    },
+    [value, addTodo, setValue]
+  );
 
   const onInputChange = useCallback(
-    ({ target }) => {
-      setValue(target.value);
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setValue(e.target.value);
     },
     [setValue]
   );
 
+  const onBlurInput = (e: React.FocusEvent<HTMLInputElement>) => {
+    onAddTodo(e);
+    onBlur();
+  };
+
+  const onFocusInput = () => {
+    focusInput && !value ? onBlur() : onFocus();
+    inputRef.current?.focus();
+  };
+
   return (
     <StyledContainer isBorder={focusInput}>
-      <StyledIconButton>
+      <StyledIconButton onClick={onFocusInput}>
         {focusInput ? <StyledIconCircle className="fa fa-circle-thin" /> : <StyledIconPlus className="fa fa-plus" />}
       </StyledIconButton>
-      <StyledInput
-        onFocus={onFocus}
-        onBlur={onBlur}
-        type="text"
-        placeholder={t("AddTodo")}
-        value={value}
-        onChange={onInputChange}
-      />
-      {value ? <StyledAddButton onClick={onAddTodo}>{t("Add")}</StyledAddButton> : null}
+      <StyledForm onSubmit={onAddTodo}>
+        <StyledInput
+          ref={inputRef}
+          onFocus={onFocus}
+          onBlur={onBlurInput}
+          type="text"
+          placeholder={t("AddTodo")}
+          value={value}
+          onChange={onInputChange}
+        />
+        {value ? <StyledAddButton type="submit">{t("Add")}</StyledAddButton> : null}
+      </StyledForm>
     </StyledContainer>
   );
 };
