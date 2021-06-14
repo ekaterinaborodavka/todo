@@ -36,19 +36,22 @@ const StyledIcon = styled.i`
 `;
 
 export const TodoListItem: React.FC<Todo> = ({ title, completed, impotant, id }) => {
-  const { todos, setTodos } = useContext(Context);
+  const { todos, updateTodo } = useContext(Context);
 
   const onCompletedTodo = useCallback(() => {
-    setTodos(completedTodo(id, todos));
-  }, [id, todos, setTodos]);
+    const newItem = completedTodo(id, todos);
+    updateTodo(newItem, id);
+  }, [id, todos, updateTodo]);
 
   const onIncompleteTodo = useCallback(() => {
-    setTodos(incompletedTodo(id, todos));
-  }, [id, todos, setTodos]);
+    const newItem = incompletedTodo(id, todos);
+    updateTodo(newItem, id);
+  }, [id, todos, updateTodo]);
 
   const onToggleImpotantTodo = useCallback(() => {
-    setTodos(toggleImpotantTodo(id, todos));
-  }, [id, todos, setTodos]);
+    const newItem = toggleImpotantTodo(id, todos);
+    updateTodo(newItem, id);
+  }, [id, todos, updateTodo]);
 
   return (
     <StyledContainer>

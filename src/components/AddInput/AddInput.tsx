@@ -5,7 +5,7 @@ import styled from "styled-components/macro";
 import { COLORS } from "~src/colors";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 import { Context } from "~src/context/context";
-import { addNewTodo } from "~src/utils/todoUtils";
+// import { addNewTodo } from "~src/utils/todoUtils";
 
 const StyledContainer = styled.div<{ isBorder: boolean }>`
   display: flex;
@@ -58,12 +58,12 @@ export const AddInput: React.FC = () => {
   const { t } = useTranslation();
   const [value, setValue] = useState("");
   const { flag: focusInput, setFlagFalse: onBlur, setFlagTrue: onFocus } = useStateFlags(false);
-  const { todos, setTodos } = useContext(Context);
+  const { addTodo } = useContext(Context);
 
-  const addTodo = useCallback(() => {
-    setTodos(addNewTodo(value, todos));
+  const onAddTodo = useCallback(() => {
+    addTodo(value);
     setValue("");
-  }, [value, todos, setTodos]);
+  }, [value, addTodo, setValue]);
 
   const onInputChange = useCallback(
     ({ target }) => {
@@ -85,7 +85,7 @@ export const AddInput: React.FC = () => {
         value={value}
         onChange={onInputChange}
       />
-      {value ? <StyledAddButton onClick={addTodo}>{t("Add")}</StyledAddButton> : null}
+      {value ? <StyledAddButton onClick={onAddTodo}>{t("Add")}</StyledAddButton> : null}
     </StyledContainer>
   );
 };
