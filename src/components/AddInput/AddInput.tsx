@@ -5,7 +5,6 @@ import styled from "styled-components/macro";
 import { COLORS } from "~src/colors";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 import { Context } from "~src/context/context";
-// import { addNewTodo } from "~src/utils/todoUtils";
 
 const StyledContainer = styled.div<{ isBorder: boolean }>`
   display: flex;
