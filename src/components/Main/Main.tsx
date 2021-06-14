@@ -34,14 +34,14 @@ const StyledSearchTitle = styled.h3`
 
 export const Main: React.FC = () => {
   const { todos: allTodos, filterTodos, searchValue } = useContext(Context);
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
 
   const todos = filterTodos.length ? filterTodos : allTodos;
 
   return (
     <StyledContainer>
-      {searchValue && !filterTodos.length ? (
-        <StyledSearchTitle>{t("SearchByValue", { value: searchValue })}</StyledSearchTitle>
+      {searchValue.trim() && !filterTodos.length ? (
+        <StyledSearchTitle>{i18n.t("SearchByValue", { value: searchValue })}</StyledSearchTitle>
       ) : (
         <>
           <MainHeader />
