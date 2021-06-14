@@ -1,4 +1,5 @@
 import { Todo } from "~src/types";
+import { TypeTodo } from "./utils";
 
 export const createTodoItem = (title: string): Todo => {
   return {
@@ -6,6 +7,9 @@ export const createTodoItem = (title: string): Todo => {
     title,
     impotant: false,
     completed: false,
+    myDay: false,
+    planned: false,
+    assigned: false,
   };
 };
 
@@ -44,4 +48,12 @@ export const update = (todos: Todo[], newItem: Todo, id: number): Todo[] => {
 
 export const search = (todos: Todo[], value: string): Todo[] => {
   return todos.filter((todo) => todo.title.indexOf(value) !== -1);
+};
+
+export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
+  if (typeTodo === "all") {
+    return todos.length;
+  }
+  const filterTodos = todos.filter((todo) => todo[typeTodo]);
+  return filterTodos.length;
 };
