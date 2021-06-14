@@ -32,36 +32,54 @@ export enum Icons {
   print = "fa fa-print",
 }
 
+export enum TypeTodo {
+  // eslint-disable-next-line no-unused-vars
+  myDay = "myDay",
+  // eslint-disable-next-line no-unused-vars
+  impotant = "impotant",
+  // eslint-disable-next-line no-unused-vars
+  planned = "planned",
+  // eslint-disable-next-line no-unused-vars
+  assigned = "assigned",
+  // eslint-disable-next-line no-unused-vars
+  all = "all",
+}
+
 export const sidebarContent = [
   {
     id: 1,
     icon: Icons.sun,
     title: "Мой День",
     color: COLORS.grey,
+    typeTodo: TypeTodo.myDay,
   },
   {
     id: 2,
     icon: Icons.star,
     title: "Важно",
     color: COLORS.grey,
+    typeTodo: TypeTodo.impotant,
   },
   {
     id: 3,
     icon: Icons.calendar,
     title: "Запланировано",
     color: COLORS.grey,
+    typeTodo: TypeTodo.planned,
   },
   {
     id: 4,
     icon: Icons.user,
     title: "Назначенные Вам",
     color: COLORS.green,
+    typeTodo: TypeTodo.assigned,
   },
   {
     id: 5,
     icon: Icons.home,
     title: "Задачи",
     color: COLORS.blue,
+    typeTodo: TypeTodo.all,
   },
 ];
 
