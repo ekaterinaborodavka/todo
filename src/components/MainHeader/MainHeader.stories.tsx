@@ -10,5 +10,5 @@ export default {
 } as Meta;
 
 export const Default: Story = () => {
-  return <MainHeader title={text("Title", "Title")} />;
+  return <MainHeader title={text("Title", "Title")} path={"/"} />;
 };
