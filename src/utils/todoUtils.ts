@@ -1,9 +1,10 @@
 import { Todo } from "~src/types";
-import { TypeTodo } from "./utils";
+import { SortOptions, TypeTodo } from "./utils";
 
 export const createTodoItem = (title: string): Todo => {
   return {
     id: Date.now(),
+    date: Date.now(),
     title,
     impotant: false,
     completed: false,
@@ -50,10 +51,36 @@ export const search = (todos: Todo[], value: string): Todo[] => {
   return todos.filter((todo) => todo.title.indexOf(value) !== -1);
 };
 
+export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
+  const currentTodos = todos.slice();
+  switch (value) {
+    case SortOptions.importance:
+      currentTodos.sort((a, b) => {
+        return Number(b.impotant) - Number(a.impotant);
+      });
+      return currentTodos;
+    // We should add these options after the development of the corresponding functions: deadline and day list
+    // case SortOptions.creationDate:
+    //   break;
+    // case SortOptions.myDayList:
+    //   break;
+    case SortOptions.alphabetically:
+      currentTodos.sort();
+      return currentTodos;
+
+    case SortOptions.creationDate:
+      currentTodos.sort((a, b) => a.date - b.date);
+      return currentTodos;
+    default:
+      currentTodos.sort((a, b) => a.date - b.date);
+      return currentTodos;
+  }
+
 export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
   if (typeTodo === "all") {
     return todos.length;
   }
   const filterTodos = todos.filter((todo) => todo[typeTodo]);
   return filterTodos.length;
+
 };

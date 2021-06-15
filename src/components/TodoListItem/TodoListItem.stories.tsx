@@ -15,6 +15,7 @@ export const Default: Story<Todo> = () => {
   return (
     <TodoListItem
       id={1}
+      date={1}
       title={text("Name", "UserName")}
       completed={boolean("Completed", false)}
       impotant={boolean("Impotant", false)}
