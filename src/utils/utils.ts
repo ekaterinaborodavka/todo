@@ -32,7 +32,6 @@ export enum Icons {
   print = "fa fa-print",
 }
 
-
 export enum SortOptions {
   // eslint-disable-next-line no-unused-vars
   importance = "Baжность",
@@ -57,7 +56,6 @@ export enum TypeTodo {
   assigned = "assigned",
   // eslint-disable-next-line no-unused-vars
   all = "all",
-
 }
 
 export const sidebarContent = [
