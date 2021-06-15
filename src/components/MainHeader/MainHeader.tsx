@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
-import { useHistory } from "react-router-dom";
 
 import { OptionsContent, Popup, OptionButton, SortButton, DropDownList, ListOptions, ThemeList } from "~components";
 import { Icons, parametersList, themeButtons, sortVariant } from "~src/utils/utils";
@@ -39,12 +38,11 @@ const StyledTitle = styled.h2`
 
 interface MainHeaderProps {
   title: string;
+  path: string;
 }
 
-export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
+export const MainHeader: React.FC<MainHeaderProps> = ({ title, path }) => {
   const { t } = useTranslation();
-  const history = useHistory();
-  const path = history.location.pathname;
 
   const isShowSortButton = useCallback(() => {
     if (path === PathNameMain.all || path === PathNameMain.myDay) {
