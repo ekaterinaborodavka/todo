@@ -1,5 +1,5 @@
 import { Todo } from "~src/types";
-
+import { SortOptions } from "./utils";
 export const createTodoItem = (title: string): Todo => {
   return {
     id: Date.now(),
@@ -50,23 +50,20 @@ export const search = (todos: Todo[], value: string): Todo[] => {
 export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
   const currentTodos = todos.slice();
   switch (value) {
-    case "Baжность":
+    case SortOptions.importance:
       currentTodos.sort((a, b) => {
         return Number(b.impotant) - Number(a.impotant);
       });
       return currentTodos;
-
-    // case "Дата выполнения":
-
+    // case SortOptions.creationDate:
     //   break;
-    // case "По добавлениям в 'Мой день'":
-
+    // case SortOptions.myDayList:
     //   break;
-    case "По алфавиту":
+    case SortOptions.alphabetically:
       currentTodos.sort();
       return currentTodos;
 
-    case "По дате создания":
+    case SortOptions.creationDate:
       currentTodos.sort((a, b) => a.date - b.date);
       return currentTodos;
     default:

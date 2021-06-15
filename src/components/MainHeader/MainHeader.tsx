@@ -4,9 +4,8 @@ import styled from "styled-components/macro";
 
 import { OptionsContent, Popup, OptionButton, SortButton, DropDownList, ListOptions, ThemeList } from "~components";
 import { Icons, parametersList, themeButtons, sortVariant } from "~src/utils/utils";
-import { Context } from "../../context/context";
-import { sortItemsList } from "../../utils/todoUtils";
-// import { sortItemsList } from "../../utils/todoUtils";
+import { Context } from "~src/context/context";
+import { sortItemsList } from "~src/utils/todoUtils";
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
   display: flex;
@@ -45,7 +44,7 @@ export const MainHeader: React.FC = () => {
     const value = currentTarget.getAttribute("data-value");
     const currentValue = value ? value : "default";
 
-    if (todos.length === 0) {
+    if (!todos.length) {
       return;
     }
 

@@ -32,6 +32,19 @@ export enum Icons {
   print = "fa fa-print",
 }
 
+export enum SortOptions {
+  // eslint-disable-next-line no-unused-vars
+  importance = "Baжность",
+  // eslint-disable-next-line no-unused-vars
+  deadline = "Дата выполнения",
+  // eslint-disable-next-line no-unused-vars
+  myDayList = "По добавлениям в 'Мой день'",
+  // eslint-disable-next-line no-unused-vars
+  alphabetically = "По алфавиту",
+  // eslint-disable-next-line no-unused-vars
+  creationDate = "По дате создания",
+}
+
 export const sidebarContent = [
   {
     id: 1,
