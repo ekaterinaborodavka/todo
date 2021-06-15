@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
+import { useHistory } from "react-router-dom";
 
 import { OptionsContent, Popup, OptionButton, SortButton, DropDownList, ListOptions, ThemeList } from "~components";
 import { Icons, parametersList, themeButtons, sortVariant } from "~src/utils/utils";
+import { PathNameMain } from "~src/types";
 
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
@@ -35,13 +37,26 @@ const StyledTitle = styled.h2`
   font-weight: 600;
 `;
 
-export const MainHeader: React.FC = () => {
+interface MainHeaderProps {
+  title: string;
+}
+
+export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
   const { t } = useTranslation();
+  const history = useHistory();
+  const path = history.location.pathname;
+
+  const isShowSortButton = useCallback(() => {
+    if (path === PathNameMain.all || path === PathNameMain.myDay) {
+      return true;
+    }
+    return false;
+  }, [path]);
 
   return (
     <StyledContainer>
       <StyledTaskContainer>
-        <StyledTitle>{t("Tasks")}</StyledTitle>
+        <StyledTitle>{title}</StyledTitle>
         <Popup button={OptionButton}>
           <OptionsContent title={t("ListOptions")}>
             <DropDownList icon={Icons.paintBrush} title={t("ChangeTheme")}>
@@ -51,13 +66,15 @@ export const MainHeader: React.FC = () => {
           </OptionsContent>
         </Popup>
       </StyledTaskContainer>
-      <StyledSortContainer>
-        <Popup button={SortButton}>
-          <OptionsContent title={t("Printing")} width={"250px"}>
-            <ListOptions options={sortVariant} />
-          </OptionsContent>
-        </Popup>
-      </StyledSortContainer>
+      {isShowSortButton() ? (
+        <StyledSortContainer>
+          <Popup button={SortButton}>
+            <OptionsContent title={t("Printing")} width={"250px"}>
+              <ListOptions options={sortVariant} />
+            </OptionsContent>
+          </Popup>
+        </StyledSortContainer>
+      ) : null}
     </StyledContainer>
   );
 };

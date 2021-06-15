@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useCallback } from "react";
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 import { COLORS } from "~src/colors";
 import { Context } from "~src/context/context";
@@ -11,10 +12,6 @@ const StyledIcon = styled.i<{ color: string }>`
 `;
 
 const StyledItem = styled.li`
-  list-style: none;
-  display: flex;
-  align-items: center;
-  margin: 0rem auto;
   padding: 0.5rem 1.5rem;
   &:hover {
     background-color: ${COLORS.lightGrey};
@@ -38,6 +35,12 @@ const StyledContent = styled.div`
   display: flex;
 `;
 
+const StyledLink = styled(Link)`
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+`;
+
 export interface SidebarLeftContentItemProps {
   icon: string;
   title: string;
@@ -53,15 +56,24 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
     setAmount(countTodos(todos, typeTodo));
   }, [todos, typeTodo]);
 
+  const linkTo = useCallback(() => {
+    if (typeTodo === "all") {
+      return "/";
+    }
+    return `/${typeTodo}`;
+  }, [typeTodo]);
+
   return (
     <StyledItem>
-      <div>
-        <StyledIcon color={color} className={icon} />
-      </div>
-      <StyledContent>
-        <StyledTitle color={color}>{title}</StyledTitle>
-        <StyledCount>{amount ? amount : null}</StyledCount>
-      </StyledContent>
+      <StyledLink to={linkTo}>
+        <div>
+          <StyledIcon color={color} className={icon} />
+        </div>
+        <StyledContent>
+          <StyledTitle color={color}>{title}</StyledTitle>
+          <StyledCount>{amount ? amount : null}</StyledCount>
+        </StyledContent>
+      </StyledLink>
     </StyledItem>
   );
 };
