@@ -60,7 +60,11 @@ const StyledForm = styled.form`
   display: flex;
 `;
 
-export const AddInput: React.FC = () => {
+interface AddInputProps {
+  placeholder: string;
+}
+
+export const AddInput: React.FC<AddInputProps> = ({ placeholder }) => {
   const { t } = useTranslation();
   const [value, setValue] = useState("");
   const { flag: focusInput, setFlagFalse: onBlur, setFlagTrue: onFocus } = useStateFlags(false);
@@ -85,15 +89,18 @@ export const AddInput: React.FC = () => {
     [setValue]
   );
 
-  const onBlurInput = (e: React.FocusEvent<HTMLInputElement>) => {
-    onAddTodo(e);
-    onBlur();
-  };
+  const onBlurInput = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      onAddTodo(e);
+      onBlur();
+    },
+    [onBlur, onAddTodo]
+  );
 
-  const onFocusInput = () => {
+  const onFocusInput = useCallback(() => {
     focusInput && !value ? onBlur() : onFocus();
     inputRef.current?.focus();
-  };
+  }, [onBlur, onFocus, focusInput, value]);
 
   return (
     <StyledContainer isBorder={focusInput}>
@@ -106,7 +113,7 @@ export const AddInput: React.FC = () => {
           onFocus={onFocus}
           onBlur={onBlurInput}
           type="text"
-          placeholder={t("AddTodo")}
+          placeholder={placeholder}
           value={value}
           onChange={onInputChange}
         />

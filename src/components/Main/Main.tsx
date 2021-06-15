@@ -32,7 +32,12 @@ const StyledSearchTitle = styled.h3`
   color: ${(props) => props.theme.color};
 `;
 
-export const Main: React.FC = () => {
+interface MainProps {
+  title: string;
+  placeholder?: string;
+}
+
+export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
   const { todos: allTodos, filterTodos, searchValue } = useContext(Context);
   const { t } = useTranslation();
 
@@ -44,8 +49,8 @@ export const Main: React.FC = () => {
         <StyledSearchTitle>{t("SearchByValue", { value: searchValue })}</StyledSearchTitle>
       ) : (
         <>
-          <MainHeader />
-          <AddInput />
+          <MainHeader title={title} />
+          {placeholder ? <AddInput placeholder={placeholder} /> : null}
           <TodoList todos={todos} />
         </>
       )}

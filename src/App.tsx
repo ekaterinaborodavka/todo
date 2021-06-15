@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components/macro";
+import { useTranslation } from "react-i18next";
 
 import { Header, Main, SidebarLeft } from "~components";
 import { theme } from "~src/theme/theme";
-import { ThemeNames, Todo } from "~src/types";
+import { PathNameMain, ThemeNames, Todo } from "~src/types";
 import { Context } from "~src/context/context";
 import { addNewTodo, update } from "~src/utils/todoUtils";
-
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -15,6 +16,7 @@ const StyledContainer = styled.div`
 `;
 
 export const App: React.FC = () => {
+  const { t } = useTranslation();
   const [themeVariant, setThemeVariant] = useState(ThemeNames.blue);
   const [todos, setTodos] = useState<Todo[]>([] as Todo[]);
   const [searchValue, setSearchValue] = useState("");
@@ -51,10 +53,30 @@ export const App: React.FC = () => {
     >
       <ThemeProvider theme={theme[themeVariant]}>
         <Header />
-        <StyledContainer>
-          <SidebarLeft />
-          <Main />
-        </StyledContainer>
+        <Router>
+          <Switch>
+            <Route>
+              <StyledContainer>
+                <SidebarLeft />
+                <Route exact path={PathNameMain.all}>
+                  <Main title={t("Tasks")} placeholder={t("AddTodo")} />
+                </Route>
+                <Route exact path={PathNameMain.myDay}>
+                  <Main title={t("MyDay")} placeholder={t("AddTodo")} />
+                </Route>
+                <Route exact path={PathNameMain.important}>
+                  <Main title={t("Important")} placeholder={t("AddTodo")} />
+                </Route>
+                <Route exact path={PathNameMain.planned}>
+                  <Main title={t("Planned")} placeholder={t("AddPlannedTodo")} />
+                </Route>
+                <Route exact path={PathNameMain.assigned}>
+                  <Main title={t("Assigned")} />
+                </Route>
+              </StyledContainer>
+            </Route>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </Context.Provider>
   );
