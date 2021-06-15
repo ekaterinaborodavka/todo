@@ -19,6 +19,9 @@ export const Default: Story<Todo> = () => {
       title={text("Name", "UserName")}
       completed={boolean("Completed", false)}
       impotant={boolean("Impotant", false)}
+      myDay={boolean("MyDay", false)}
+      planned={boolean("Planned", false)}
+      assigned={boolean("Assigned", false)}
     ></TodoListItem>
   );
 };

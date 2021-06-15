@@ -1,5 +1,6 @@
 import { Todo } from "~src/types";
-import { SortOptions } from "./utils";
+import { SortOptions, TypeTodo } from "./utils";
+
 export const createTodoItem = (title: string): Todo => {
   return {
     id: Date.now(),
@@ -7,6 +8,9 @@ export const createTodoItem = (title: string): Todo => {
     title,
     impotant: false,
     completed: false,
+    myDay: false,
+    planned: false,
+    assigned: false,
   };
 };
 
@@ -71,4 +75,12 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
       currentTodos.sort((a, b) => a.date - b.date);
       return currentTodos;
   }
+
+export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
+  if (typeTodo === "all") {
+    return todos.length;
+  }
+  const filterTodos = todos.filter((todo) => todo[typeTodo]);
+  return filterTodos.length;
+
 };
