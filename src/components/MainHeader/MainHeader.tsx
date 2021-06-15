@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { OptionsContent, Popup, OptionButton, SortButton, DropDownList, ListOptions, ThemeList } from "~components";
 import { Icons, parametersList, themeButtons, sortVariant } from "~src/utils/utils";
 import { PathNameMain } from "~src/types";
+import { sortItemsList } from "~src/utils/todoUtils";
+import { Context } from "~src/context/context";
 
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
@@ -43,6 +45,7 @@ interface MainHeaderProps {
 
 export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
   const { t } = useTranslation();
+  const { todos, setTodos } = useContext(Context);
   const history = useHistory();
   const path = history.location.pathname;
 
@@ -52,6 +55,18 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
     }
     return false;
   }, [path]);
+
+  const onSortItems = ({ currentTarget }: React.MouseEvent) => {
+    const value = currentTarget.getAttribute("data-value");
+    const currentValue = value ? value : "default";
+
+    if (!todos.length) {
+      return;
+    }
+
+    const newTodos = sortItemsList(todos, currentValue);
+    setTodos(newTodos);
+  };
 
   return (
     <StyledContainer>
@@ -70,7 +85,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
         <StyledSortContainer>
           <Popup button={SortButton}>
             <OptionsContent title={t("Printing")} width={"250px"}>
-              <ListOptions options={sortVariant} />
+              <ListOptions options={sortVariant} onClick={onSortItems} />
             </OptionsContent>
           </Popup>
         </StyledSortContainer>
