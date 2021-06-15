@@ -54,7 +54,7 @@ export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
         <StyledSearchTitle>{t("SearchByValue", { value: searchValue })}</StyledSearchTitle>
       ) : (
         <>
-          <MainHeader title={title} />
+          <MainHeader title={title} path={location.pathname} />
           {placeholder ? <AddInput placeholder={placeholder} typeOfPages={typeOfPages} /> : null}
           <TodoList todos={todos} todoType={typeOfPages} />
         </>
