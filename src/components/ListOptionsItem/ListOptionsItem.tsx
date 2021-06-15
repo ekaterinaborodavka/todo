@@ -30,12 +30,14 @@ const StyledListText = styled.span`
 export interface ListOptionsItemProps {
   icon: string;
   title: string;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (evt: React.MouseEvent) => void;
 }
 
-export const ListOptionsItem: React.FC<ListOptionsItemProps> = ({ icon, title }) => {
+export const ListOptionsItem: React.FC<ListOptionsItemProps> = ({ icon, title, onClick }) => {
   return (
     <StyledListItem>
-      <StyledButton type="button">
+      <StyledButton type="button" onClick={onClick} data-value={title}>
         <i className={icon} />
         <StyledListText>{title}</StyledListText>
       </StyledButton>

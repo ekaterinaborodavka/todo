@@ -32,6 +32,19 @@ export enum Icons {
   print = "fa fa-print",
 }
 
+export enum SortOptions {
+  // eslint-disable-next-line no-unused-vars
+  importance = "Baжность",
+  // eslint-disable-next-line no-unused-vars
+  deadline = "Дата выполнения",
+  // eslint-disable-next-line no-unused-vars
+  myDayList = "По добавлениям в 'Мой день'",
+  // eslint-disable-next-line no-unused-vars
+  alphabetically = "По алфавиту",
+  // eslint-disable-next-line no-unused-vars
+  creationDate = "По дате создания",
+}
+
 export enum TypeTodo {
   // eslint-disable-next-line no-unused-vars
   myDay = "myDay",
@@ -143,27 +156,27 @@ export const sortVariant = [
   {
     id: 16,
     icon: Icons.star,
-    title: "Baжность",
+    title: SortOptions.importance,
   },
   {
     id: 17,
     icon: Icons.calendar,
-    title: "Дата выполнения",
+    title: SortOptions.deadline,
   },
   {
     id: 18,
     icon: Icons.sun,
-    title: "По добавлениям в 'Мой день'",
+    title: SortOptions.myDayList,
   },
   {
     id: 19,
     icon: Icons.arrows,
-    title: "По алфавиту",
+    title: SortOptions.alphabetically,
   },
   {
     id: 20,
     icon: Icons.calendarPlus,
-    title: "По дате создания",
+    title: SortOptions.creationDate,
   },
 ];
 
