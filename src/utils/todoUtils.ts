@@ -3,6 +3,7 @@ import { Todo } from "~src/types";
 export const createTodoItem = (title: string): Todo => {
   return {
     id: Date.now(),
+    date: Date.now(),
     title,
     impotant: false,
     completed: false,
@@ -44,4 +45,32 @@ export const update = (todos: Todo[], newItem: Todo, id: number): Todo[] => {
 
 export const search = (todos: Todo[], value: string): Todo[] => {
   return todos.filter((todo) => todo.title.indexOf(value) !== -1);
+};
+
+export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
+  const currentTodos = todos.slice();
+  switch (value) {
+    case "Baжность":
+      currentTodos.sort((a, b) => {
+        return Number(b.impotant) - Number(a.impotant);
+      });
+      return currentTodos;
+
+    // case "Дата выполнения":
+
+    //   break;
+    // case "По добавлениям в 'Мой день'":
+
+    //   break;
+    case "По алфавиту":
+      currentTodos.sort();
+      return currentTodos;
+
+    case "По дате создания":
+      currentTodos.sort((a, b) => a.date - b.date);
+      return currentTodos;
+    default:
+      currentTodos.sort((a, b) => a.date - b.date);
+      return currentTodos;
+  }
 };

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
 import { OptionsContent, Popup, OptionButton, SortButton, DropDownList, ListOptions, ThemeList } from "~components";
 import { Icons, parametersList, themeButtons, sortVariant } from "~src/utils/utils";
-
+import { Context } from "../../context/context";
+import { sortItemsList } from "../../utils/todoUtils";
+// import { sortItemsList } from "../../utils/todoUtils";
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
   display: flex;
@@ -37,7 +39,19 @@ const StyledTitle = styled.h2`
 
 export const MainHeader: React.FC = () => {
   const { t } = useTranslation();
+  const { todos, setTodos } = useContext(Context);
 
+  const onSortItems = ({ currentTarget }: React.MouseEvent) => {
+    const value = currentTarget.getAttribute("data-value");
+    const currentValue = value ? value : "default";
+
+    if (todos.length === 0) {
+      return;
+    }
+
+    const newTodos = sortItemsList(todos, currentValue);
+    setTodos(newTodos);
+  };
   return (
     <StyledContainer>
       <StyledTaskContainer>
@@ -54,7 +68,7 @@ export const MainHeader: React.FC = () => {
       <StyledSortContainer>
         <Popup button={SortButton}>
           <OptionsContent title={t("Printing")} width={"250px"}>
-            <ListOptions options={sortVariant} />
+            <ListOptions options={sortVariant} onClick={onSortItems} />
           </OptionsContent>
         </Popup>
       </StyledSortContainer>
