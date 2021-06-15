@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { ListOptionsItem } from "~components";
-import { ListOptionsItemProps } from "../ListOptionsItem/ListOptionsItem";
+import { ListOptionsItem, ListOptionsItemProps } from "~components";
 
 const StyledList = styled.ul`
   list-style: none;
