@@ -54,7 +54,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title, path }) => {
     return false;
   }, [path]);
 
-  const onSortItems = ({ currentTarget }: React.MouseEvent) => {
+  const onSortItems = ({ currentTarget }: React.MouseEvent<HTMLButtonElement>) => {
     const value = currentTarget.getAttribute("data-value");
     const currentValue = value ? value : "default";
 

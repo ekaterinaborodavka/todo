@@ -31,7 +31,7 @@ export interface ListOptionsItemProps {
   icon: string;
   title: string;
   // eslint-disable-next-line no-unused-vars
-  onClick?: (evt: React.MouseEvent) => void;
+  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const ListOptionsItem: React.FC<ListOptionsItemProps> = ({ icon, title, onClick }) => {
