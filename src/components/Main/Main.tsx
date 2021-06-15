@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { MainHeader, AddInput, TodoList } from "~components";
 import { Context } from "~src/context/context";
 import { COLORS } from "~src/colors";
+import { useLocation } from "react-router-dom";
 
 const StyledContainer = styled.main`
   display: flex;
@@ -40,8 +41,12 @@ interface MainProps {
 export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
   const { todos: allTodos, filterTodos, searchValue } = useContext(Context);
   const { t } = useTranslation();
+  const location = useLocation();
 
   const todos = filterTodos.length ? filterTodos : allTodos;
+
+  const path = location.pathname;
+  const typeOfPages = path.length > 1 ? path.slice(1) : "all";
 
   return (
     <StyledContainer>
@@ -50,8 +55,8 @@ export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
       ) : (
         <>
           <MainHeader title={title} />
-          {placeholder ? <AddInput placeholder={placeholder} /> : null}
-          <TodoList todos={todos} />
+          {placeholder ? <AddInput placeholder={placeholder} typeOfPages={typeOfPages} /> : null}
+          <TodoList todos={todos} todoType={typeOfPages} />
         </>
       )}
       <StyledBGContainer></StyledBGContainer>

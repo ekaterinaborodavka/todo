@@ -1,7 +1,7 @@
 import { Todo } from "~src/types";
 import { TypeTodo } from "./utils";
 
-export const createTodoItem = (title: string): Todo => {
+export const createTodoItem = (title: string, todoType: string): Todo => {
   return {
     id: Date.now(),
     title,
@@ -10,11 +10,12 @@ export const createTodoItem = (title: string): Todo => {
     myDay: false,
     planned: false,
     assigned: false,
+    [todoType]: true,
   };
 };
 
-export const addNewTodo = (title: string, todos: Todo[]): Todo[] => {
-  const newTodoItem = createTodoItem(title);
+export const addNewTodo = (title: string, todos: Todo[], todoType: string): Todo[] => {
+  const newTodoItem = createTodoItem(title, todoType);
   const newTodos = [...todos, newTodoItem];
   return newTodos;
 };
