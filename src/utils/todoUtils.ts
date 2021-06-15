@@ -75,12 +75,11 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
       currentTodos.sort((a, b) => a.date - b.date);
       return currentTodos;
   }
-
+};
 export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
   if (typeTodo === "all") {
     return todos.length;
   }
   const filterTodos = todos.filter((todo) => todo[typeTodo]);
   return filterTodos.length;
-
 };
