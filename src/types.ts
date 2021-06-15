@@ -27,6 +27,7 @@ export enum PathNameMain {
 export interface Todo {
   [key: string]: number | string | boolean | undefined;
   id: number;
+  date: number;
   title: string;
   impotant: boolean;
   completed: boolean;

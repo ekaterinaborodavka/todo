@@ -11,13 +11,15 @@ const StyledList = styled.ul`
 
 export interface ListOptionsProps {
   options: ListOptionsItemProps[];
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (evt: React.MouseEvent) => void;
 }
 
-export const ListOptions: React.FC<ListOptionsProps> = ({ options }) => {
+export const ListOptions: React.FC<ListOptionsProps> = ({ options, onClick }) => {
   return (
     <StyledList>
       {options.map((option) => (
-        <ListOptionsItem key={option.title} {...option} />
+        <ListOptionsItem key={option.title} {...option} onClick={onClick} />
       ))}
     </StyledList>
   );

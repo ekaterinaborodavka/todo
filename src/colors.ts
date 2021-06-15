@@ -53,4 +53,6 @@ export enum COLORS {
   themeButtonSkyBlueGradLeft = "#53d2e5",
   // eslint-disable-next-line no-unused-vars
   checkButtonHover = "#3648c0",
+  // eslint-disable-next-line no-unused-vars
+  bgSidebarRight = "#FAF9F8",
 }
