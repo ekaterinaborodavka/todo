@@ -66,12 +66,13 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
     // case SortOptions.myDayList:
     //   break;
     case SortOptions.alphabetically:
-      currentTodos.sort();
+      currentTodos.sort((a, b) => a.title.localeCompare(b.title));
       return currentTodos;
 
     case SortOptions.creationDate:
       currentTodos.sort((a, b) => a.date - b.date);
       return currentTodos;
+
     default:
       currentTodos.sort((a, b) => a.date - b.date);
       return currentTodos;
