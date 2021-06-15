@@ -55,26 +55,24 @@ export const App: React.FC = () => {
         <Header />
         <Router>
           <Switch>
-            <Route>
-              <StyledContainer>
-                <SidebarLeft />
-                <Route exact path={PathNameMain.all}>
-                  <Main title={t("Tasks")} placeholder={t("AddTodo")} />
-                </Route>
-                <Route exact path={PathNameMain.myDay}>
-                  <Main title={t("MyDay")} placeholder={t("AddTodo")} />
-                </Route>
-                <Route exact path={PathNameMain.important}>
-                  <Main title={t("Important")} placeholder={t("AddTodo")} />
-                </Route>
-                <Route exact path={PathNameMain.planned}>
-                  <Main title={t("Planned")} placeholder={t("AddPlannedTodo")} />
-                </Route>
-                <Route exact path={PathNameMain.assigned}>
-                  <Main title={t("Assigned")} />
-                </Route>
-              </StyledContainer>
-            </Route>
+            <StyledContainer>
+              <SidebarLeft />
+              <Route exact path={PathNameMain.all}>
+                <Main title={t("Tasks")} placeholder={t("AddTodo")} />
+              </Route>
+              <Route exact path={PathNameMain.myDay}>
+                <Main title={t("MyDay")} placeholder={t("AddTodo")} />
+              </Route>
+              <Route exact path={PathNameMain.important}>
+                <Main title={t("Important")} placeholder={t("AddTodo")} />
+              </Route>
+              <Route exact path={PathNameMain.planned}>
+                <Main title={t("Planned")} placeholder={t("AddPlannedTodo")} />
+              </Route>
+              <Route exact path={PathNameMain.assigned}>
+                <Main title={t("Assigned")} />
+              </Route>
+            </StyledContainer>
           </Switch>
         </Router>
       </ThemeProvider>

@@ -44,13 +44,14 @@ interface MainHeaderProps {
 export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
   const { t } = useTranslation();
   const history = useHistory();
+  const path = history.location.pathname;
 
   const isShowSortButton = useCallback(() => {
-    if (history.location.pathname === (PathNameMain.all || PathNameMain.myDay)) {
+    if (path === PathNameMain.all || path === PathNameMain.myDay) {
       return true;
     }
     return false;
-  }, [history]);
+  }, [path]);
 
   return (
     <StyledContainer>
