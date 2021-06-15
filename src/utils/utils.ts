@@ -138,27 +138,27 @@ export const sortVariant = [
   {
     id: 16,
     icon: Icons.star,
-    title: "Baжность",
+    title: SortOptions.importance,
   },
   {
     id: 17,
     icon: Icons.calendar,
-    title: "Дата выполнения",
+    title: SortOptions.deadline,
   },
   {
     id: 18,
     icon: Icons.sun,
-    title: "По добавлениям в 'Мой день'",
+    title: SortOptions.myDayList,
   },
   {
     id: 19,
     icon: Icons.arrows,
-    title: "По алфавиту",
+    title: SortOptions.alphabetically,
   },
   {
     id: 20,
     icon: Icons.calendarPlus,
-    title: "По дате создания",
+    title: SortOptions.creationDate,
   },
 ];
 
