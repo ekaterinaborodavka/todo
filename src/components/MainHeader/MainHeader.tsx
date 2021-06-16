@@ -1,9 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
-import { OptionsContent, Popup, OptionButton, DropDownList, ListOptions, ThemeList } from "~components";
+import { OptionsContent, Popup, OptionButton, DropDownList, ListOptions, ThemeList, SortList } from "~components";
 import { Icons, parametersList, themeButtons } from "~src/utils/utils";
-import { SortContainer } from "../SortContainer/SortContainer";
 
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
@@ -48,7 +47,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
           </OptionsContent>
         </Popup>
       </StyledTaskContainer>
-      <SortContainer />
+      <SortList />
     </StyledContainer>
   );
 };

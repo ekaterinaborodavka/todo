@@ -8,6 +8,8 @@ import { PathNameMain } from "~src/types";
 import { sortItemsList } from "~src/utils/todoUtils";
 import { Context } from "~src/context/context";
 import { useState } from "react";
+import { COLORS } from "~src/colors";
+import { useStateFlags } from "../../hooks/useStateFlags";
 
 const StyledSortContainer = styled.div`
   display: flex;
@@ -26,7 +28,7 @@ const StyledSortOptions = styled.div`
 
 const SortOptionButton = styled.button`
   border: none;
-  background-color: white;
+  background-color: ${COLORS.white};
   font-size: 15px;
   &:hover,
   :focus {
@@ -40,24 +42,24 @@ const SortOptionButton = styled.button`
 const SortOptionIcon = styled.i`
   font-size: 25px;
   font-weight: 500;
-  color: gray;
+  color: ${COLORS.grey};
   padding: 5px;
   -webkit-text-stroke: 1px white;
 `;
 const SortOptionClearIcon = styled.i`
   font-size: 25px;
   font-weight: 500;
-  color: gray;
+  color: ${COLORS.grey};
   padding: 5px;
   -webkit-text-stroke: 4px white;
 `;
 
-export const SortContainer: React.FC = () => {
+export const SortList: React.FC = () => {
   const { t } = useTranslation();
   const { todos, setTodos } = useContext(Context);
   const [sortedPoint, setSortedPoint] = useState("");
-  const [isSorted, setIsSorted] = useState(false);
-  const [reverseSorting, setReverseSorting] = useState(false);
+  const { flag: isSorted, toggleFlag: toggleSorting, setFlagFalse: setUnsorted } = useStateFlags(false);
+  const { flag: isReversedList, toggleFlag: toggleReverseList } = useStateFlags(false);
   const history = useHistory();
   const path = history.location.pathname;
 
@@ -72,26 +74,26 @@ export const SortContainer: React.FC = () => {
     const value = currentTarget.getAttribute("data-value");
     const currentValue = value ? value : SortOptions.default;
     if (!todos.length) {
-      setIsSorted(false);
+      setUnsorted();
       return;
     }
     const newTodos = sortItemsList(todos, currentValue);
     setTodos(newTodos);
     setSortedPoint(currentValue);
     if (currentValue === SortOptions.default) {
-      setIsSorted(false);
+      setUnsorted();
     } else {
-      setIsSorted(true);
+      toggleSorting();
     }
   };
   const onCloseSorting = () => {
-    setIsSorted(false);
+    setUnsorted();
     const newTodos = sortItemsList(todos, SortOptions.default);
     setTodos(newTodos);
     setSortedPoint(SortOptions.default);
   };
   const onReverseSorting = () => {
-    setReverseSorting(!reverseSorting);
+    toggleReverseList();
     const currentTodos = todos.slice().reverse();
     setTodos(currentTodos);
   };
@@ -110,13 +112,13 @@ export const SortContainer: React.FC = () => {
       {isSorted ? (
         <StyledSortOptions>
           <SortOptionButton onClick={onReverseSorting}>
-            {reverseSorting ? (
+            {isReversedList ? (
               <SortOptionIcon className="fa fa-angle-down" aria-hidden="true" />
             ) : (
               <SortOptionIcon className="fa fa-angle-up" aria-hidden="true" />
             )}
           </SortOptionButton>
-          Сортировка: {sortedPoint.toLowerCase()}
+          {t("Sorting")}: {sortedPoint.toLowerCase()}
           <SortOptionButton onClick={onCloseSorting}>
             <SortOptionClearIcon className="fa fa-times" aria-hidden="true" />
           </SortOptionButton>

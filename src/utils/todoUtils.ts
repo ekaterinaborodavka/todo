@@ -64,7 +64,7 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
     //   break;
     // case SortOptions.myDayList:
     //   break;
-    case SortOptions.alphabetically:
+    case SortOptions.alphabet:
       currentTodos.sort();
       return currentTodos;
 
