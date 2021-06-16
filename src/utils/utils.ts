@@ -34,7 +34,7 @@ export enum Icons {
 
 export enum SortOptions {
   // eslint-disable-next-line no-unused-vars
-  importance = "Baжность",
+  importance = "Вaжность",
   // eslint-disable-next-line no-unused-vars
   deadline = "Дата выполнения",
   // eslint-disable-next-line no-unused-vars
@@ -43,6 +43,8 @@ export enum SortOptions {
   alphabetically = "По алфавиту",
   // eslint-disable-next-line no-unused-vars
   creationDate = "По дате создания",
+  // eslint-disable-next-line no-unused-vars
+  default = "default",
 }
 
 export enum TypeTodo {
