@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { Todo } from "~src/types";
 import { COLORS } from "~src/colors";
 import { Context } from "~src/context/context";
-import { completedTodo, incompletedTodo, toggleImpotantTodo } from "~src/utils/todoUtils";
+import { toggleCompletedTodo, toggleImpotantTodo } from "~src/utils/todoUtils";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -38,13 +38,8 @@ const StyledIcon = styled.i`
 export const TodoListItem: React.FC<Todo> = ({ title, completed, impotant, id }) => {
   const { todos, updateTodo } = useContext(Context);
 
-  const onCompletedTodo = useCallback(() => {
-    const newItem = completedTodo(id, todos);
-    updateTodo(newItem, id);
-  }, [id, todos, updateTodo]);
-
-  const onIncompleteTodo = useCallback(() => {
-    const newItem = incompletedTodo(id, todos);
+  const onToggleCompletedTodo = useCallback(() => {
+    const newItem = toggleCompletedTodo(id, todos);
     updateTodo(newItem, id);
   }, [id, todos, updateTodo]);
 
@@ -56,9 +51,9 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, impotant, id })
   return (
     <StyledContainer>
       {completed ? (
-        <StyledIcon onClick={onIncompleteTodo} className="fa fa-check-circle" />
+        <StyledIcon onClick={onToggleCompletedTodo} className="fa fa-check-circle" />
       ) : (
-        <StyledIcon onClick={onCompletedTodo} className="fa fa-circle-thin" />
+        <StyledIcon onClick={onToggleCompletedTodo} className="fa fa-circle-thin" />
       )}
       <StyledButton>{title}</StyledButton>
       {impotant ? (
