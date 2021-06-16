@@ -49,7 +49,7 @@ export const update = (todos: Todo[], newItem: Todo, id: number): Todo[] => {
 };
 
 export const search = (todos: Todo[], value: string): Todo[] => {
-  return todos.filter((todo) => todo.title.indexOf(value) !== -1);
+  return todos.filter((todo) => todo.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
 };
 
 export const sortItemsList = (todos: Todo[], value: string): Todo[] => {

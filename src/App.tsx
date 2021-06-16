@@ -25,15 +25,17 @@ export const App: React.FC = () => {
   const addTodo = useCallback(
     (value: string, todoType: string) => {
       setTodos(addNewTodo(value, todos, todoType));
+      setFilterTodos(addNewTodo(value, filterTodos, todoType));
     },
-    [todos, setTodos]
+    [filterTodos, todos]
   );
 
   const updateTodo = useCallback(
     (item: Todo, id: number) => {
       setTodos(update(todos, item, id));
+      setFilterTodos(update(filterTodos, item, id));
     },
-    [todos, setTodos]
+    [todos, filterTodos]
   );
 
   return (
