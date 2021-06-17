@@ -9,7 +9,7 @@ import { sortItemsList } from "~src/utils/todoUtils";
 import { Context } from "~src/context/context";
 import { useState } from "react";
 import { COLORS } from "~src/colors";
-import { useStateFlags } from "../../hooks/useStateFlags";
+import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const StyledSortContainer = styled.div`
   display: flex;
@@ -32,10 +32,10 @@ const SortOptionButton = styled.button`
   font-size: 15px;
   &:hover,
   :focus {
-    background-color: #cbddec;
+    background-color: ${COLORS.lightGrey};
   }
   &:active {
-    background-color: #bdd6fd;
+    background-color: ${COLORS.lightGrey};
   }
 `;
 
@@ -44,14 +44,14 @@ const SortOptionIcon = styled.i`
   font-weight: 500;
   color: ${COLORS.grey};
   padding: 5px;
-  -webkit-text-stroke: 1px white;
+  -webkit-text-stroke: 1px ${COLORS.white};
 `;
 const SortOptionClearIcon = styled.i`
   font-size: 25px;
   font-weight: 500;
   color: ${COLORS.grey};
   padding: 5px;
-  -webkit-text-stroke: 4px white;
+  -webkit-text-stroke: 4px ${COLORS.white};
 `;
 
 export const SortList: React.FC = () => {
@@ -70,23 +70,26 @@ export const SortList: React.FC = () => {
     return false;
   }, [path]);
 
-  const onSortItems = ({ currentTarget }: React.MouseEvent) => {
-    const value = currentTarget.getAttribute("data-value");
-    const currentValue = value ? value : SortOptions.default;
-    if (!todos.length) {
-      setUnsorted();
-      return;
-    }
-    const newTodos = sortItemsList(todos, currentValue);
-    setTodos(newTodos);
-    setSortedPoint(currentValue);
-    if (currentValue === SortOptions.default) {
-      setUnsorted();
-    } else {
-      toggleSorting();
-    }
-  };
-  const onCloseSorting = () => {
+  const onSortItems = useCallback(
+    ({ currentTarget }: React.MouseEvent) => {
+      const value = currentTarget.getAttribute("data-value");
+      const currentValue = value ? value : SortOptions.default;
+      if (!todos.length) {
+        setUnsorted();
+        return;
+      }
+      const newTodos = sortItemsList(todos, currentValue);
+      setTodos(newTodos);
+      setSortedPoint(currentValue);
+      if (currentValue === SortOptions.default) {
+        setUnsorted();
+      } else {
+        toggleSorting();
+      }
+    },
+    [setTodos, setUnsorted, todos, toggleSorting]
+  );
+  const onCancelSorting = () => {
     setUnsorted();
     const newTodos = sortItemsList(todos, SortOptions.default);
     setTodos(newTodos);
@@ -119,7 +122,7 @@ export const SortList: React.FC = () => {
             )}
           </SortOptionButton>
           {t("Sorting")}: {sortedPoint.toLowerCase()}
-          <SortOptionButton onClick={onCloseSorting}>
+          <SortOptionButton onClick={onCancelSorting}>
             <SortOptionClearIcon className="fa fa-times" aria-hidden="true" />
           </SortOptionButton>
         </StyledSortOptions>
