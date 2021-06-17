@@ -24,7 +24,17 @@ export enum PathNameMain {
   all = "/",
 }
 
+export enum HeaderButtonsName {
+  // eslint-disable-next-line no-unused-vars
+  parameters = "parameters",
+  // eslint-disable-next-line no-unused-vars
+  reference = "reference",
+  // eslint-disable-next-line no-unused-vars
+  opportunities = "opportunities",
+}
+
 export interface Todo {
+  [key: string]: number | string | boolean | undefined;
   id: number;
   date: number;
   title: string;
@@ -33,4 +43,10 @@ export interface Todo {
   myDay: boolean;
   planned: boolean;
   assigned: boolean;
+  all?: boolean;
+}
+
+export interface ContentRightSidebar {
+  title: string;
+  component: React.FunctionComponent;
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components/macro";
 
-import { SidebarContext } from "~src/context/sidebarContext";
+import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
 import {
   SidebarLeftFooterItem,
   SidebarLeftFooterItemProps,
@@ -22,7 +22,7 @@ export interface SidebarFooterListProps {
 }
 
 export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ contentFooter }) => {
-  const { isSidebarOpened } = useContext(SidebarContext);
+  const { isSidebarOpened } = useContext(SidebarLeftContext);
 
   return (
     <StyledList isOpened={isSidebarOpened}>

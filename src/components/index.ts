@@ -1,4 +1,4 @@
-export * from "./HeaderNav/HeaderNav";
+export * from "./HeaderButtons/HeaderButtons";
 export * from "./HeaderTitle/HeaderTitle";
 export * from "./Search/Search";
 export * from "./Header/Header";
@@ -21,3 +21,8 @@ export * from "./ListOptionsItem/ListOptionsItem";
 export * from "./ListOptions/ListOptions";
 export * from "./DropDownList/DropDownList";
 export * from "./CheckButton/CheckButton";
+export * from "./SidebarRight/SidebarRight";
+export * from "./HeaderNavigation/HeaderNavigation";
+export * from "./Parameters/Parameters";
+export * from "./Opportunities/Opportunities";
+export * from "./Reference/Reference";
