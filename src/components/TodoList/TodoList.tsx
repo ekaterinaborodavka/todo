@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { TodoListItem } from "~components";
+import { TodoListItem, CompletedTodo } from "~components";
 import { Todo } from "~src/types";
+import { Context } from "~src/context/context";
 
 export interface TodoListProps {
   todos: Array<Todo>;
@@ -9,11 +10,19 @@ export interface TodoListProps {
 }
 
 export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = "all" }) => {
+  const { searchValue } = useContext(Context);
   return (
     <>
       {todos.map((todo: Todo) =>
-        todo[todoType] || todoType === "all" ? <TodoListItem key={todo.id} {...todo} /> : null
+        (
+          searchValue.trim().length
+            ? todo[todoType] || todoType === "all"
+            : (todo[todoType] && !todo.completed) || (todoType === "all" && !todo.completed)
+        ) ? (
+          <TodoListItem key={todo.id} {...todo} />
+        ) : null
       )}
+      {todos.some((todo: Todo) => todo.completed) ? <CompletedTodo todos={todos} todoType={todoType} /> : null}
     </>
   );
 };

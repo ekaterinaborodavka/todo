@@ -27,3 +27,4 @@ export * from "./HeaderNavigation/HeaderNavigation";
 export * from "./Parameters/Parameters";
 export * from "./Opportunities/Opportunities";
 export * from "./Reference/Reference";
+export * from "./CompletedTodo/CompletedTodo";
