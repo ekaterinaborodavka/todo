@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 import { MainHeader, AddInput, TodoList } from "~components";
 import { Context } from "~src/context/context";
@@ -40,18 +41,22 @@ interface MainProps {
 export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
   const { todos: allTodos, filterTodos, searchValue } = useContext(Context);
   const { t } = useTranslation();
+  const location = useLocation();
 
-  const todos = filterTodos.length ? filterTodos : allTodos;
+  const todos = searchValue.trim() ? filterTodos : allTodos;
+
+  const path = location.pathname;
+  const typeOfPages = path.length > 1 ? path.slice(1) : "all";
 
   return (
     <StyledContainer>
-      {searchValue && !filterTodos.length ? (
+      {searchValue.trim() && !filterTodos.length ? (
         <StyledSearchTitle>{t("SearchByValue", { value: searchValue })}</StyledSearchTitle>
       ) : (
         <>
-          <MainHeader title={title} />
-          {placeholder ? <AddInput placeholder={placeholder} /> : null}
-          <TodoList todos={todos} />
+          <MainHeader title={title} path={location.pathname} />
+          {placeholder ? <AddInput placeholder={placeholder} typeOfPages={typeOfPages} /> : null}
+          <TodoList todos={todos} todoType={typeOfPages} />
         </>
       )}
       <StyledBGContainer></StyledBGContainer>

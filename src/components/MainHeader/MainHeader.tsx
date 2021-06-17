@@ -1,8 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
-import { OptionsContent, Popup, OptionButton, DropDownList, ListOptions, ThemeList, SortTodoList } from "~components";
-import { Icons, parametersList, themeButtons } from "~src/utils/utils";
 
 const StyledContainer = styled.div`
   font-family: "Segoe UI";
@@ -29,9 +27,10 @@ const StyledTitle = styled.h2`
 
 interface MainHeaderProps {
   title: string;
+  path: string;
 }
 
-export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
+export const MainHeader: React.FC<MainHeaderProps> = ({ title, path }) => {
   const { t } = useTranslation();
 
   return (

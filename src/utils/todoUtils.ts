@@ -1,7 +1,7 @@
 import { Todo } from "~src/types";
 import { SortOptions, TypeTodo } from "./utils";
 
-export const createTodoItem = (title: string): Todo => {
+export const createTodoItem = (title: string, todoType: string): Todo => {
   return {
     id: Date.now(),
     date: Date.now(),
@@ -11,11 +11,12 @@ export const createTodoItem = (title: string): Todo => {
     myDay: false,
     planned: false,
     assigned: false,
+    [todoType]: true,
   };
 };
 
-export const addNewTodo = (title: string, todos: Todo[]): Todo[] => {
-  const newTodoItem = createTodoItem(title);
+export const addNewTodo = (title: string, todos: Todo[], todoType: string): Todo[] => {
+  const newTodoItem = createTodoItem(title, todoType);
   const newTodos = [...todos, newTodoItem];
   return newTodos;
 };
@@ -48,7 +49,7 @@ export const update = (todos: Todo[], newItem: Todo, id: number): Todo[] => {
 };
 
 export const search = (todos: Todo[], value: string): Todo[] => {
-  return todos.filter((todo) => todo.title.indexOf(value) !== -1);
+  return todos.filter((todo) => todo.title.toLowerCase().indexOf(value.toLowerCase()) !== -1);
 };
 
 export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
@@ -64,22 +65,30 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
     //   break;
     // case SortOptions.myDayList:
     //   break;
+
     case SortOptions.alphabet:
-      currentTodos.sort();
+       currentTodos.sort((a, b) => a.title.localeCompare(b.title));
       return currentTodos;
 
     case SortOptions.creationDate:
       currentTodos.sort((a, b) => a.date - b.date);
       return currentTodos;
+
     default:
       currentTodos.sort((a, b) => a.date - b.date);
       return currentTodos;
   }
 };
+
 export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
-  if (typeTodo === "all") {
-    return todos.length;
-  }
-  const filterTodos = todos.filter((todo) => todo[typeTodo]);
+  const filteredFunc = (todo: Todo) => {
+    if (typeTodo === "all") {
+      return !todo.completed;
+    }
+
+    return todo[typeTodo] && !todo.completed;
+  };
+
+  const filterTodos = todos.filter(filteredFunc);
   return filterTodos.length;
 };
