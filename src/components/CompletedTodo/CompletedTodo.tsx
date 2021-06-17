@@ -31,12 +31,12 @@ const StyledTitle = styled.h2`
   font-weight: 500;
 `;
 
-interface CompleteTodoProps {
+interface CompletedTodoProps {
   todos: Array<Todo>;
   todoType: string | number;
 }
 
-export const CompleteTodo: React.FC<CompleteTodoProps> = ({ todos, todoType }) => {
+export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType }) => {
   const { searchValue } = useContext(Context);
   const { flag: isCompleteVisible, toggleFlag: toggleSidebar } = useStateFlags(true);
   const { t } = useTranslation();
@@ -49,7 +49,7 @@ export const CompleteTodo: React.FC<CompleteTodoProps> = ({ todos, todoType }) =
             <>
               <StyledIconButton onClick={toggleSidebar}>
                 <StyledIcon className={isCompleteVisible ? "fa fa-arrow-down" : "fa fa-arrow-right"} />
-                <StyledTitle>{t("CompleteTodo")}</StyledTitle>
+                <StyledTitle>{t("CompletedTodo")}</StyledTitle>
               </StyledIconButton>
               {isCompleteVisible
                 ? todos.map((todo: Todo) =>

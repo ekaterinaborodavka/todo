@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { TodoListItem, CompleteTodo } from "~components";
+import { TodoListItem, CompletedTodo } from "~components";
 import { Todo } from "~src/types";
 import { Context } from "~src/context/context";
 
@@ -22,7 +22,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = "all" }) =
           <TodoListItem key={todo.id} {...todo} />
         ) : null
       )}
-      {todos.some((todo: Todo) => todo.completed) ? <CompleteTodo todos={todos} todoType={todoType} /> : null}
+      {todos.some((todo: Todo) => todo.completed) ? <CompletedTodo todos={todos} todoType={todoType} /> : null}
     </>
   );
 };

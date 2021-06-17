@@ -18,5 +18,5 @@
   "Planned": "Запланированно",
   "AddPlannedTodo": "Добавьте задачу со сроком сегодня",
   "Assigned": "Назначенные Вам",
-  "CompleteTodo": "Выполненные"
+  "CompletedTodo": "Выполненные"
 }
