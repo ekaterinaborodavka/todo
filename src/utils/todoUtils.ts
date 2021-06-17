@@ -39,7 +39,7 @@ export const toggleImpotantTodo = (id: number, todos: Todo[]): Todo => {
 
 export const update = (todos: Todo[], newItem: Todo, id: number): Todo[] => {
   const ind = findInd(id, todos);
-  return [...todos.slice(0, ind), (todos[ind] = newItem), ...todos.slice(ind + 1)];
+  return [...todos.slice(0, ind), newItem, ...todos.slice(ind + 1)];
 };
 
 export const search = (todos: Todo[], value: string): Todo[] => {
