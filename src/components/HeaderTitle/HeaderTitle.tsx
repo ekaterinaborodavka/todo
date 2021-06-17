@@ -2,10 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 
-const StyledContainer = styled.div`
-  width: 10%;
-`;
-
 const StyledTitle = styled.span`
   font-family: Segoe UI;
   color: white;
@@ -17,8 +13,8 @@ const StyledTitle = styled.span`
 export const HeaderTitle: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <StyledContainer>
+    <div>
       <StyledTitle>{t("ToDo")}</StyledTitle>
-    </StyledContainer>
+    </div>
   );
 };

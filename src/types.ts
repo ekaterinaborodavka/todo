@@ -33,6 +33,15 @@ export enum HeaderButtonsName {
   opportunities = "opportunities",
 }
 
+export enum SidebarRightContentTitles {
+  // eslint-disable-next-line no-unused-vars
+  parameters = "Параметры",
+  // eslint-disable-next-line no-unused-vars
+  reference = "Справка",
+  // eslint-disable-next-line no-unused-vars
+  opportunities = "Новые возможности",
+}
+
 export interface Todo {
   [key: string]: number | string | boolean | undefined;
   id: number;
@@ -46,7 +55,7 @@ export interface Todo {
   all?: boolean;
 }
 
-export interface ContentRightSidebar {
+export interface SidebarRightContent {
   title: string;
   component: React.FunctionComponent;
 }

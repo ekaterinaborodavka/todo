@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components/macro";
 
 import { COLORS } from "~src/colors";
 import { Icons } from "~src/utils/utils";
-import { ContentRightSidebar } from "~src/types";
+import { SidebarRightContent } from "~src/types";
 
 const slideLeft = keyframes`
 0% {
@@ -67,7 +67,7 @@ const StyledContentContainer = styled.div`
 `;
 
 interface SidebarRightProps {
-  content: ContentRightSidebar;
+  content: SidebarRightContent;
   isOpen: boolean;
   onClose: () => void;
 }
