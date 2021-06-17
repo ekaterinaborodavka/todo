@@ -67,7 +67,7 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
     //   break;
 
     case SortOptions.alphabet:
-       currentTodos.sort((a, b) => a.title.localeCompare(b.title));
+      currentTodos.sort((a, b) => a.title.localeCompare(b.title));
       return currentTodos;
 
     case SortOptions.creationDate:
