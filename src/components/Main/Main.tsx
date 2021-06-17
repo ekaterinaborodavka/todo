@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 import { MainHeader, AddInput, TodoList } from "~components";
 import { Context } from "~src/context/context";
 import { COLORS } from "~src/colors";
-import { useLocation } from "react-router-dom";
 
 const StyledContainer = styled.main`
   display: flex;
@@ -43,14 +43,14 @@ export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
   const { t } = useTranslation();
   const location = useLocation();
 
-  const todos = filterTodos.length ? filterTodos : allTodos;
+  const todos = searchValue.trim() ? filterTodos : allTodos;
 
   const path = location.pathname;
   const typeOfPages = path.length > 1 ? path.slice(1) : "all";
 
   return (
     <StyledContainer>
-      {searchValue && !filterTodos.length ? (
+      {searchValue.trim() && !filterTodos.length ? (
         <StyledSearchTitle>{t("SearchByValue", { value: searchValue })}</StyledSearchTitle>
       ) : (
         <>

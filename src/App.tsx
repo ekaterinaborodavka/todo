@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,8 @@ import { Header, Main, SidebarLeft } from "~components";
 import { theme } from "~src/theme/theme";
 import { PathNameMain, ThemeNames, Todo } from "~src/types";
 import { Context } from "~src/context/context";
-import { addNewTodo, update } from "~src/utils/todoUtils";
+import { addNewTodo, search, update } from "~src/utils/todoUtils";
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -26,14 +27,29 @@ export const App: React.FC = () => {
     (value: string, todoType: string) => {
       setTodos(addNewTodo(value, todos, todoType));
     },
-    [todos, setTodos]
+    [todos]
   );
+
+  useEffect(() => {
+    if (searchValue.trim().length) {
+      setFilterTodos(search(todos, searchValue));
+    }
+
+    if (!searchValue.trim().length && filterTodos.length) {
+      setFilterTodos([]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue, todos]);
 
   const updateTodo = useCallback(
     (item: Todo, id: number) => {
       setTodos(update(todos, item, id));
+
+      if (searchValue.trim().length) {
+        setFilterTodos(update(filterTodos, item, id));
+      }
     },
-    [todos, setTodos]
+    [todos, searchValue, filterTodos]
   );
 
   return (
