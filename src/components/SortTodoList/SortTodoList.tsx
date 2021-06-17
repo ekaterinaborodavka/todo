@@ -57,12 +57,7 @@ export const SortTodoList: React.FC = () => {
   const { t } = useTranslation();
   const { todos, setTodos } = useContext(Context);
   const [sortedPoint, setSortedPoint] = useState("");
-  const {
-    flag: isSorted,
-    //toggleFlag: toggleSorting,
-    setFlagTrue: setSorted,
-    setFlagFalse: setUnsorted,
-  } = useStateFlags(false);
+  const { flag: isSorted, setFlagTrue: setSorted, setFlagFalse: setUnsorted } = useStateFlags(false);
   const { flag: isReversedList, toggleFlag: toggleReverseList } = useStateFlags(false);
   const history = useHistory();
   const path = history.location.pathname;
@@ -77,7 +72,6 @@ export const SortTodoList: React.FC = () => {
   const onSortItems = useCallback(
     ({ currentTarget }: React.MouseEvent) => {
       const value = currentTarget.getAttribute("data-value");
-      debugger;
       const currentValue = value ? value : SortOptions.default;
       if (!todos.length) {
         setUnsorted();
