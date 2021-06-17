@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -41,8 +41,9 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
   const { flag: isCompleteVisible, toggleFlag: toggleSidebar } = useStateFlags(true);
   const { t } = useTranslation();
 
-  const isTodosCompleted = () =>
-    todos.some((todo: Todo) => (todo.completed && todo[todoType]) || (todo.completed && todoType === "all"));
+  const isTodosCompleted = useCallback(() => {
+    return todos.some((todo: Todo) => (todo.completed && todo[todoType]) || (todo.completed && todoType === "all"));
+  }, [todoType, todos]);
 
   return (
     <>
