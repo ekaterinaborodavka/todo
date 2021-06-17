@@ -23,8 +23,8 @@ export const App: React.FC = () => {
   const [filterTodos, setFilterTodos] = useState<Todo[]>([] as Todo[]);
 
   const addTodo = useCallback(
-    (value: string) => {
-      setTodos(addNewTodo(value, todos));
+    (value: string, todoType: string) => {
+      setTodos(addNewTodo(value, todos, todoType));
     },
     [todos, setTodos]
   );

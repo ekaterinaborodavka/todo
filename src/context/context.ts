@@ -11,7 +11,7 @@ interface ContextProps {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
   // eslint-disable-next-line no-unused-vars
-  addTodo: (value: string) => void;
+  addTodo: (value: string, todoType: string) => void;
   // eslint-disable-next-line no-unused-vars
   updateTodo: (item: Todo, id: number) => void;
 }
