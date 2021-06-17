@@ -21,3 +21,4 @@ export * from "./ListOptionsItem/ListOptionsItem";
 export * from "./ListOptions/ListOptions";
 export * from "./DropDownList/DropDownList";
 export * from "./CheckButton/CheckButton";
+export * from "./SortTodoList/SortTodoList";

@@ -34,15 +34,17 @@ export enum Icons {
 
 export enum SortOptions {
   // eslint-disable-next-line no-unused-vars
-  importance = "Baжность",
+  importance = "Вaжность",
   // eslint-disable-next-line no-unused-vars
   deadline = "Дата выполнения",
   // eslint-disable-next-line no-unused-vars
   myDayList = "По добавлениям в 'Мой день'",
   // eslint-disable-next-line no-unused-vars
-  alphabetically = "По алфавиту",
+  alphabet = "По алфавиту",
   // eslint-disable-next-line no-unused-vars
   creationDate = "По дате создания",
+  // eslint-disable-next-line no-unused-vars
+  default = "default",
 }
 
 export enum TypeTodo {
@@ -171,7 +173,7 @@ export const sortVariant = [
   {
     id: 19,
     icon: Icons.arrows,
-    title: SortOptions.alphabetically,
+    title: SortOptions.alphabet,
   },
   {
     id: 20,

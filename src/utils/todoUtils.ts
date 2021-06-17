@@ -65,8 +65,9 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
     //   break;
     // case SortOptions.myDayList:
     //   break;
-    case SortOptions.alphabetically:
-      currentTodos.sort((a, b) => a.title.localeCompare(b.title));
+
+    case SortOptions.alphabet:
+       currentTodos.sort((a, b) => a.title.localeCompare(b.title));
       return currentTodos;
 
     case SortOptions.creationDate:
@@ -78,6 +79,7 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
       return currentTodos;
   }
 };
+
 export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
   const filteredFunc = (todo: Todo) => {
     if (typeTodo === "all") {
