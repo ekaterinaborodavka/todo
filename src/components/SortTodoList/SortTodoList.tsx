@@ -54,7 +54,7 @@ const SortOptionClearIcon = styled.i`
   -webkit-text-stroke: 4px ${COLORS.white};
 `;
 
-export const SortList: React.FC = () => {
+export const SortTodoList: React.FC = () => {
   const { t } = useTranslation();
   const { todos, setTodos } = useContext(Context);
   const [sortedPoint, setSortedPoint] = useState("");
@@ -89,17 +89,17 @@ export const SortList: React.FC = () => {
     },
     [setTodos, setUnsorted, todos, toggleSorting]
   );
-  const onCancelSorting = () => {
+  const onCancelSorting = useCallback(() => {
     setUnsorted();
     const newTodos = sortItemsList(todos, SortOptions.default);
     setTodos(newTodos);
     setSortedPoint(SortOptions.default);
-  };
-  const onReverseSorting = () => {
+  }, [setTodos, setUnsorted, todos]);
+  const onReverseSorting = useCallback(() => {
     toggleReverseList();
     const currentTodos = todos.slice().reverse();
     setTodos(currentTodos);
-  };
+  }, [setTodos, todos, toggleReverseList]);
 
   return (
     <>

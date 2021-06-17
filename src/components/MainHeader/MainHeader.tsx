@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
-import { OptionsContent, Popup, OptionButton, DropDownList, ListOptions, ThemeList, SortList } from "~components";
+import { OptionsContent, Popup, OptionButton, DropDownList, ListOptions, ThemeList, SortTodoList } from "~components";
 import { Icons, parametersList, themeButtons } from "~src/utils/utils";
 
 const StyledContainer = styled.div`
@@ -47,7 +47,7 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
           </OptionsContent>
         </Popup>
       </StyledTaskContainer>
-      <SortList />
+      <SortTodoList />
     </StyledContainer>
   );
 };
