@@ -3,21 +3,22 @@ import React, { useContext } from "react";
 import { TodoListItem, CompletedTodo } from "~components";
 import { Todo } from "~src/types";
 import { Context } from "~src/context/context";
+import { TypeTodo } from "~src/utils/utils";
 
 export interface TodoListProps {
   todos: Array<Todo>;
   todoType?: keyof Todo;
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = "all" }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = TypeTodo.all }) => {
   const { searchValue } = useContext(Context);
   return (
     <>
       {todos.map((todo: Todo) =>
         (
           searchValue.trim().length
-            ? todo[todoType] || todoType === "all"
-            : (todo[todoType] || todoType === "all") && !todo.completed
+            ? todo[todoType] || todoType === TypeTodo.all
+            : (todo[todoType] || todoType === TypeTodo.all) && !todo.completed
         ) ? (
           <TodoListItem key={todo.id} {...todo} />
         ) : null

@@ -57,7 +57,7 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
   }, [todos, typeTodo]);
 
   const linkTo = useCallback(() => {
-    if (typeTodo === "all") {
+    if (typeTodo === TypeTodo.all) {
       return "/";
     }
     return `/${typeTodo}`;

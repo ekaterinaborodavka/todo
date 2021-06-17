@@ -5,6 +5,7 @@ import styled from "styled-components/macro";
 import { COLORS } from "~src/colors";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 import { Context } from "~src/context/context";
+import { TypeTodo } from "~src/utils/utils";
 
 const StyledContainer = styled.div<{ isBorder: boolean }>`
   display: flex;
@@ -65,7 +66,7 @@ interface AddInputProps {
   typeOfPages?: string;
 }
 
-export const AddInput: React.FC<AddInputProps> = ({ placeholder, typeOfPages = "all" }) => {
+export const AddInput: React.FC<AddInputProps> = ({ placeholder, typeOfPages = TypeTodo.all }) => {
   const { t } = useTranslation();
   const [value, setValue] = useState("");
   const { flag: focusInput, setFlagFalse: onBlur, setFlagTrue: onFocus } = useStateFlags(false);

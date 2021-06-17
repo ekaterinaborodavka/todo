@@ -81,7 +81,7 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
 
 export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
   const filteredFunc = (todo: Todo) => {
-    if (typeTodo === "all") {
+    if (typeTodo === TypeTodo.all) {
       return !todo.completed;
     }
 

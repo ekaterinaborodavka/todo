@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { MainHeader, AddInput, TodoList } from "~components";
 import { Context } from "~src/context/context";
 import { COLORS } from "~src/colors";
+import { TypeTodo } from "~src/utils/utils";
 
 const StyledContainer = styled.main`
   display: flex;
@@ -47,7 +48,7 @@ export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
   const todos = searchValue.trim() ? filterTodos : allTodos;
 
   const path = location.pathname;
-  const typeOfPages = path.length > 1 ? path.slice(1) : "all";
+  const typeOfPages = path.length > 1 ? path.slice(1) : TypeTodo.all;
 
   return (
     <StyledContainer>

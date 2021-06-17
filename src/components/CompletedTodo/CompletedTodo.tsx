@@ -7,6 +7,7 @@ import { Context } from "~src/context/context";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 import { Todo } from "~src/types";
 import { TodoListItem } from "~components";
+import { TypeTodo } from "~src/utils/utils";
 
 const StyledIconButton = styled.button`
   border: 1px solid transparent;
@@ -42,7 +43,7 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
   const { t } = useTranslation();
 
   const isTodosCompleted = useCallback(() => {
-    return todos.some((todo: Todo) => (todoType === "all" || todo[todoType]) && todo.completed);
+    return todos.some((todo: Todo) => (todoType === TypeTodo.all || todo[todoType]) && todo.completed);
   }, [todoType, todos]);
 
   return (
@@ -58,7 +59,7 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
 
               {isCompleteVisible
                 ? todos.map((todo: Todo) => {
-                    const isCompletedTodo = (todoType === "all" || todo[todoType]) && todo.completed;
+                    const isCompletedTodo = (todoType === TypeTodo.all || todo[todoType]) && todo.completed;
                     return isCompletedTodo ? <TodoListItem key={todo.id} {...todo} /> : null;
                   })
                 : null}
