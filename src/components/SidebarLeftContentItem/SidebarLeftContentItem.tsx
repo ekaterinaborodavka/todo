@@ -33,6 +33,7 @@ const StyledCount = styled.div`
 const StyledContent = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
 `;
 
 const StyledLink = styled(Link)`
