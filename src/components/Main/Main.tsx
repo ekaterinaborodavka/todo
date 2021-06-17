@@ -13,6 +13,7 @@ const StyledContainer = styled.main`
   width: 100%;
   padding: 0 1rem;
   height: 100%;
+  overflow: auto;
 `;
 
 const StyledBGContainer = styled.div`
