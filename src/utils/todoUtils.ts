@@ -60,7 +60,7 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
         return Number(b.impotant) - Number(a.impotant);
       });
       return currentTodos;
-    // We should add these options after the development of the corresponding functions: deadline and day list
+    // We should add these options after the development of the corresponding next functions: deadline and day list
     // case SortOptions.creationDate:
     //   break;
     // case SortOptions.myDayList:
