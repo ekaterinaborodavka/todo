@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { HeaderTitle, Search, HeaderNav } from "~components";
+import { HeaderTitle, Search, HeaderNavigation } from "~components";
 
 const StyledHeader = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
     <StyledHeader>
       <HeaderTitle />
       <Search />
-      <HeaderNav />
+      <HeaderNavigation />
     </StyledHeader>
   );
 };

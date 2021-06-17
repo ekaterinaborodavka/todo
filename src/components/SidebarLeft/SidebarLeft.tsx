@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { SidebarLeftContentList, SidebarLeftFooterList } from "~components";
 import { sidebarContent, sidebarFooter } from "~src/utils/utils";
 import { COLORS } from "~src/colors";
-import { SidebarContext } from "~src/context/sidebarContext";
+import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
@@ -81,7 +81,7 @@ export const SidebarLeft: React.FC = () => {
   } = useStateFlags(false);
 
   return (
-    <SidebarContext.Provider value={{ isSidebarOpened }}>
+    <SidebarLeftContext.Provider value={{ isSidebarOpened }}>
       <StyledSidebar isOpened={isSidebarOpened}>
         <StyledContent>
           <StyledButton onClick={toggleSidebar}>
@@ -101,6 +101,6 @@ export const SidebarLeft: React.FC = () => {
         </StyledContent>
         <SidebarLeftFooterList contentFooter={sidebarFooter} />
       </StyledSidebar>
-    </SidebarContext.Provider>
+    </SidebarLeftContext.Provider>
   );
 };

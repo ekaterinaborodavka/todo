@@ -30,6 +30,8 @@ export enum Icons {
   angleRight = "fa fa-angle-right",
   // eslint-disable-next-line no-unused-vars
   print = "fa fa-print",
+  // eslint-disable-next-line no-unused-vars
+  close = "fa fa-times",
 }
 
 export enum SortOptions {
