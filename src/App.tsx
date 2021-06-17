@@ -34,14 +34,12 @@ export const App: React.FC = () => {
     if (searchValue.trim().length) {
       setFilterTodos(search(todos, searchValue));
     }
-  }, [searchValue, todos]);
 
-  useEffect(() => {
     if (!searchValue.trim().length && filterTodos.length) {
       setFilterTodos([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue]);
+  }, [searchValue, todos]);
 
   const updateTodo = useCallback(
     (item: Todo, id: number) => {
