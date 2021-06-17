@@ -42,7 +42,7 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
   const { t } = useTranslation();
 
   const isTodosCompleted = useCallback(() => {
-    return todos.some((todo: Todo) => (todo.completed && todo[todoType]) || (todo.completed && todoType === "all"));
+    return todos.some((todo: Todo) => (todoType === "all" || todo[todoType]) && todo.completed);
   }, [todoType, todos]);
 
   return (
@@ -58,8 +58,7 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
 
               {isCompleteVisible
                 ? todos.map((todo: Todo) => {
-                    const isCompletedTodo =
-                      (todo.completed && todo[todoType]) || (todo.completed && todoType === "all");
+                    const isCompletedTodo = (todoType === "all" || todo[todoType]) && todo.completed;
                     return isCompletedTodo ? <TodoListItem key={todo.id} {...todo} /> : null;
                   })
                 : null}

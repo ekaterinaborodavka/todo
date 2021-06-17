@@ -17,7 +17,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = "all" }) =
         (
           searchValue.trim().length
             ? todo[todoType] || todoType === "all"
-            : (todo[todoType] && !todo.completed) || (todoType === "all" && !todo.completed)
+            : (todo[todoType] || todoType === "all") && !todo.completed
         ) ? (
           <TodoListItem key={todo.id} {...todo} />
         ) : null
