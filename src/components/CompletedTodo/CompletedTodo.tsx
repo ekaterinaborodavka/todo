@@ -41,22 +41,26 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
   const { flag: isCompleteVisible, toggleFlag: toggleSidebar } = useStateFlags(true);
   const { t } = useTranslation();
 
+  const isTodosCompleted = () =>
+    todos.some((todo: Todo) => (todo.completed && todo[todoType]) || (todo.completed && todoType === "all"));
+
   return (
     <>
       {searchValue.trim().length ? null : (
         <>
-          {todos.some((todo: Todo) => (todo.completed && todo[todoType]) || (todo.completed && todoType === "all")) ? (
+          {isTodosCompleted() ? (
             <>
               <StyledIconButton onClick={toggleSidebar}>
                 <StyledIcon className={isCompleteVisible ? "fa fa-arrow-down" : "fa fa-arrow-right"} />
                 <StyledTitle>{t("CompletedTodo")}</StyledTitle>
               </StyledIconButton>
+
               {isCompleteVisible
-                ? todos.map((todo: Todo) =>
-                    (todo.completed && todo[todoType]) || (todo.completed && todoType === "all") ? (
-                      <TodoListItem key={todo.id} {...todo} />
-                    ) : null
-                  )
+                ? todos.map((todo: Todo) => {
+                    const isCompletedTodo =
+                      (todo.completed && todo[todoType]) || (todo.completed && todoType === "all");
+                    return isCompletedTodo ? <TodoListItem key={todo.id} {...todo} /> : null;
+                  })
                 : null}
             </>
           ) : null}
