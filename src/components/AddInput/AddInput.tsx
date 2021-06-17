@@ -62,9 +62,10 @@ const StyledForm = styled.form`
 
 interface AddInputProps {
   placeholder: string;
+  typeOfPages?: string;
 }
 
-export const AddInput: React.FC<AddInputProps> = ({ placeholder }) => {
+export const AddInput: React.FC<AddInputProps> = ({ placeholder, typeOfPages = "all" }) => {
   const { t } = useTranslation();
   const [value, setValue] = useState("");
   const { flag: focusInput, setFlagFalse: onBlur, setFlagTrue: onFocus } = useStateFlags(false);
@@ -75,11 +76,11 @@ export const AddInput: React.FC<AddInputProps> = ({ placeholder }) => {
     (e: React.FormEvent<HTMLFormElement> | React.FocusEvent<HTMLInputElement>) => {
       e.preventDefault();
       if (value.trim()) {
-        addTodo(value);
+        addTodo(value, typeOfPages);
         setValue("");
       }
     },
-    [value, addTodo, setValue]
+    [value, addTodo, setValue, typeOfPages]
   );
 
   const onInputChange = useCallback(

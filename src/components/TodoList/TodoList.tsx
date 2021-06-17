@@ -4,15 +4,16 @@ import { TodoListItem } from "~components";
 import { Todo } from "~src/types";
 
 export interface TodoListProps {
-  todos: Todo[];
+  todos: Array<Todo>;
+  todoType?: keyof Todo;
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = "all" }) => {
   return (
     <>
-      {todos.map((todo) => (
-        <TodoListItem key={todo.id} {...todo} />
-      ))}
+      {todos.map((todo: Todo) =>
+        todo[todoType] || todoType === "all" ? <TodoListItem key={todo.id} {...todo} /> : null
+      )}
     </>
   );
 };
