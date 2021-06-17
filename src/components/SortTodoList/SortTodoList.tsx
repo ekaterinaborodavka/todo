@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components/macro";
 import { useHistory } from "react-router-dom";
@@ -7,7 +7,6 @@ import { sortVariant, SortOptions } from "~src/utils/utils";
 import { PathNameMain } from "~src/types";
 import { sortItemsList } from "~src/utils/todoUtils";
 import { Context } from "~src/context/context";
-import { useState } from "react";
 import { COLORS } from "~src/colors";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 
