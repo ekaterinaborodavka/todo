@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
-import { useStateFlags } from "~src/hooks/useStateFlags";
 import { COLORS } from "~src/colors";
+import { toggleCheckButton } from "~src/utils/todoUtils";
+import { ParametersItem } from "~src/types";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -40,21 +41,29 @@ const StyledCheck = styled.span<{ check: boolean }>`
 
 const StyledCheckStatus = styled.span`
   margin-left: 1rem;
+  font-size: 0.9rem;
 `;
 
 interface CheckButtonProps {
   status: boolean;
+  id: number;
+  params: ParametersItem[];
+  setParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
 }
 
-export const CheckButton: React.FC<CheckButtonProps> = ({ status }) => {
+export const CheckButton: React.FC<CheckButtonProps> = ({ status, id, params, setParams }) => {
   const { t } = useTranslation();
-  const { flag: checkButton, toggleFlag: toggleCheckButton } = useStateFlags(status);
+
+  const onToggleCheckButton = useCallback(() => {
+    setParams(toggleCheckButton(id, params));
+  }, [setParams, id, params]);
+
   return (
     <StyledContainer>
-      <StyledButton check={checkButton} onClick={toggleCheckButton}>
-        <StyledCheck check={checkButton}></StyledCheck>
+      <StyledButton check={status} onClick={onToggleCheckButton}>
+        <StyledCheck check={status}></StyledCheck>
       </StyledButton>
-      <StyledCheckStatus>{checkButton ? t("On") : t("Off")}</StyledCheckStatus>
+      <StyledCheckStatus>{status ? t("On") : t("Off")}</StyledCheckStatus>
     </StyledContainer>
   );
 };
