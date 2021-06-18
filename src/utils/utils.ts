@@ -53,7 +53,7 @@ export enum TypeTodo {
   // eslint-disable-next-line no-unused-vars
   myDay = "myDay",
   // eslint-disable-next-line no-unused-vars
-  impotant = "impotant",
+  important = "important",
   // eslint-disable-next-line no-unused-vars
   planned = "planned",
   // eslint-disable-next-line no-unused-vars
@@ -75,7 +75,7 @@ export const sidebarContent = [
     icon: Icons.star,
     title: "Важно",
     color: COLORS.grey,
-    typeTodo: TypeTodo.impotant,
+    typeTodo: TypeTodo.important,
   },
   {
     id: 3,
