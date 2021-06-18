@@ -85,7 +85,7 @@ export const SortTodoList: React.FC = () => {
         setUnsorted();
       }
     },
-    [setSorted, setTodos, setUnsorted, todos]
+    [todos, setTodos, setSorted, setUnsorted]
   );
   const onCancelSorting = useCallback(() => {
     setUnsorted();
