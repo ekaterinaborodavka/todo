@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/macro";
 
 import { COLORS } from "~src/colors";
+import { PopupContext } from "~src/context/popupContext";
 
 const StyledListItem = styled.li`
   margin: 0.1rem;
@@ -35,8 +36,10 @@ export interface ListOptionsItemProps {
 }
 
 export const ListOptionsItem: React.FC<ListOptionsItemProps> = ({ icon, title, onClick }) => {
+  const { togglePopup } = useContext(PopupContext);
+
   return (
-    <StyledListItem>
+    <StyledListItem onClick={togglePopup}>
       <StyledButton type="button" onClick={onClick} data-value={title}>
         <i className={icon} />
         <StyledListText>{title}</StyledListText>
