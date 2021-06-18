@@ -55,4 +55,6 @@ export enum COLORS {
   checkButtonHover = "#3648c0",
   // eslint-disable-next-line no-unused-vars
   bgSidebarRight = "#FAF9F8",
+  // eslint-disable-next-line no-unused-vars
+  sidebarRightListColor = "rgb(51, 51, 51)",
 }

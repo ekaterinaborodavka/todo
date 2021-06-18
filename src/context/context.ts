@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ThemeNames, Todo } from "~src/types";
+import { ParametersItem, ThemeNames, Todo } from "~src/types";
 
 interface ContextProps {
   setThemeVariant: React.Dispatch<React.SetStateAction<ThemeNames>>;
@@ -14,6 +14,14 @@ interface ContextProps {
   addTodo: (value: string, todoType: string) => void;
   // eslint-disable-next-line no-unused-vars
   updateTodo: (item: Todo, id: number) => void;
+  totalParams: ParametersItem[];
+  setTotalParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+  myDayParams: ParametersItem[];
+  setMyDayParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+  smartListParams: ParametersItem[];
+  setSmartListParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+  applicationsParams: ParametersItem[];
+  setApplicationsParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
 }
 
 export const Context = createContext({} as ContextProps);

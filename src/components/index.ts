@@ -28,3 +28,5 @@ export * from "./Parameters/Parameters";
 export * from "./Opportunities/Opportunities";
 export * from "./Reference/Reference";
 export * from "./CompletedTodo/CompletedTodo";
+export * from "./ParametersListItem/ParametersListItem";
+export * from "./ParametersList/ParametersList";

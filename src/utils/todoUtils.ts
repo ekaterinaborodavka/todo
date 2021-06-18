@@ -1,4 +1,4 @@
-import { Todo } from "~src/types";
+import { ParametersItem, Todo } from "~src/types";
 import { SortOptions, TypeTodo } from "./utils";
 
 export const createTodoItem = (title: string, todoType: string): Todo => {
@@ -83,4 +83,11 @@ export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
 
   const filterTodos = todos.filter(filteredFunc);
   return filterTodos.length;
+};
+
+export const toggleCheckButton = (id: number, params: ParametersItem[]): ParametersItem[] => {
+  const ind = params.findIndex((param) => param.id === id);
+  const oldItem = params[ind];
+  const newItem = { ...oldItem, check: !oldItem.check };
+  return [...params.slice(0, ind), newItem, ...params.slice(ind + 1)];
 };
