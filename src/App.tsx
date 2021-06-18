@@ -5,9 +5,15 @@ import { useTranslation } from "react-i18next";
 
 import { Header, Main, SidebarLeft } from "~components";
 import { theme } from "~src/theme/theme";
-import { PathNameMain, ThemeNames, Todo } from "~src/types";
+import { ParametersItem, PathNameMain, ThemeNames, Todo } from "~src/types";
 import { Context } from "~src/context/context";
 import { addNewTodo, search, update } from "~src/utils/todoUtils";
+import {
+  parametersTotalList,
+  parametersApplicationsList,
+  parametersMyDayList,
+  parametersSmartList,
+} from "~src/utils/utils";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -22,6 +28,10 @@ export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([] as Todo[]);
   const [searchValue, setSearchValue] = useState("");
   const [filterTodos, setFilterTodos] = useState<Todo[]>([] as Todo[]);
+  const [totalParams, setTotalParams] = useState<ParametersItem[]>(parametersTotalList);
+  const [myDayParams, setMyDayParams] = useState<ParametersItem[]>(parametersMyDayList);
+  const [smartListParams, setSmartListParams] = useState<ParametersItem[]>(parametersSmartList);
+  const [applicationsParams, setApplicationsParams] = useState<ParametersItem[]>(parametersApplicationsList);
 
   const addTodo = useCallback(
     (value: string, todoType: string) => {
@@ -65,6 +75,14 @@ export const App: React.FC = () => {
         setSearchValue,
         addTodo,
         updateTodo,
+        totalParams,
+        setTotalParams,
+        myDayParams,
+        setMyDayParams,
+        smartListParams,
+        setSmartListParams,
+        applicationsParams,
+        setApplicationsParams,
       }}
     >
       <ThemeProvider theme={theme[themeVariant]}>

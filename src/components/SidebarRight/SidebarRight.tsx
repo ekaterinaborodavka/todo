@@ -42,7 +42,7 @@ const StyledTitle = styled.h4`
   font-size: 1.2rem;
   margin: 1rem;
   font-family: Segoe UI;
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 const StyledCloseButton = styled.button`

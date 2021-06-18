@@ -1,5 +1,5 @@
 import { COLORS } from "~src/colors";
-import { ThemeNames } from "~src/types";
+import { ParametersItem, ThemeNames } from "~src/types";
 
 export enum Icons {
   // eslint-disable-next-line no-unused-vars
@@ -191,3 +191,29 @@ export const parametersList = [
     title: "Печать списка",
   },
 ];
+
+export const parametersTotalList: ParametersItem[] = [
+  { id: 1, title: "Запрашивать подтверждение перед удалением", check: true },
+  { id: 2, title: "Добавление новых задач наверх", check: true },
+  { id: 3, title: "Перемещение вверх избранных задач", check: true },
+  { id: 4, title: "Воспроизводить звук при завершении", check: true },
+  { id: 5, title: "Показывать контекстные меню", check: true },
+  { id: 6, title: "Включить напоминания", check: true },
+];
+
+export const parametersMyDayList: ParametersItem[] = [
+  // eslint-disable-next-line quotes
+  { id: 1, title: 'Показывает возможные задачи в представлении " Мой День "', check: true },
+  { id: 2, title: "Показывать рекомендации по задачам к выполнению", check: true },
+];
+
+export const parametersSmartList: ParametersItem[] = [
+  { id: 1, title: "Важно", check: true },
+  { id: 2, title: "Запланировано", check: true },
+  { id: 3, title: "Все", check: false },
+  { id: 4, title: "Завершенные", check: true },
+  { id: 5, title: "Назначенные Вам", check: true },
+  { id: 6, title: "Автоматически скрывать пустые смарт-списки", check: false },
+];
+
+export const parametersApplicationsList: ParametersItem[] = [{ id: 1, title: "Планировщик", check: true }];

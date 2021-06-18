@@ -42,6 +42,17 @@ export enum SidebarRightContentTitles {
   opportunities = "Новые возможности",
 }
 
+export enum ParameterTitles {
+  // eslint-disable-next-line no-unused-vars
+  total = "Общие",
+  // eslint-disable-next-line no-unused-vars
+  myDay = "Мой день",
+  // eslint-disable-next-line no-unused-vars
+  smartList = "Смарт-списки",
+  // eslint-disable-next-line no-unused-vars
+  applications = "Подключенные приложения",
+}
+
 export interface Todo {
   [key: string]: number | string | boolean | undefined;
   id: number;
@@ -58,4 +69,10 @@ export interface Todo {
 export interface SidebarRightContent {
   title: string;
   component: React.FunctionComponent;
+}
+
+export interface ParametersItem {
+  id: number;
+  title: string;
+  check: boolean;
 }
