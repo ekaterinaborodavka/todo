@@ -63,9 +63,10 @@ export const SortTodoList: React.FC = () => {
   const path = history.location.pathname;
 
   const isShowSortButton = useCallback(() => {
-    if (path === PathNameMain.all || path === PathNameMain.myDay) {
+    if (PathNameMain.home === path || PathNameMain.myDay === path) {
       return true;
     }
+
     return false;
   }, [path]);
 
@@ -73,26 +74,31 @@ export const SortTodoList: React.FC = () => {
     ({ currentTarget }: React.MouseEvent) => {
       const value = currentTarget.getAttribute("data-value");
       const currentValue = value ? value : SortOptions.default;
+
       if (!todos.length) {
         setUnsorted();
         return;
       }
+
       const newTodos = sortItemsList(todos, currentValue);
       setTodos(newTodos);
       setSortedPoint(currentValue);
       setSorted();
+
       if (currentValue === SortOptions.default) {
         setUnsorted();
       }
     },
     [todos, setTodos, setSorted, setUnsorted]
   );
+
   const onCancelSorting = useCallback(() => {
     setUnsorted();
     const newTodos = sortItemsList(todos, SortOptions.default);
     setTodos(newTodos);
     setSortedPoint(SortOptions.default);
   }, [setTodos, setUnsorted, todos]);
+
   const onReverseSorting = useCallback(() => {
     toggleReverseList();
     const currentTodos = todos.slice().reverse();

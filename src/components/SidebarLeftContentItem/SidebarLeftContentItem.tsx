@@ -6,6 +6,7 @@ import { COLORS } from "~src/colors";
 import { Context } from "~src/context/context";
 import { TypeTodo } from "~src/utils/utils";
 import { countTodos } from "~src/utils/todoUtils";
+import { ParametersItem } from "~src/types";
 
 const StyledIcon = styled.i<{ color: string }>`
   color: ${(props) => props.color};
@@ -49,8 +50,8 @@ export interface SidebarLeftContentItemProps {
   typeTodo: TypeTodo;
 }
 
-export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ color, icon, title, typeTodo }) => {
-  const { todos } = useContext(Context);
+export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ typeTodo, color, icon, title }) => {
+  const { todos, smartListParams } = useContext(Context);
   const [amount, setAmount] = useState(0);
 
   useEffect(() => {
@@ -58,23 +59,36 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
   }, [todos, typeTodo]);
 
   const linkTo = useCallback(() => {
-    if (typeTodo === TypeTodo.all) {
+    if (typeTodo === TypeTodo.home) {
       return "/";
     }
+
     return `/${typeTodo}`;
   }, [typeTodo]);
 
+  const findIndexOfSidebarElement = (list: ParametersItem[], value: string, type: string): number =>
+    list.findIndex((el) => el[type] === value);
+
+  const isDisplayControlLeftSidebar: boolean =
+    smartListParams[findIndexOfSidebarElement(smartListParams, title, "title")]?.check ||
+    typeTodo === TypeTodo.home ||
+    typeTodo === TypeTodo.myDay;
+
   return (
-    <StyledItem>
-      <StyledLink to={linkTo}>
-        <div>
-          <StyledIcon color={color} className={icon} />
-        </div>
-        <StyledContent>
-          <StyledTitle color={color}>{title}</StyledTitle>
-          <StyledCount>{amount ? amount : null}</StyledCount>
-        </StyledContent>
-      </StyledLink>
-    </StyledItem>
+    <>
+      {isDisplayControlLeftSidebar ? (
+        <StyledItem>
+          <StyledLink to={linkTo}>
+            <div>
+              <StyledIcon color={color} className={icon} />
+            </div>
+            <StyledContent>
+              <StyledTitle color={color}>{title}</StyledTitle>
+              <StyledCount>{amount ? amount : null}</StyledCount>
+            </StyledContent>
+          </StyledLink>
+        </StyledItem>
+      ) : null}
+    </>
   );
 };

@@ -42,9 +42,16 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
   const { flag: isCompleteVisible, toggleFlag: toggleSidebar } = useStateFlags(true);
   const { t } = useTranslation();
 
-  const isTodosCompleted = useCallback(() => {
-    return todos.some((todo: Todo) => (todoType === TypeTodo.all || todo[todoType]) && todo.completed);
-  }, [todoType, todos]);
+  const filterConditionOfListTodos = useCallback(
+    (todo: Todo) =>
+      (todoType === TypeTodo.allTodo || todoType === TypeTodo.completedTodo || todo[todoType]) && todo.completed,
+    [todoType]
+  );
+
+  const isTodosCompleted = useCallback(
+    () => todos.some((todo: Todo) => filterConditionOfListTodos(todo)),
+    [filterConditionOfListTodos, todos]
+  );
 
   return (
     <>
@@ -58,10 +65,9 @@ export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType })
               </StyledIconButton>
 
               {isCompleteVisible
-                ? todos.map((todo: Todo) => {
-                    const isCompletedTodo = (todoType === TypeTodo.all || todo[todoType]) && todo.completed;
-                    return isCompletedTodo ? <TodoListItem key={todo.id} {...todo} /> : null;
-                  })
+                ? todos.map((todo: Todo) =>
+                    filterConditionOfListTodos(todo) ? <TodoListItem key={todo.id} {...todo} /> : null
+                  )
                 : null}
             </>
           ) : null}

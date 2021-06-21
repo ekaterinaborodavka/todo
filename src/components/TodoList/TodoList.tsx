@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 
 import { TodoListItem, CompletedTodo } from "~components";
 import { Todo } from "~src/types";
@@ -10,20 +10,24 @@ export interface TodoListProps {
   todoType?: keyof Todo;
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = TypeTodo.all }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = TypeTodo.home }) => {
   const { searchValue } = useContext(Context);
+
+  const isTodoListVisible = useCallback(
+    (todo) =>
+      searchValue.trim().length
+        ? todo[todoType] || todoType === TypeTodo.allTodo
+        : (todo[todoType] || todoType === TypeTodo.allTodo) && !todo.completed,
+    [searchValue, todoType]
+  );
+
+  const isTodoCompleteVisible = useCallback(() => todos.some((todo: Todo) => todo.completed), [todos]);
+
   return (
     <>
-      {todos.map((todo: Todo) =>
-        (
-          searchValue.trim().length
-            ? todo[todoType] || todoType === TypeTodo.all
-            : (todo[todoType] || todoType === TypeTodo.all) && !todo.completed
-        ) ? (
-          <TodoListItem key={todo.id} {...todo} />
-        ) : null
-      )}
-      {todos.some((todo: Todo) => todo.completed) ? <CompletedTodo todos={todos} todoType={todoType} /> : null}
+      {todos.map((todo: Todo) => (isTodoListVisible(todo) ? <TodoListItem key={todo.id} {...todo} /> : null))}
+
+      {isTodoCompleteVisible() ? <CompletedTodo todos={todos} todoType={todoType} /> : null}
     </>
   );
 };

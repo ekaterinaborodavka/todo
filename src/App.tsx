@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, match } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
@@ -13,6 +13,7 @@ import {
   parametersApplicationsList,
   parametersMyDayList,
   parametersSmartList,
+  TypeTodo,
 } from "~src/utils/utils";
 
 const StyledContainer = styled.div`
@@ -62,6 +63,14 @@ export const App: React.FC = () => {
     [todos, searchValue, filterTodos]
   );
 
+  const setTextInputPlaceholder = (path: string): string =>
+    path === TypeTodo.planned ? "AddPlannedTodo" : path === TypeTodo.completedTodo ? "" : "AddTodo";
+
+  const setMainTitleText = (match: match<{ name: string }>): string => {
+    const path = match.params.name;
+    return path.charAt(0).toUpperCase() + path.substring(1);
+  };
+
   return (
     <Context.Provider
       value={{
@@ -91,21 +100,22 @@ export const App: React.FC = () => {
           <Switch>
             <StyledContainer>
               <SidebarLeft />
-              <Route exact path={PathNameMain.all}>
-                <Main title={t("Tasks")} placeholder={t("AddTodo")} />
-              </Route>
-              <Route exact path={PathNameMain.myDay}>
-                <Main title={t("MyDay")} placeholder={t("AddTodo")} />
-              </Route>
-              <Route exact path={PathNameMain.important}>
-                <Main title={t("Important")} placeholder={t("AddTodo")} />
-              </Route>
-              <Route exact path={PathNameMain.planned}>
-                <Main title={t("Planned")} placeholder={t("AddPlannedTodo")} />
-              </Route>
-              <Route exact path={PathNameMain.assigned}>
-                <Main title={t("Assigned")} />
-              </Route>
+              <Route
+                exact
+                path={PathNameMain.home}
+                render={({ match }) => <Main path={match.url} title={t("Tasks")} placeholder={t("AddTodo")} />}
+              />
+              <Route
+                exact
+                path="/:name"
+                render={({ match }) => (
+                  <Main
+                    path={match.url}
+                    title={t(`${setMainTitleText(match)}`)}
+                    placeholder={t(`${setTextInputPlaceholder(match.params.name)}`)}
+                  />
+                )}
+              />
             </StyledContainer>
           </Switch>
         </Router>
