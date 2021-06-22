@@ -21,7 +21,7 @@ export enum PathNameMain {
   // eslint-disable-next-line no-unused-vars
   planned = "/planned",
   // eslint-disable-next-line no-unused-vars
-  all = "/",
+  home = "/",
 }
 
 export enum HeaderButtonsName {
@@ -58,13 +58,14 @@ export interface Todo {
   id: number;
   date: number;
   title: string;
-  important: boolean;
   completed: boolean;
+  timeCompleted: number;
   myDay: boolean;
+  important: boolean;
   planned: boolean;
   assigned: boolean;
-  timeCompleted: number;
-  all?: boolean;
+  home?: boolean;
+  allTodo?: boolean;
 }
 
 export interface SidebarRightContent {
@@ -73,6 +74,7 @@ export interface SidebarRightContent {
 }
 
 export interface ParametersItem {
+  [key: string]: string | number | boolean;
   id: number;
   title: string;
   check: boolean;

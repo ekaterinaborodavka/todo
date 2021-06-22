@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 
 import { MainHeader, AddInput, TodoList } from "~components";
 import { Context } from "~src/context/context";
@@ -37,18 +36,19 @@ const StyledSearchTitle = styled.h3`
 
 interface MainProps {
   title: string;
-  placeholder?: string;
+  placeholder?: string | undefined;
+  path: string;
 }
 
-export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
+export const Main: React.FC<MainProps> = ({ title, placeholder, path }) => {
   const { todos: allTodos, filterTodos, searchValue } = useContext(Context);
   const { t } = useTranslation();
-  const location = useLocation();
 
   const todos = searchValue.trim() ? filterTodos : allTodos;
 
-  const path = location.pathname;
-  const typeOfPages = path.length > 1 ? path.slice(1) : TypeTodo.all;
+  const typeOfPages = path.length > 1 ? path.slice(1) : TypeTodo.home;
+
+  const isShowAddInput = placeholder || typeOfPages !== TypeTodo.completedTodo;
 
   return (
     <StyledContainer>
@@ -57,7 +57,7 @@ export const Main: React.FC<MainProps> = ({ title, placeholder }) => {
       ) : (
         <>
           <MainHeader title={title} path={location.pathname} />
-          {placeholder ? <AddInput placeholder={placeholder} typeOfPages={typeOfPages} /> : null}
+          {isShowAddInput ? <AddInput placeholder={placeholder} typeOfPages={typeOfPages} /> : null}
           <TodoList todos={todos} todoType={typeOfPages} />
         </>
       )}

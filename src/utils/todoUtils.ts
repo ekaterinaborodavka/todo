@@ -51,11 +51,11 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
   const currentTodos = todos.slice();
   switch (value) {
     case SortOptions.importance:
-      currentTodos.sort((a, b) => Number(a.important) - Number(b.important));
+      currentTodos.sort((a, b) => Number(b.important) - Number(a.important));
       return currentTodos;
 
     case SortOptions.deadline:
-      currentTodos.sort((a, b) => a.timeCompleted - b.timeCompleted);
+      currentTodos.sort((a, b) => b.timeCompleted - a.timeCompleted);
       return currentTodos;
 
     case SortOptions.alphabet:
@@ -63,19 +63,23 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
       return currentTodos;
 
     case SortOptions.creationDate:
-      currentTodos.sort((a, b) => a.date - b.date);
+      currentTodos.sort((a, b) => b.date - a.date);
       return currentTodos;
 
     default:
-      currentTodos.sort((a, b) => a.date - b.date);
+      currentTodos.sort((a, b) => b.date - a.date);
       return currentTodos;
   }
 };
 
 export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
   const filteredFunc = (todo: Todo) => {
-    if (typeTodo === TypeTodo.all) {
+    if (typeTodo === TypeTodo.allTodo) {
       return !todo.completed;
+    }
+
+    if (typeTodo === TypeTodo.completedTodo) {
+      return todo.completed;
     }
 
     return todo[typeTodo] && !todo.completed;
