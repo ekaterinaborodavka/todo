@@ -32,6 +32,10 @@ export enum Icons {
   print = "fa fa-print",
   // eslint-disable-next-line no-unused-vars
   close = "fa fa-times",
+  // eslint-disable-next-line no-unused-vars
+  checkCircle = "fa fa-check-circle-o",
+  // eslint-disable-next-line no-unused-vars
+  listAll = "fa fa-list-alt",
 }
 
 export enum SortOptions {
@@ -104,16 +108,16 @@ export const sidebarContent = [
   },
   {
     id: 6,
-    icon: Icons.home,
+    icon: Icons.listAll,
     title: "Все",
-    color: COLORS.blue,
+    color: COLORS.grey,
     typeTodo: TypeTodo.allTodo,
   },
   {
     id: 7,
-    icon: Icons.home,
+    icon: Icons.checkCircle,
     title: "Завершенные",
-    color: COLORS.blue,
+    color: COLORS.grey,
     typeTodo: TypeTodo.completedTodo,
   },
 ];
