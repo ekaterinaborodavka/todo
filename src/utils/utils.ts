@@ -235,7 +235,7 @@ export const parametersSmartList: ParametersItem[] = [
   { id: 3, title: "Все", check: false },
   { id: 4, title: "Завершенные", check: true },
   { id: 5, title: "Назначенные Вам", check: true },
-  { id: 6, title: "Автоматически скрывать пустые смарт-списки", check: false },
+  { id: 6, title: "Автоматически скрывать пустые смарт-списки", check: false, info: "hideList" },
 ];
 
 export const parametersApplicationsList: ParametersItem[] = [{ id: 1, title: "Планировщик", check: true }];

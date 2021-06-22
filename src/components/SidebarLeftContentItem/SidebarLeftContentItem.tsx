@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { COLORS } from "~src/colors";
 import { Context } from "~src/context/context";
@@ -56,7 +56,7 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
 
   useEffect(() => {
     setAmount(countTodos(todos, typeTodo));
-  }, [todos, typeTodo]);
+  }, [smartListParams, title, todos, typeTodo]);
 
   const linkTo = useCallback(() => {
     if (typeTodo === TypeTodo.home) {
@@ -69,14 +69,23 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
   const findIndexOfSidebarElement = (list: ParametersItem[], value: string, type: string): number =>
     list.findIndex((el) => el[type] === value);
 
-  const isDisplayControlLeftSidebar: boolean =
-    smartListParams[findIndexOfSidebarElement(smartListParams, title, "title")]?.check ||
-    typeTodo === TypeTodo.home ||
-    typeTodo === TypeTodo.myDay;
+  const isHideListsActive = smartListParams[findIndexOfSidebarElement(smartListParams, "hideList", "info")]?.check;
+  const mainLists = typeTodo === TypeTodo.home || typeTodo === TypeTodo.myDay;
+  const isShowLists = smartListParams[findIndexOfSidebarElement(smartListParams, title, "title")]?.check;
+
+  const isDisplayControlLeftSidebar = (): boolean => {
+    if (isHideListsActive) {
+      return mainLists || Boolean(countTodos(todos, typeTodo));
+    }
+
+    return isShowLists || mainLists;
+  };
 
   return (
     <>
-      {isDisplayControlLeftSidebar ? (
+      {isHideListsActive || !isShowLists ? <Redirect to="" /> : null}
+
+      {isDisplayControlLeftSidebar() ? (
         <StyledItem>
           <StyledLink to={linkTo}>
             <div>
