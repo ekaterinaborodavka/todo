@@ -4,7 +4,10 @@ import styled from "styled-components/macro";
 import { Todo } from "~src/types";
 import { COLORS } from "~src/colors";
 import { Context } from "~src/context/context";
-import { toggleCompletedTodo, toggleImportantTodo } from "~src/utils/todoUtils";
+import { changeTodosList, toggleCompletedTodo, toggleImportantTodo } from "~src/utils/todoUtils";
+import { PopupContent, ListOptions } from "~src/components";
+import { actionOptions, SortOptions } from "~src/utils/utils";
+import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -35,9 +38,23 @@ const StyledIcon = styled.i`
   color: ${(props) => props.theme.color};
 `;
 
+const StyledPopup = styled.div`
+  width: 200px;
+  color: inherit;
+  text-align: center;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+`;
 export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }) => {
-  const { todos, updateTodo } = useContext(Context);
+  const { todos, updateTodo, setTodos } = useContext(Context);
+  const { flag: isPopupOpened, toggleFlag: togglePopup, setFlagFalse: setHidePopup } = useStateFlags(false);
 
+  const onClose = useCallback(() => {
+    if (isPopupOpened) {
+      setHidePopup();
+    }
+  }, [isPopupOpened, setHidePopup]);
   const onToggleCompletedTodo = useCallback(() => {
     const newItem = toggleCompletedTodo(id, todos);
     updateTodo(newItem, id);
@@ -47,12 +64,39 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }
     const newItem = toggleImportantTodo(id, todos);
     updateTodo(newItem, id);
   }, [id, todos, updateTodo]);
+  const onRightButtonMousePress = (e: React.MouseEvent) => {
+    e.preventDefault();
+    togglePopup();
+  };
+
+  const onChangeTodos = useCallback(
+    ({ currentTarget }: React.MouseEvent) => {
+      const value = currentTarget.getAttribute("data-value");
+      const currentValue = value ? value : SortOptions.default;
+      const newTodos = changeTodosList(todos, currentValue, id);
+      setTodos(newTodos);
+    },
+    [todos, id, setTodos]
+  );
 
   return (
-    <StyledContainer>
-      <StyledIcon onClick={onToggleCompletedTodo} className={completed ? "fa fa-check-circle" : "fa fa-circle-thin"} />
-      <StyledButton>{title}</StyledButton>
-      <StyledIcon onClick={onToggleImportantTodo} className={important ? "fa fa-star" : "fa fa-star-o"} />
-    </StyledContainer>
+    <>
+      <StyledContainer onContextMenu={onRightButtonMousePress}>
+        <StyledIcon
+          onClick={onToggleCompletedTodo}
+          className={completed ? "fa fa-check-circle" : "fa fa-circle-thin"}
+        />
+        <StyledButton>{title}</StyledButton>
+        <StyledIcon onClick={onToggleImportantTodo} className={important ? "fa fa-star" : "fa fa-star-o"} />
+      </StyledContainer>
+
+      {isPopupOpened ? (
+        <StyledPopup>
+          <PopupContent onClose={onClose}>
+            <ListOptions options={actionOptions} onClick={onChangeTodos} />
+          </PopupContent>
+        </StyledPopup>
+      ) : null}
+    </>
   );
 };

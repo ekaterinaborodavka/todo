@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 
 import { PopupContent } from "~components";
 import { useStateFlags } from "~src/hooks/useStateFlags";
-import { PopupContext } from "~src/context/popupContext";
 
 interface PopupProps {
   button: React.ElementType;
@@ -19,10 +18,8 @@ export const Popup: React.FC<PopupProps> = ({ button: Button, children }) => {
 
   return (
     <>
-      <PopupContext.Provider value={{ togglePopup }}>
-        {isPopupOpened ? <PopupContent onClose={onClose}>{children}</PopupContent> : null}
-        <Button onClick={togglePopup} />
-      </PopupContext.Provider>
+      {isPopupOpened ? <PopupContent onClose={onClose}>{children}</PopupContent> : null}
+      <Button onClick={togglePopup} />
     </>
   );
 };

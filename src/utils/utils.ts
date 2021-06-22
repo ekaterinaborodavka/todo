@@ -36,6 +36,8 @@ export enum Icons {
   checkCircle = "fa fa-check-circle-o",
   // eslint-disable-next-line no-unused-vars
   listAll = "fa fa-list-alt",
+  // eslint-disable-next-line no-unused-vars
+  delete = "fa fa-trash-o",
 }
 
 export enum SortOptions {
@@ -51,6 +53,17 @@ export enum SortOptions {
   creationDate = "По дате создания",
   // eslint-disable-next-line no-unused-vars
   default = "default",
+}
+
+export enum ActionOptions {
+  // eslint-disable-next-line no-unused-vars
+  importance = "Пометить как важное",
+  // eslint-disable-next-line no-unused-vars
+  myDayList = "Добавить в 'Мой день'",
+  // eslint-disable-next-line no-unused-vars
+  completed = "Отметить как выполненное",
+  // eslint-disable-next-line no-unused-vars
+  delete = "Удалить",
 }
 
 export enum TypeTodo {
@@ -206,6 +219,28 @@ export const sortVariant = [
   },
 ];
 
+export const actionOptions = [
+  {
+    id: 21,
+    icon: Icons.star,
+    title: ActionOptions.importance,
+  },
+  {
+    id: 22,
+    icon: Icons.sun,
+    title: ActionOptions.myDayList,
+  },
+  {
+    id: 23,
+    icon: Icons.check,
+    title: ActionOptions.completed,
+  },
+  {
+    id: 24,
+    icon: Icons.delete,
+    title: ActionOptions.delete,
+  },
+];
 export const parametersList = [
   {
     id: 1,

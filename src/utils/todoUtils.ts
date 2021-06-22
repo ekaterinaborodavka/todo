@@ -1,5 +1,5 @@
 import { ParametersItem, Todo } from "~src/types";
-import { SortOptions, TypeTodo } from "./utils";
+import { ActionOptions, SortOptions, TypeTodo } from "./utils";
 
 export const createTodoItem = (title: string, todoType: string): Todo => {
   return {
@@ -68,6 +68,31 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
 
     default:
       currentTodos.sort((a, b) => b.date - a.date);
+      return currentTodos;
+  }
+};
+export const changeTodosList = (todos: Todo[], value: string, id: number): Todo[] => {
+  const currentTodos = todos.slice();
+  switch (value) {
+    case ActionOptions.importance:
+      const newImportantTodo = toggleImportantTodo(id, currentTodos);
+      return update(currentTodos, newImportantTodo, id);
+
+    case ActionOptions.myDayList:
+      const index = findInd(id, currentTodos);
+      const oldItem = todos[index];
+      const currentItem = { ...oldItem, myDay: !oldItem.myDay };
+      return update(currentTodos, currentItem, id);
+
+    case ActionOptions.completed:
+      const newTodo = toggleCompletedTodo(id, currentTodos);
+      return update(currentTodos, newTodo, id);
+
+    case ActionOptions.delete:
+      const ind = findInd(id, todos);
+      return [...todos.slice(0, ind), ...todos.slice(ind + 1)];
+
+    default:
       return currentTodos;
   }
 };
