@@ -63,8 +63,17 @@ export const App: React.FC = () => {
     [todos, searchValue, filterTodos]
   );
 
-  const setTextInputPlaceholder = (path: string): string =>
-    path === TypeTodo.planned ? "AddPlannedTodo" : path === TypeTodo.completedTodo ? "" : "AddTodo";
+  const setTextInputPlaceholder = (path: string): string => {
+    if (path === TypeTodo.planned) {
+      return "AddPlannedTodo";
+    }
+
+    if (path === TypeTodo.completedTodo) {
+      return "";
+    }
+
+    return "AddTodo";
+  };
 
   const setMainTitleText = (match: match<{ name: string }>): string => {
     const path = match.params.name;
