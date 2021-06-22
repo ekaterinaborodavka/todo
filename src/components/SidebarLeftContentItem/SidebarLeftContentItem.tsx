@@ -83,7 +83,7 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
 
   return (
     <>
-      {isHideListsActive || !isShowLists ? <Redirect to="" /> : null}
+      {isHideListsActive || !isShowLists ? <Redirect to="/" /> : null}
 
       {isDisplayControlLeftSidebar() ? (
         <StyledItem>
