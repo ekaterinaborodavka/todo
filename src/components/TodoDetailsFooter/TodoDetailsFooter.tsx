@@ -35,7 +35,7 @@ const StyledIcon = styled.i`
 export const TodoDetailsFooter: React.FC = () => {
   const { currentTodo, setCurrentTodo } = useContext(Context);
   const date = new Date(currentTodo.date);
-  const dateString = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+  const dateString = date.getDate() + "/" + (Number(date.getMonth()) + 1) + "/" + date.getFullYear();
 
   const onHideDetails = useCallback(() => {
     setCurrentTodo({} as Todo);
