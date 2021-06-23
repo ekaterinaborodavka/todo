@@ -1,5 +1,6 @@
-import { ParametersItem, Todo } from "~src/types";
-import { SortOptions, TypeTodo } from "./utils";
+import { ParametersItem, SidebarLeftContentItemProps, Todo } from "~src/types";
+import { COLORS } from "../colors";
+import { Icons, SortOptions, TypeTodo } from "./utils";
 
 export const createTodoItem = (title: string, todoType: string): Todo => {
   return {
@@ -14,6 +15,22 @@ export const createTodoItem = (title: string, todoType: string): Todo => {
     timeCompleted: 0,
     [todoType]: true,
   };
+};
+
+export const createListItem = (title: string): SidebarLeftContentItemProps => {
+  return {
+    id: Date.now(),
+    icon: Icons.bars,
+    title,
+    color: COLORS.grey,
+    typeTodo: title,
+  };
+};
+
+export const addNewListItem = (title: string, list: SidebarLeftContentItemProps[]): SidebarLeftContentItemProps[] => {
+  const newListItem = createListItem(title);
+  const newList = [...list, newListItem];
+  return newList;
 };
 
 export const addNewTodo = (title: string, todos: Todo[], todoType: string): Todo[] => {
@@ -72,7 +89,7 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
   }
 };
 
-export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
+export const countTodos = (todos: Todo[], typeTodo: string): number => {
   const filteredFunc = (todo: Todo) => {
     if (typeTodo === TypeTodo.allTodo) {
       return !todo.completed;
@@ -94,4 +111,23 @@ export const toggleCheckButton = (id: number, params: ParametersItem[]): Paramet
   const oldItem = params[ind];
   const newItem = { ...oldItem, check: !oldItem.check };
   return [...params.slice(0, ind), newItem, ...params.slice(ind + 1)];
+};
+
+export const findIndexOfSidebarElement = (list: ParametersItem[], value: string, type: string): number =>
+  list.findIndex((el) => el[type] === value);
+
+export const isTextValid = (list: SidebarLeftContentItemProps[], searchText: string): string => {
+  const validText = list.filter(
+    (el) =>
+      el.title
+        .toLowerCase()
+        .trim()
+        .replace(/\s+\([^\d]*(\d+)\)$/gi, "") === searchText.toLowerCase().trim()
+  ).length;
+
+  if (validText === 0) {
+    return searchText;
+  }
+
+  return `${searchText} (${validText})`;
 };

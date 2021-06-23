@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { Header, Main, SidebarLeft, TodoDetails } from "~components";
 import { theme } from "~src/theme/theme";
-import { ParametersItem, PathNameMain, ThemeNames, Todo } from "~src/types";
+import { ParametersItem, PathNameMain, SidebarLeftContentItemProps, ThemeNames, Todo } from "~src/types";
 import { Context } from "~src/context/context";
 import { addNewTodo, search, update } from "~src/utils/todoUtils";
 import {
@@ -33,6 +33,7 @@ export const App: React.FC = () => {
   const [myDayParams, setMyDayParams] = useState<ParametersItem[]>(parametersMyDayList);
   const [smartListParams, setSmartListParams] = useState<ParametersItem[]>(parametersSmartList);
   const [applicationsParams, setApplicationsParams] = useState<ParametersItem[]>(parametersApplicationsList);
+  const [userList, setUserList] = useState<SidebarLeftContentItemProps[]>([]);
   const [currentTodo, setCurrentTodo] = useState<Todo>({} as Todo);
 
   const addTodo = useCallback(
@@ -102,6 +103,8 @@ export const App: React.FC = () => {
         setSmartListParams,
         applicationsParams,
         setApplicationsParams,
+        userList,
+        setUserList,
         currentTodo,
         setCurrentTodo,
       }}

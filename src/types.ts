@@ -79,3 +79,21 @@ export interface ParametersItem {
   title: string;
   check: boolean;
 }
+
+export interface SidebarLeftContentItemProps {
+  id: number;
+  icon: string;
+  title: string;
+  color: string;
+  typeTodo: string;
+}
+
+export interface SidebarDragDropProps {
+  isDrag: boolean;
+  // eslint-disable-next-line no-unused-vars
+  dragStart?: (e: React.DragEvent<HTMLLIElement>, list?: SidebarLeftContentItemProps) => void;
+  // eslint-disable-next-line no-unused-vars
+  dragOver?: (e: React.DragEvent<HTMLLIElement>) => void;
+  // eslint-disable-next-line no-unused-vars
+  dragDrop?: (e: React.DragEvent<HTMLLIElement>, list?: SidebarLeftContentItemProps) => void;
+}

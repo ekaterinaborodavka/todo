@@ -5,8 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import { COLORS } from "~src/colors";
 import { Context } from "~src/context/context";
 import { TypeTodo } from "~src/utils/utils";
-import { countTodos } from "~src/utils/todoUtils";
-import { ParametersItem } from "~src/types";
+import { countTodos, findIndexOfSidebarElement } from "~src/utils/todoUtils";
+import { SidebarDragDropProps, SidebarLeftContentItemProps } from "~src/types";
 
 const StyledIcon = styled.i<{ color: string }>`
   color: ${(props) => props.color};
@@ -43,14 +43,16 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export interface SidebarLeftContentItemProps {
-  icon: string;
-  title: string;
-  color: string;
-  typeTodo: TypeTodo;
-}
-
-export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ typeTodo, color, icon, title }) => {
+export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps & SidebarDragDropProps> = ({
+  typeTodo,
+  color,
+  icon,
+  title,
+  isDrag,
+  dragStart,
+  dragOver,
+  dragDrop,
+}) => {
   const { todos, smartListParams } = useContext(Context);
   const [amount, setAmount] = useState(0);
 
@@ -66,9 +68,6 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
     return `/${typeTodo}`;
   }, [typeTodo]);
 
-  const findIndexOfSidebarElement = (list: ParametersItem[], value: string, type: string): number =>
-    list.findIndex((el) => el[type] === value);
-
   const isHideListsActive = smartListParams[findIndexOfSidebarElement(smartListParams, "hideList", "info")]?.check;
   const mainLists = typeTodo === TypeTodo.home || typeTodo === TypeTodo.myDay;
   const isShowLists = smartListParams[findIndexOfSidebarElement(smartListParams, title, "title")]?.check;
@@ -78,7 +77,7 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
       return mainLists || Boolean(countTodos(todos, typeTodo));
     }
 
-    return isShowLists || mainLists;
+    return isShowLists || mainLists || !TypeTodo[typeTodo as keyof typeof TypeTodo];
   };
 
   return (
@@ -86,7 +85,7 @@ export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps> = ({ 
       {isHideListsActive || !isShowLists ? <Redirect to="/" /> : null}
 
       {isDisplayControlLeftSidebar() ? (
-        <StyledItem>
+        <StyledItem draggable={isDrag} onDragStart={dragStart} onDragOver={dragOver} onDrop={dragDrop}>
           <StyledLink to={linkTo}>
             <div>
               <StyledIcon color={color} className={icon} />
