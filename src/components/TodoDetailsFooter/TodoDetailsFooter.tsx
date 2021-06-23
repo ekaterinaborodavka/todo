@@ -1,36 +1,10 @@
 import React, { useContext, useCallback } from "react";
-import styled from "styled-components/macro";
 
-import { COLORS } from "~src/colors";
 import { Icons } from "~src/utils/utils";
 import { Context } from "~src/context/context";
-import { Todo } from "~src/types";
 
-const StyledFooter = styled.div`
-  width: 100%;
-  min-height: 38px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid #eaeaea;
-  background-color: ${COLORS.bgDetailsMenu};
-  border-top: 1px solid ${COLORS.detailsMenuBorder};
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 1rem;
-  box-sizing: border-box;
-  color: ${COLORS.detailsTextColor};
-`;
-
-const StyledButton = styled.button`
-  background-color: transparent;
-  border: 1px solid transparent;
-`;
-
-const StyledIcon = styled.i`
-  color: ${COLORS.detailsTextColor};
-`;
+import { StyledFooter, StyledButton, StyledIcon } from "./TodoDetailsFooter.styled";
+import { Todo } from "~components";
 
 export const TodoDetailsFooter: React.FC = () => {
   const { currentTodo, setCurrentTodo } = useContext(Context);

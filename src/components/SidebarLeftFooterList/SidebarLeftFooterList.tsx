@@ -1,22 +1,9 @@
 import React, { useContext } from "react";
-import styled from "styled-components/macro";
 
 import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
-import {
-  SidebarLeftFooterItem,
-  SidebarLeftFooterItemProps,
-} from "~components/SidebarLeftFooterItem/SidebarLeftFooterItem";
+import { SidebarLeftFooterItem, SidebarLeftFooterItemProps } from "~components";
 
-export interface StyledListProps {
-  direction?: boolean;
-}
-
-const StyledList = styled.div<{ isOpened: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: ${(props) => (props.isOpened ? "row" : "column")};
-`;
+import { StyledList } from "./SidebarLeftFooterList.styled";
 
 export interface SidebarFooterListProps {
   contentFooter: SidebarLeftFooterItemProps[];

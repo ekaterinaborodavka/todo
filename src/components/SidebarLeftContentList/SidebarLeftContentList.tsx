@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import styled from "styled-components/macro";
 
 import { SidebarLeftContentItem } from "~components";
 import { SidebarLeftContentItemProps } from "~src/types";
 import { Context } from "~src/context/context";
 
-const StyledList = styled.ul`
-  padding-left: 0rem;
-`;
+import { StyledList } from "./SidebarLeftContentList.styled";
 
 export interface SidebarLeftListProps {
   contentSidebar: SidebarLeftContentItemProps[];

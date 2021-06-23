@@ -1,11 +1,10 @@
 import React, { useContext, useCallback } from "react";
 
-import { TodoListItem, CompletedTodo } from "~components";
-import { Todo } from "~src/types";
+import { TodoListItem, CompletedTodo, Todo } from "~components";
 import { Context } from "~src/context/context";
 import { TypeTodo } from "~src/utils/utils";
 
-export interface TodoListProps {
+interface TodoListProps {
   todos: Array<Todo>;
   todoType?: keyof Todo;
 }

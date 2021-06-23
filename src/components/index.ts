@@ -33,3 +33,4 @@ export * from "./ParametersList/ParametersList";
 export * from "./SidebarLeftContentItem/SidebarLeftContentItem";
 export * from "./TodoDetails/TodoDetails";
 export * from "./TodoDetailsFooter/TodoDetailsFooter";
+export * from "./SidebarLeftFooterItem/SidebarLeftFooterItem";

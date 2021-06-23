@@ -53,21 +53,6 @@ export enum ParameterTitles {
   applications = "Подключенные приложения",
 }
 
-export interface Todo {
-  [key: string]: number | string | boolean | undefined;
-  id: number;
-  date: number;
-  title: string;
-  completed: boolean;
-  timeCompleted: number;
-  myDay: boolean;
-  important: boolean;
-  planned: boolean;
-  assigned: boolean;
-  home?: boolean;
-  allTodo?: boolean;
-}
-
 export interface SidebarRightContent {
   title: string;
   component: React.FunctionComponent;
@@ -96,4 +81,8 @@ export interface SidebarDragDropProps {
   dragOver?: (e: React.DragEvent<HTMLLIElement>) => void;
   // eslint-disable-next-line no-unused-vars
   dragDrop?: (e: React.DragEvent<HTMLLIElement>, list?: SidebarLeftContentItemProps) => void;
+}
+
+export interface StyledListProps {
+  direction?: boolean;
 }
