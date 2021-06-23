@@ -29,6 +29,8 @@ export enum Icons {
   // eslint-disable-next-line no-unused-vars
   angleRight = "fa fa-angle-right",
   // eslint-disable-next-line no-unused-vars
+  angleLeft = "fa fa-angle-left",
+  // eslint-disable-next-line no-unused-vars
   print = "fa fa-print",
   // eslint-disable-next-line no-unused-vars
   close = "fa fa-times",
@@ -36,6 +38,8 @@ export enum Icons {
   checkCircle = "fa fa-check-circle-o",
   // eslint-disable-next-line no-unused-vars
   listAll = "fa fa-list-alt",
+  // eslint-disable-next-line no-unused-vars
+  bars = "fa fa-bars",
 }
 
 export enum SortOptions {

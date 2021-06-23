@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
 import { SidebarLeftContentList, SidebarLeftFooterList } from "~components";
-import { sidebarContent, sidebarFooter } from "~src/utils/utils";
+import { Icons, sidebarContent, sidebarFooter } from "~src/utils/utils";
 import { COLORS } from "~src/colors";
 import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
 import { useStateFlags } from "~src/hooks/useStateFlags";
+import { addNewListItem } from "~src/utils/todoUtils";
+import { SidebarLeftContentItemProps } from "~src/types";
+import { Context } from "~src/context/context";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
   width: ${(props) => (props.isOpened ? "25%" : "60px")};
@@ -16,7 +19,7 @@ const StyledSidebar = styled.div<{ isOpened: boolean }>`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 `;
 
 const StyledContent = styled.div`
@@ -46,6 +49,7 @@ const StyledButton = styled.button`
   &:hover {
     background-color: ${COLORS.lightGrey};
   }
+  cursor: pointer;
 `;
 
 const StyledCreateTitle = styled.span`
@@ -59,7 +63,7 @@ const StyledCreate = styled.div`
 `;
 
 const StyledCreateInput = styled.input`
-  width: 65%;
+  width: 100%;
   padding: 0.5rem 1rem;
   border: 1px solid transparent;
   background-color: ${COLORS.bgSidebarLeft};
@@ -71,33 +75,80 @@ const StyledCreateInput = styled.input`
   }
 `;
 
+const StyledForm = styled.form`
+  width: 100%;
+  display: flex;
+`;
+
 export const SidebarLeft: React.FC = () => {
   const { t } = useTranslation();
   const { flag: isSidebarOpened, toggleFlag: toggleSidebar } = useStateFlags(false);
+  const { userList, setUserList } = useContext(Context);
   const {
     flag: showCreateInput,
     setFlagFalse: onHideCreateInput,
     setFlagTrue: onShowCreateInput,
   } = useStateFlags(false);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSubmitInput = (e: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (inputValue.trim()) {
+      setUserList(addNewListItem(isTextValid(userList, inputValue), userList));
+    }
+
+    setInputValue("");
+  };
+
+  const isTextValid = (list: SidebarLeftContentItemProps[], searchText: string): string => {
+    const validText = list.filter(
+      (el) =>
+        el.title
+          .toLowerCase()
+          .trim()
+          .replace(/\s+\([^\d]*(\d+)\)$/gi, "") === searchText.toLowerCase().trim()
+    ).length;
+
+    if (validText === 0) {
+      return searchText;
+    }
+
+    return `${searchText} (${validText})`;
+  };
 
   return (
     <SidebarLeftContext.Provider value={{ isSidebarOpened }}>
       <StyledSidebar isOpened={isSidebarOpened}>
         <StyledContent>
           <StyledButton onClick={toggleSidebar}>
-            <StyledIconArrow className={`fa fa-angle-right ${isSidebarOpened ? "fa-flip-horizontal" : null}`} />
+            <StyledIconArrow className={`${isSidebarOpened ? Icons.angleLeft : Icons.angleRight}`} />
           </StyledButton>
-          <SidebarLeftContentList contentSidebar={sidebarContent} />
+          <SidebarLeftContentList contentSidebar={sidebarContent} isDrag={false} />
           <StyledCreate>
-            <StyledButton>
+            <StyledButton onClick={handleSubmitInput}>
               <StyledIconPlus className="fa fa-plus" />
             </StyledButton>
             {showCreateInput ? (
-              <StyledCreateInput autoFocus placeholder={t("CreateList")} onBlur={onHideCreateInput} type="text" />
+              <StyledForm onSubmit={handleSubmitInput}>
+                <StyledCreateInput
+                  onChange={handleChangeInput}
+                  value={inputValue}
+                  autoFocus
+                  placeholder={t("CreateList")}
+                  onBlur={onHideCreateInput}
+                  type="text"
+                />
+              </StyledForm>
             ) : (
               <StyledCreateTitle onClick={onShowCreateInput}>{t("CreateList")}</StyledCreateTitle>
             )}
           </StyledCreate>
+          {userList.length ? <SidebarLeftContentList contentSidebar={userList} isDrag /> : null}
         </StyledContent>
         <SidebarLeftFooterList contentFooter={sidebarFooter} />
       </StyledSidebar>
