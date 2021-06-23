@@ -57,4 +57,10 @@ export enum COLORS {
   bgSidebarRight = "#FAF9F8",
   // eslint-disable-next-line no-unused-vars
   sidebarRightListColor = "rgb(51, 51, 51)",
+  // eslint-disable-next-line no-unused-vars
+  bgDetailsMenu = "#f4f4f4",
+  // eslint-disable-next-line no-unused-vars
+  detailsMenuBorder = "#eaeaea",
+  // eslint-disable-next-line no-unused-vars
+  detailsTextColor = "#666666",
 }

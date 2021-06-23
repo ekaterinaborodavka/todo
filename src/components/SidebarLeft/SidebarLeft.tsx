@@ -9,7 +9,7 @@ import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
-  width: ${(props) => (props.isOpened ? "25%" : "60px")};
+  width: ${(props) => (props.isOpened ? "25%" : "70px")};
   transition: all 0.2s linear;
   background-color: ${COLORS.bgSidebarLeft};
   display: flex;

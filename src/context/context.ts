@@ -22,6 +22,8 @@ interface ContextProps {
   setSmartListParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
   applicationsParams: ParametersItem[];
   setApplicationsParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+  currentTodo: Todo;
+  setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>;
 }
 
 export const Context = createContext({} as ContextProps);

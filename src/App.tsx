@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, match } from "react-router-dom"
 import styled, { ThemeProvider } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
-import { Header, Main, SidebarLeft } from "~components";
+import { Header, Main, SidebarLeft, TodoDetails } from "~components";
 import { theme } from "~src/theme/theme";
 import { ParametersItem, PathNameMain, ThemeNames, Todo } from "~src/types";
 import { Context } from "~src/context/context";
@@ -33,6 +33,7 @@ export const App: React.FC = () => {
   const [myDayParams, setMyDayParams] = useState<ParametersItem[]>(parametersMyDayList);
   const [smartListParams, setSmartListParams] = useState<ParametersItem[]>(parametersSmartList);
   const [applicationsParams, setApplicationsParams] = useState<ParametersItem[]>(parametersApplicationsList);
+  const [currentTodo, setCurrentTodo] = useState<Todo>({} as Todo);
 
   const addTodo = useCallback(
     (value: string, todoType: string) => {
@@ -101,6 +102,8 @@ export const App: React.FC = () => {
         setSmartListParams,
         applicationsParams,
         setApplicationsParams,
+        currentTodo,
+        setCurrentTodo,
       }}
     >
       <ThemeProvider theme={theme[themeVariant]}>
@@ -125,6 +128,7 @@ export const App: React.FC = () => {
                   />
                 )}
               />
+              <TodoDetails />
             </StyledContainer>
           </Switch>
         </Router>
