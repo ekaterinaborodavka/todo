@@ -115,3 +115,19 @@ export const toggleCheckButton = (id: number, params: ParametersItem[]): Paramet
 
 export const findIndexOfSidebarElement = (list: ParametersItem[], value: string, type: string): number =>
   list.findIndex((el) => el[type] === value);
+
+export const isTextValid = (list: SidebarLeftContentItemProps[], searchText: string): string => {
+  const validText = list.filter(
+    (el) =>
+      el.title
+        .toLowerCase()
+        .trim()
+        .replace(/\s+\([^\d]*(\d+)\)$/gi, "") === searchText.toLowerCase().trim()
+  ).length;
+
+  if (validText === 0) {
+    return searchText;
+  }
+
+  return `${searchText} (${validText})`;
+};

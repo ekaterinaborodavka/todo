@@ -12,10 +12,10 @@ const StyledList = styled.ul`
 
 export interface SidebarLeftListProps {
   contentSidebar: SidebarLeftContentItemProps[];
-  isDrag: boolean;
+  isDrag?: boolean;
 }
 
-export const SidebarLeftContentList: React.FC<SidebarLeftListProps> = ({ contentSidebar, isDrag }) => {
+export const SidebarLeftContentList: React.FC<SidebarLeftListProps> = ({ contentSidebar, isDrag = false }) => {
   const [currentList, setCurrentList] = useState<SidebarLeftContentItemProps | undefined>();
   const { setUserList } = useContext(Context);
 

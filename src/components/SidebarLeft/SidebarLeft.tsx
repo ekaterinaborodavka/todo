@@ -7,8 +7,7 @@ import { Icons, sidebarContent, sidebarFooter } from "~src/utils/utils";
 import { COLORS } from "~src/colors";
 import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
 import { useStateFlags } from "~src/hooks/useStateFlags";
-import { addNewListItem } from "~src/utils/todoUtils";
-import { SidebarLeftContentItemProps } from "~src/types";
+import { addNewListItem, isTextValid } from "~src/utils/todoUtils";
 import { Context } from "~src/context/context";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
@@ -19,13 +18,14 @@ const StyledSidebar = styled.div<{ isOpened: boolean }>`
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
 `;
 
-const StyledContent = styled.div`
+const StyledContent = styled.div<{ isOpened: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: ${(props) => (props.isOpened ? "overlay" : "hidden")};
 `;
 
 const StyledIconArrow = styled.i`
@@ -105,30 +105,14 @@ export const SidebarLeft: React.FC = () => {
     setInputValue("");
   };
 
-  const isTextValid = (list: SidebarLeftContentItemProps[], searchText: string): string => {
-    const validText = list.filter(
-      (el) =>
-        el.title
-          .toLowerCase()
-          .trim()
-          .replace(/\s+\([^\d]*(\d+)\)$/gi, "") === searchText.toLowerCase().trim()
-    ).length;
-
-    if (validText === 0) {
-      return searchText;
-    }
-
-    return `${searchText} (${validText})`;
-  };
-
   return (
     <SidebarLeftContext.Provider value={{ isSidebarOpened }}>
       <StyledSidebar isOpened={isSidebarOpened}>
-        <StyledContent>
+        <StyledContent isOpened={isSidebarOpened}>
           <StyledButton onClick={toggleSidebar}>
             <StyledIconArrow className={`${isSidebarOpened ? Icons.angleLeft : Icons.angleRight}`} />
           </StyledButton>
-          <SidebarLeftContentList contentSidebar={sidebarContent} isDrag={false} />
+          <SidebarLeftContentList contentSidebar={sidebarContent} />
           <StyledCreate>
             <StyledButton onClick={handleSubmitInput}>
               <StyledIconPlus className="fa fa-plus" />
