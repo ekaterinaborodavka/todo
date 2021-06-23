@@ -8,6 +8,8 @@ import { changeTodosList, toggleCompletedTodo, toggleImportantTodo } from "~src/
 import { ListOptions, Popup } from "~src/components";
 import { actionOptions, SortOptions } from "~src/utils/utils";
 import { useStateFlags } from "~src/hooks/useStateFlags";
+import { OptionsContent } from "~src/components";
+import { useTranslation } from "react-i18next";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -39,6 +41,7 @@ const StyledIcon = styled.i`
 `;
 
 export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }) => {
+  const { t } = useTranslation();
   const { todos, updateTodo, setTodos } = useContext(Context);
   const { flag: isOpen, toggleFlag: toggleFlag } = useStateFlags(false);
 
@@ -83,7 +86,9 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }
 
       {isOpen ? (
         <Popup isOpen={isOpen}>
-          <ListOptions options={actionOptions} onClick={onChangeTodos} />
+          <OptionsContent title={t("ActionsType")} right="70%">
+            <ListOptions options={actionOptions} onClick={onChangeTodos} />
+          </OptionsContent>
         </Popup>
       ) : null}
     </>
