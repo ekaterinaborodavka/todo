@@ -1,16 +1,9 @@
 import React from "react";
-import styled from "styled-components/macro";
 
-import { ThemeListItem, ThemeListItemProps } from "~components";
+import { ThemeListItem } from "~components";
+import { ThemeListProps } from "~src/types";
 
-const StyledItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-`;
-
-export interface ThemeListProps {
-  themes: ThemeListItemProps[];
-}
+import { StyledItem } from "./ThemeList.styled";
 
 export const ThemeList: React.FC<ThemeListProps> = ({ themes }) => {
   return (

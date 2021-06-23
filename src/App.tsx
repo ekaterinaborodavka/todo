@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, match } from "react-router-dom";
-import styled, { ThemeProvider } from "styled-components/macro";
+import { ThemeProvider } from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
 import { Header, Main, SidebarLeft, TodoDetails } from "~components";
@@ -16,12 +16,7 @@ import {
   TypeTodo,
 } from "~src/utils/utils";
 
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  height: 93%;
-`;
+import { StyledContainer } from "./App.styled";
 
 export const App: React.FC = () => {
   const { t } = useTranslation();

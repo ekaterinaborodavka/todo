@@ -97,3 +97,121 @@ export interface SidebarDragDropProps {
   // eslint-disable-next-line no-unused-vars
   dragDrop?: (e: React.DragEvent<HTMLLIElement>, list?: SidebarLeftContentItemProps) => void;
 }
+
+export interface AddInputProps {
+  placeholder: string | undefined;
+  typeOfPages?: string;
+}
+
+export interface CheckButtonProps {
+  status: boolean;
+  id: number;
+  params: ParametersItem[];
+  setParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+}
+
+export interface CompletedTodoProps {
+  todos: Array<Todo>;
+  todoType: string | number;
+}
+
+export interface DropDownListProps {
+  icon: string;
+  title: string;
+}
+
+export interface ListOptionsProps {
+  options: ListOptionsItemProps[];
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface ListOptionsItemProps {
+  icon: string;
+  title: string;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface MainProps {
+  title: string;
+  placeholder?: string | undefined;
+  path: string;
+}
+
+export interface MainHeaderProps {
+  title: string;
+  path: string;
+}
+
+export interface OptionButtonProps {
+  onClick: () => void;
+}
+
+export interface OptionsContentProps {
+  title: string;
+  width?: string;
+}
+
+export interface ParametersListProps {
+  parameters: ParametersItem[];
+  title: string;
+  setParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+}
+
+export interface ParametersListItemProps {
+  item: ParametersItem;
+  params: ParametersItem[];
+  setParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+}
+
+export interface PopupProps {
+  button: React.ElementType;
+}
+
+export interface PopupContentProps {
+  onClose: () => void;
+}
+
+export interface SidebarLeftListProps {
+  contentSidebar: SidebarLeftContentItemProps[];
+  isDrag?: boolean;
+}
+
+export interface SidebarLeftFooterItemProps {
+  icon: string;
+}
+
+export interface StyledListProps {
+  direction?: boolean;
+}
+
+export interface SidebarFooterListProps {
+  contentFooter: SidebarLeftFooterItemProps[];
+}
+
+export interface SidebarRightProps {
+  content: SidebarRightContent;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export interface SortButtonProps {
+  onClick: () => void;
+}
+
+export interface ThemeListProps {
+  themes: ThemeListItemProps[];
+}
+
+export interface ThemeListItemProps {
+  id?: number;
+  theme: ThemeNames;
+  colorGradBottom: string;
+  colorGradLeft: string;
+}
+
+export interface TodoListProps {
+  todos: Array<Todo>;
+  todoType?: keyof Todo;
+}

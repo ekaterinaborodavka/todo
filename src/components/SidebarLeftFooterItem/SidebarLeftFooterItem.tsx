@@ -1,22 +1,8 @@
 import React from "react";
-import styled from "styled-components/macro";
 
-import { COLORS } from "~src/colors";
+import { SidebarLeftFooterItemProps } from "~src/types";
 
-export interface SidebarLeftFooterItemProps {
-  icon: string;
-}
-
-const StyledIcon = styled.i`
-  color: ${COLORS.grey};
-`;
-
-const StyledItem = styled.div`
-  padding: 0.5rem 1.2rem;
-  &:hover {
-    background-color: ${COLORS.lightGrey};
-  }
-`;
+import { StyledItem, StyledIcon } from "./SidebarLeftFooterItem.styled";
 
 export const SidebarLeftFooterItem: React.FC<SidebarLeftFooterItemProps> = ({ icon }) => {
   return (

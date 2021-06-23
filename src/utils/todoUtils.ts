@@ -1,5 +1,5 @@
 import { ParametersItem, SidebarLeftContentItemProps, Todo } from "~src/types";
-import { COLORS } from "../colors";
+import { COLORS } from "~src/colors";
 import { Icons, SortOptions, TypeTodo } from "./utils";
 
 export const createTodoItem = (title: string, todoType: string): Todo => {

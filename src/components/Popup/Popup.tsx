@@ -3,10 +3,7 @@ import React, { useCallback } from "react";
 import { PopupContent } from "~components";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 import { PopupContext } from "~src/context/popupContext";
-
-interface PopupProps {
-  button: React.ElementType;
-}
+import { PopupProps } from "~src/types";
 
 export const Popup: React.FC<PopupProps> = ({ button: Button, children }) => {
   const { flag: isPopupOpened, toggleFlag: togglePopup, setFlagFalse: setHidePopup } = useStateFlags(false);

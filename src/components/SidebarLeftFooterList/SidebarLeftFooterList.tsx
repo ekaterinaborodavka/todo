@@ -1,26 +1,10 @@
 import React, { useContext } from "react";
-import styled from "styled-components/macro";
 
 import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
-import {
-  SidebarLeftFooterItem,
-  SidebarLeftFooterItemProps,
-} from "~components/SidebarLeftFooterItem/SidebarLeftFooterItem";
+import { SidebarFooterListProps } from "~src/types";
+import { SidebarLeftFooterItem } from "~components";
 
-export interface StyledListProps {
-  direction?: boolean;
-}
-
-const StyledList = styled.div<{ isOpened: boolean }>`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: ${(props) => (props.isOpened ? "row" : "column")};
-`;
-
-export interface SidebarFooterListProps {
-  contentFooter: SidebarLeftFooterItemProps[];
-}
+import { StyledList } from "./SidebarLeftFooterList.styled";
 
 export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ contentFooter }) => {
   const { isSidebarOpened } = useContext(SidebarLeftContext);
