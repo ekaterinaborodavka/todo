@@ -1,15 +1,11 @@
 import React from "react";
-import styled from "styled-components/macro";
 
-import { ListOptionsItem, ListOptionsItemProps } from "~components";
+import { ListOptionsItem } from "~components";
+import { ListOptionsItemProps } from "~components/ListOptionsItem/ListOptionsItem";
 
-const StyledList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
+import { StyledList } from "./ListOptions.styled";
 
-export interface ListOptionsProps {
+interface ListOptionsProps {
   options: ListOptionsItemProps[];
   // eslint-disable-next-line no-unused-vars
   onClick?: (evt: React.MouseEvent<HTMLButtonElement>) => void;

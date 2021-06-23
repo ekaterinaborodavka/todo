@@ -1,5 +1,8 @@
-import { ParametersItem, Todo } from "~src/types";
+
+import { ParametersItem } from "~src/types";
 import { ActionOptions, SortOptions, TypeTodo } from "./utils";
+import { COLORS } from "~src/colors";
+import { Todo } from "~components";
 
 export const createTodoItem = (title: string, todoType: string): Todo => {
   return {
@@ -16,13 +19,29 @@ export const createTodoItem = (title: string, todoType: string): Todo => {
   };
 };
 
+export const createListItem = (title: string): SidebarLeftContentItemProps => {
+  return {
+    id: Date.now(),
+    icon: Icons.bars,
+    title,
+    color: COLORS.grey,
+    typeTodo: title,
+  };
+};
+
+export const addNewListItem = (title: string, list: SidebarLeftContentItemProps[]): SidebarLeftContentItemProps[] => {
+  const newListItem = createListItem(title);
+  const newList = [...list, newListItem];
+  return newList;
+};
+
 export const addNewTodo = (title: string, todos: Todo[], todoType: string): Todo[] => {
   const newTodoItem = createTodoItem(title, todoType);
   const newTodos = [...todos, newTodoItem];
   return newTodos;
 };
 
-const findInd = (id: number, todos: Todo[]): number => {
+export const findInd = (id: number, todos: Todo[]): number => {
   return todos.findIndex((todo) => todo.id === id);
 };
 
@@ -97,7 +116,7 @@ export const changeTodosList = (todos: Todo[], value: string, id: number): Todo[
   }
 };
 
-export const countTodos = (todos: Todo[], typeTodo: TypeTodo): number => {
+export const countTodos = (todos: Todo[], typeTodo: string): number => {
   const filteredFunc = (todo: Todo) => {
     if (typeTodo === TypeTodo.allTodo) {
       return !todo.completed;
@@ -119,4 +138,23 @@ export const toggleCheckButton = (id: number, params: ParametersItem[]): Paramet
   const oldItem = params[ind];
   const newItem = { ...oldItem, check: !oldItem.check };
   return [...params.slice(0, ind), newItem, ...params.slice(ind + 1)];
+};
+
+export const findIndexOfSidebarElement = (list: ParametersItem[], value: string, type: string): number =>
+  list.findIndex((el) => el[type] === value);
+
+export const isTextValid = (list: SidebarLeftContentItemProps[], searchText: string): string => {
+  const validText = list.filter(
+    (el) =>
+      el.title
+        .toLowerCase()
+        .trim()
+        .replace(/\s+\([^\d]*(\d+)\)$/gi, "") === searchText.toLowerCase().trim()
+  ).length;
+
+  if (validText === 0) {
+    return searchText;
+  }
+
+  return `${searchText} (${validText})`;
 };

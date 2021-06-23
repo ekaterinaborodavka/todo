@@ -1,12 +1,8 @@
 import React from "react";
-import styled from "styled-components/macro";
 
 import { ThemeListItem, ThemeListItemProps } from "~components";
 
-const StyledItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-`;
+import { StyledItem } from "./ThemeList.styled";
 
 export interface ThemeListProps {
   themes: ThemeListItemProps[];

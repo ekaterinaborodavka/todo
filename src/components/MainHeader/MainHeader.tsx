@@ -1,31 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components/macro";
+
 import { OptionsContent, Popup, OptionButton, DropDownList, ListOptions, ThemeList, SortTodoList } from "~components";
 import { Icons, parametersList, themeButtons } from "~src/utils/utils";
 
-const StyledContainer = styled.div`
-  font-family: "Segoe UI";
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-top: 1rem;
-  width: 100%;
-`;
-
-const StyledTaskContainer = styled.div`
-  display: flex;
-  align-items: center;
-  color: ${(props) => props.theme.color};
-`;
-
-const StyledTitle = styled.h2`
-  text-align: end;
-  padding-right: 1rem;
-  font-size: 1.3rem;
-  font-weight: 600;
-`;
+import { StyledContainer, StyledTaskContainer, StyledTitle } from "./MainHeader.styled";
 
 interface MainHeaderProps {
   title: string;

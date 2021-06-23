@@ -2,8 +2,10 @@ import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { withKnobs } from "@storybook/addon-knobs";
 
-import { SidebarLeftContentList, SidebarLeftListProps } from "./SidebarLeftContentList";
 import { sidebarContent } from "~src/utils/utils";
+import { SidebarLeftContentList } from "~components";
+
+import { SidebarLeftListProps } from "./SidebarLeftContentList";
 
 export default {
   title: "SidebarLeftContentList",
@@ -12,5 +14,5 @@ export default {
 } as Meta;
 
 export const Default: Story<SidebarLeftListProps> = () => {
-  return <SidebarLeftContentList contentSidebar={sidebarContent}></SidebarLeftContentList>;
+  return <SidebarLeftContentList isDrag={false} contentSidebar={sidebarContent}></SidebarLeftContentList>;
 };

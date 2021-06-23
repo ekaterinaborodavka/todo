@@ -1,22 +1,9 @@
 import React from "react";
-import styled from "styled-components/macro";
 
 import { CheckButton } from "~components";
-import { COLORS } from "~src/colors";
 import { ParametersItem } from "~src/types";
 
-const StyledListItem = styled.li`
-  font-family: "Segoe UI";
-  list-style: none;
-  color: ${COLORS.sidebarRightListColor};
-  margin: 0.5rem 0;
-`;
-
-const StyledTitleItem = styled.div`
-  font-weight: 600;
-  padding: 0.5rem 0;
-  font-size: 0.9rem;
-`;
+import { StyledListItem, StyledTitleItem } from "./ParametersListItem.styled";
 
 interface ParametersListItemProps {
   item: ParametersItem;

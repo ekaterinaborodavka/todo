@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import { ParametersItem, ThemeNames, Todo } from "~src/types";
+import { ParametersItem, SidebarLeftContentItemProps, ThemeNames } from "~src/types";
+import { Todo } from "~components";
 
 interface ContextProps {
   setThemeVariant: React.Dispatch<React.SetStateAction<ThemeNames>>;
@@ -22,6 +23,10 @@ interface ContextProps {
   setSmartListParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
   applicationsParams: ParametersItem[];
   setApplicationsParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+  userList: SidebarLeftContentItemProps[];
+  setUserList: React.Dispatch<React.SetStateAction<SidebarLeftContentItemProps[]>>;
+  currentTodo: Todo;
+  setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>;
 }
 
 export const Context = createContext({} as ContextProps);

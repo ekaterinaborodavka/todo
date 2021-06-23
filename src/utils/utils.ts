@@ -29,6 +29,8 @@ export enum Icons {
   // eslint-disable-next-line no-unused-vars
   angleRight = "fa fa-angle-right",
   // eslint-disable-next-line no-unused-vars
+  angleLeft = "fa fa-angle-left",
+  // eslint-disable-next-line no-unused-vars
   print = "fa fa-print",
   // eslint-disable-next-line no-unused-vars
   close = "fa fa-times",
@@ -36,6 +38,10 @@ export enum Icons {
   checkCircle = "fa fa-check-circle-o",
   // eslint-disable-next-line no-unused-vars
   listAll = "fa fa-list-alt",
+  // eslint-disable-next-line no-unused-vars
+  bars = "fa fa-bars",
+  // eslint-disable-next-line no-unused-vars
+  arrowRight = "fa fa-long-arrow-right",
   // eslint-disable-next-line no-unused-vars
   delete = "fa fa-trash-o",
 }
@@ -270,7 +276,7 @@ export const parametersSmartList: ParametersItem[] = [
   { id: 3, title: "Все", check: false },
   { id: 4, title: "Завершенные", check: true },
   { id: 5, title: "Назначенные Вам", check: true },
-  { id: 6, title: "Автоматически скрывать пустые смарт-списки", check: false },
+  { id: 6, title: "Автоматически скрывать пустые смарт-списки", check: false, info: "hideList" },
 ];
 
 export const parametersApplicationsList: ParametersItem[] = [{ id: 1, title: "Планировщик", check: true }];
