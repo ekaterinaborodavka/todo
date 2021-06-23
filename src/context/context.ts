@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import { ParametersItem, SidebarLeftContentItemProps, ThemeNames, Todo } from "~src/types";
+import { ParametersItem, SidebarLeftContentItemProps, ThemeNames } from "~src/types";
+import { Todo } from "~components";
 
 interface ContextProps {
   setThemeVariant: React.Dispatch<React.SetStateAction<ThemeNames>>;

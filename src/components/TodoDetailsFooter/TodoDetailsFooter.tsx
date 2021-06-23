@@ -2,9 +2,9 @@ import React, { useContext, useCallback } from "react";
 
 import { Icons } from "~src/utils/utils";
 import { Context } from "~src/context/context";
-import { Todo } from "~src/types";
 
 import { StyledFooter, StyledButton, StyledIcon } from "./TodoDetailsFooter.styled";
+import { Todo } from "~components";
 
 export const TodoDetailsFooter: React.FC = () => {
   const { currentTodo, setCurrentTodo } = useContext(Context);

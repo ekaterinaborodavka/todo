@@ -4,9 +4,14 @@ import { useTranslation } from "react-i18next";
 import { MainHeader, AddInput, TodoList } from "~components";
 import { Context } from "~src/context/context";
 import { TypeTodo } from "~src/utils/utils";
-import { MainProps } from "~src/types";
 
 import { StyledBGContainer, StyledContainer, StyledSearchTitle } from "./Main.styled";
+
+interface MainProps {
+  title: string;
+  placeholder?: string | undefined;
+  path: string;
+}
 
 export const Main: React.FC<MainProps> = ({ title, placeholder, path }) => {
   const { todos: allTodos, filterTodos, searchValue } = useContext(Context);

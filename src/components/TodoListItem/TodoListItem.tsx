@@ -1,10 +1,24 @@
 import React, { useContext, useCallback } from "react";
 
-import { Todo } from "~src/types";
 import { Context } from "~src/context/context";
 import { toggleCompletedTodo, toggleImportantTodo, findInd } from "~src/utils/todoUtils";
 
 import { StyledContainer, StyledIcon, StyledButton } from "./TodoListItem.styled";
+
+export interface Todo {
+  [key: string]: number | string | boolean | undefined;
+  id: number;
+  date: number;
+  title: string;
+  completed: boolean;
+  timeCompleted: number;
+  myDay: boolean;
+  important: boolean;
+  planned: boolean;
+  assigned: boolean;
+  home?: boolean;
+  allTodo?: boolean;
+}
 
 export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }) => {
   const { todos, updateTodo, setCurrentTodo } = useContext(Context);

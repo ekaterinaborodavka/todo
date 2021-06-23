@@ -2,8 +2,7 @@ import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { withKnobs, text, boolean, number } from "@storybook/addon-knobs";
 
-import { TodoListItem } from "./TodoListItem";
-import { Todo } from "~src/types";
+import { Todo, TodoListItem } from "./TodoListItem";
 
 export default {
   title: "TodoListItem",

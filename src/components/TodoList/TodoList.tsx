@@ -1,9 +1,13 @@
 import React, { useContext, useCallback } from "react";
 
-import { TodoListItem, CompletedTodo } from "~components";
-import { Todo, TodoListProps } from "~src/types";
+import { TodoListItem, CompletedTodo, Todo } from "~components";
 import { Context } from "~src/context/context";
 import { TypeTodo } from "~src/utils/utils";
+
+interface TodoListProps {
+  todos: Array<Todo>;
+  todoType?: keyof Todo;
+}
 
 export const TodoList: React.FC<TodoListProps> = ({ todos, todoType = TypeTodo.home }) => {
   const { searchValue } = useContext(Context);

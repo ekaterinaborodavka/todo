@@ -1,9 +1,12 @@
 import React from "react";
 
-import { ThemeListItem } from "~components";
-import { ThemeListProps } from "~src/types";
+import { ThemeListItem, ThemeListItemProps } from "~components";
 
 import { StyledItem } from "./ThemeList.styled";
+
+export interface ThemeListProps {
+  themes: ThemeListItemProps[];
+}
 
 export const ThemeList: React.FC<ThemeListProps> = ({ themes }) => {
   return (

@@ -1,9 +1,16 @@
 import React, { useContext, useCallback } from "react";
 
 import { Context } from "~src/context/context";
-import { ThemeListItemProps } from "~src/types";
+import { ThemeNames } from "~src/types";
 
 import { StyledButton, StyledIcon } from "./ThemeListItem.styled";
+
+export interface ThemeListItemProps {
+  id?: number;
+  theme: ThemeNames;
+  colorGradBottom: string;
+  colorGradLeft: string;
+}
 
 // TODO to use styled-themes here
 export const ThemeListItem: React.FC<ThemeListItemProps> = ({ colorGradBottom, colorGradLeft, theme }) => {

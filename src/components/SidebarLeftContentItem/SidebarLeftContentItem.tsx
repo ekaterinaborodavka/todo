@@ -15,7 +15,9 @@ import {
   StyledTitle,
 } from "./SidebarLeftContentItem.styled";
 
-export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps & SidebarDragDropProps> = ({
+type SidebarLeftContentItem = SidebarLeftContentItemProps & SidebarDragDropProps;
+
+export const SidebarLeftContentItem: React.FC<SidebarLeftContentItem> = ({
   typeTodo,
   color,
   icon,

@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 
 import { SidebarLeftContext } from "~src/context/sidebarLeftContext";
-import { SidebarFooterListProps } from "~src/types";
-import { SidebarLeftFooterItem } from "~components";
+import { SidebarLeftFooterItem, SidebarLeftFooterItemProps } from "~components";
 
 import { StyledList } from "./SidebarLeftFooterList.styled";
+
+export interface SidebarFooterListProps {
+  contentFooter: SidebarLeftFooterItemProps[];
+}
 
 export const SidebarLeftFooterList: React.FC<SidebarFooterListProps> = ({ contentFooter }) => {
   const { isSidebarOpened } = useContext(SidebarLeftContext);

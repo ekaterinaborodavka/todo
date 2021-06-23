@@ -1,8 +1,10 @@
 import React from "react";
 
-import { SidebarLeftFooterItemProps } from "~src/types";
-
 import { StyledItem, StyledIcon } from "./SidebarLeftFooterItem.styled";
+
+export interface SidebarLeftFooterItemProps {
+  icon: string;
+}
 
 export const SidebarLeftFooterItem: React.FC<SidebarLeftFooterItemProps> = ({ icon }) => {
   return (

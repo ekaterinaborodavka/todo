@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Icons } from "~src/utils/utils";
-import { SidebarRightProps } from "~src/types";
+import { SidebarRightContent } from "~src/types";
 
 import {
   StyledContainer,
@@ -11,6 +11,12 @@ import {
   StyledIcon,
   StyledContentContainer,
 } from "./SidebarRight.styled";
+
+interface SidebarRightProps {
+  content: SidebarRightContent;
+  isOpen: boolean;
+  onClose: () => void;
+}
 
 export const SidebarRight: React.FC<SidebarRightProps> = ({ content, isOpen, onClose }) => {
   const { title, component: Content } = content;

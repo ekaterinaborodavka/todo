@@ -2,9 +2,16 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { toggleCheckButton } from "~src/utils/todoUtils";
-import { CheckButtonProps } from "~src/types";
+import { ParametersItem } from "~src/types";
 
 import { StyledButton, StyledCheck, StyledCheckStatus, StyledContainer } from "./CheckButton.styled";
+
+interface CheckButtonProps {
+  status: boolean;
+  id: number;
+  params: ParametersItem[];
+  setParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+}
 
 export const CheckButton: React.FC<CheckButtonProps> = ({ status, id, params, setParams }) => {
   const { t } = useTranslation();

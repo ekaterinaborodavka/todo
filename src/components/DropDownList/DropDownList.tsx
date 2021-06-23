@@ -1,9 +1,13 @@
 import React from "react";
 
 import { useStateFlags } from "~src/hooks/useStateFlags";
-import { DropDownListProps } from "~src/types";
 
 import { StyledButton, StyledList, StyledListItem, StyledListText, StyledSubMenuList } from "./DropDownList.styled";
+
+interface DropDownListProps {
+  icon: string;
+  title: string;
+}
 
 export const DropDownList: React.FC<DropDownListProps> = ({ icon, title, children }) => {
   const { flag: isShowSubMenu, setFlagFalse: hideSubMenu, setFlagTrue: showSubMenu } = useStateFlags(false);

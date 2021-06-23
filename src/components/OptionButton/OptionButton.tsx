@@ -1,8 +1,10 @@
 import React from "react";
 
-import { OptionButtonProps } from "~src/types";
-
 import { StyledButton, StyledIcon } from "./OptionButton.styled";
+
+interface OptionButtonProps {
+  onClick: () => void;
+}
 
 export const OptionButton: React.FC<OptionButtonProps> = ({ onClick }) => {
   return (

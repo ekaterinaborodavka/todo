@@ -1,9 +1,11 @@
 import React from "react";
 import ClickAwayListener from "react-click-away-listener";
 
-import { PopupContentProps } from "~src/types";
-
 import { Wrapper } from "./PopupContent.styled";
+
+interface PopupContentProps {
+  onClose: () => void;
+}
 
 export const PopupContent: React.FC<PopupContentProps> = ({ onClose, children }) => {
   return (

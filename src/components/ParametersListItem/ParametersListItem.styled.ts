@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { COLORS } from "../../colors";
+import { COLORS } from "~src/colors";
 
 const StyledListItem = styled.li`
   font-family: "Segoe UI";

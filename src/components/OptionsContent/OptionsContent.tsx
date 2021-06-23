@@ -1,8 +1,11 @@
 import React from "react";
 
-import { OptionsContentProps } from "~src/types";
-
 import { StyledContainer, StyledTitle } from "./OptionsContent.styled";
+
+interface OptionsContentProps {
+  title: string;
+  width?: string;
+}
 
 export const OptionsContent: React.FC<OptionsContentProps> = ({ title, children, width }) => {
   return (

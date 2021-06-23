@@ -3,9 +3,13 @@ import { useTranslation } from "react-i18next";
 
 import { OptionsContent, Popup, OptionButton, DropDownList, ListOptions, ThemeList, SortTodoList } from "~components";
 import { Icons, parametersList, themeButtons } from "~src/utils/utils";
-import { MainHeaderProps } from "~src/types";
 
 import { StyledContainer, StyledTaskContainer, StyledTitle } from "./MainHeader.styled";
+
+interface MainHeaderProps {
+  title: string;
+  path: string;
+}
 
 export const MainHeader: React.FC<MainHeaderProps> = ({ title }) => {
   const { t } = useTranslation();

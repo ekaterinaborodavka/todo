@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { useContext } from "react";
 
 import { SidebarLeftContentItem } from "~components";
-import { SidebarLeftContentItemProps, SidebarLeftListProps } from "~src/types";
+import { SidebarLeftContentItemProps } from "~src/types";
 import { Context } from "~src/context/context";
 
 import { StyledList } from "./SidebarLeftContentList.styled";
+
+export interface SidebarLeftListProps {
+  contentSidebar: SidebarLeftContentItemProps[];
+  isDrag?: boolean;
+}
 
 export const SidebarLeftContentList: React.FC<SidebarLeftListProps> = ({ contentSidebar, isDrag = false }) => {
   const [currentList, setCurrentList] = useState<SidebarLeftContentItemProps | undefined>();

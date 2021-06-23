@@ -1,9 +1,15 @@
 import React from "react";
 
 import { CheckButton } from "~components";
-import { ParametersListItemProps } from "~src/types";
+import { ParametersItem } from "~src/types";
 
 import { StyledListItem, StyledTitleItem } from "./ParametersListItem.styled";
+
+interface ParametersListItemProps {
+  item: ParametersItem;
+  params: ParametersItem[];
+  setParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+}
 
 export const ParametersListItem: React.FC<ParametersListItemProps> = ({ item, params, setParams }) => {
   const { title, check, id } = item;

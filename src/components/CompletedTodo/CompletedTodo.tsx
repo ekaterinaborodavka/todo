@@ -3,11 +3,15 @@ import { useTranslation } from "react-i18next";
 
 import { Context } from "~src/context/context";
 import { useStateFlags } from "~src/hooks/useStateFlags";
-import { CompletedTodoProps, Todo } from "~src/types";
-import { TodoListItem } from "~components";
+import { TodoListItem, Todo } from "~components";
 import { TypeTodo } from "~src/utils/utils";
 
 import { StyledIcon, StyledIconButton, StyledTitle } from "./CompletedTodo.styled";
+
+interface CompletedTodoProps {
+  todos: Array<Todo>;
+  todoType: string | number;
+}
 
 export const CompletedTodo: React.FC<CompletedTodoProps> = ({ todos, todoType }) => {
   const { searchValue } = useContext(Context);

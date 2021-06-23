@@ -1,9 +1,15 @@
 import React from "react";
 
 import { ParametersListItem } from "~components";
-import { ParametersListProps } from "~src/types";
+import { ParametersItem } from "~src/types";
 
 import { StyledContainer, StyledList, StyledTitle } from "./ParametersList.styled";
+
+interface ParametersListProps {
+  parameters: ParametersItem[];
+  title: string;
+  setParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
+}
 
 export const ParametersList: React.FC<ParametersListProps> = ({ parameters, title, setParams }) => {
   return (

@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 import { Context } from "~src/context/context";
 import { TypeTodo } from "~src/utils/utils";
-import { AddInputProps } from "~src/types";
 
 import {
   StyledAddButton,
@@ -15,6 +14,11 @@ import {
   StyledIconPlus,
   StyledInput,
 } from "./AddInput.styled";
+
+interface AddInputProps {
+  placeholder: string | undefined;
+  typeOfPages?: string;
+}
 
 export const AddInput: React.FC<AddInputProps> = ({ placeholder, typeOfPages = TypeTodo.home }) => {
   const { t } = useTranslation();
