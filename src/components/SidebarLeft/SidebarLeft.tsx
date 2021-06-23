@@ -11,7 +11,7 @@ import { addNewListItem, isTextValid } from "~src/utils/todoUtils";
 import { Context } from "~src/context/context";
 
 const StyledSidebar = styled.div<{ isOpened: boolean }>`
-  width: ${(props) => (props.isOpened ? "25%" : "60px")};
+  width: ${(props) => (props.isOpened ? "25%" : "70px")};
   transition: all 0.2s linear;
   background-color: ${COLORS.bgSidebarLeft};
   display: flex;

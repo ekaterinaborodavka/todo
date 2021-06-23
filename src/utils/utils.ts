@@ -40,6 +40,10 @@ export enum Icons {
   listAll = "fa fa-list-alt",
   // eslint-disable-next-line no-unused-vars
   bars = "fa fa-bars",
+  // eslint-disable-next-line no-unused-vars
+  arrowRight = "fa fa-long-arrow-right",
+  // eslint-disable-next-line no-unused-vars
+  delete = "fa fa-trash-o",
 }
 
 export enum SortOptions {

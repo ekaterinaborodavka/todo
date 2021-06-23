@@ -31,3 +31,5 @@ export * from "./CompletedTodo/CompletedTodo";
 export * from "./ParametersListItem/ParametersListItem";
 export * from "./ParametersList/ParametersList";
 export * from "./SidebarLeftContentItem/SidebarLeftContentItem";
+export * from "./TodoDetails/TodoDetails";
+export * from "./TodoDetailsFooter/TodoDetailsFooter";
