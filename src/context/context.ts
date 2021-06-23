@@ -24,6 +24,8 @@ interface ContextProps {
   setApplicationsParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;
   userList: SidebarLeftContentItemProps[];
   setUserList: React.Dispatch<React.SetStateAction<SidebarLeftContentItemProps[]>>;
+  currentTodo: Todo;
+  setCurrentTodo: React.Dispatch<React.SetStateAction<Todo>>;
 }
 
 export const Context = createContext({} as ContextProps);

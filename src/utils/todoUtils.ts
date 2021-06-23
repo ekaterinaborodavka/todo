@@ -39,7 +39,7 @@ export const addNewTodo = (title: string, todos: Todo[], todoType: string): Todo
   return newTodos;
 };
 
-const findInd = (id: number, todos: Todo[]): number => {
+export const findInd = (id: number, todos: Todo[]): number => {
   return todos.findIndex((todo) => todo.id === id);
 };
 
