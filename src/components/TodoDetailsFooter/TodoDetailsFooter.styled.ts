@@ -7,7 +7,6 @@ const StyledFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #eaeaea;
   background-color: ${COLORS.bgDetailsMenu};
   border-top: 1px solid ${COLORS.detailsMenuBorder};
   position: absolute;
