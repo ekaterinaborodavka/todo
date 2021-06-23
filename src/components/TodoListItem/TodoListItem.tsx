@@ -7,7 +7,7 @@ import { actionOptions, SortOptions } from "~src/utils/utils";
 import { OptionsContent } from "~src/components";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 
-import { toggleCompletedTodo, toggleImportantTodo, findInd } from "~src/utils/todoUtils";
+import { changeTodosList, toggleCompletedTodo, toggleImportantTodo } from "~src/utils/todoUtils";
 
 import { StyledContainer, StyledIcon, StyledButton } from "./TodoListItem.styled";
 

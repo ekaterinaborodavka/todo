@@ -1,6 +1,5 @@
-
-import { ParametersItem } from "~src/types";
-import { ActionOptions, SortOptions, TypeTodo } from "./utils";
+import { ParametersItem, SidebarLeftContentItemProps } from "~src/types";
+import { ActionOptions, Icons, SortOptions, TypeTodo } from "~src/utils/utils";
 import { COLORS } from "~src/colors";
 import { Todo } from "~components";
 
