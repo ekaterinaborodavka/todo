@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import styled from "styled-components/macro";
 
-import { SidebarLeftContentItem } from "~components/SidebarLeftContentItem/SidebarLeftContentItem";
+import { SidebarLeftContentItem } from "~components";
 import { SidebarLeftContentItemProps } from "~src/types";
 import { Context } from "~src/context/context";
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { withKnobs } from "@storybook/addon-knobs";
 
-import { SidebarLeftContentList, SidebarLeftListProps } from "./SidebarLeftContentList";
+import { SidebarLeftContentList, SidebarLeftListProps } from "~components";
 import { sidebarContent } from "~src/utils/utils";
 
 export default {

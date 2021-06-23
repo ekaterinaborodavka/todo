@@ -2,9 +2,9 @@ import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import { withKnobs, text, optionsKnob } from "@storybook/addon-knobs";
 
-import { SidebarLeftContentItem } from "./SidebarLeftContentItem";
+import { SidebarLeftContentItem } from "~components";
 import { Icons, TypeTodo } from "~src/utils/utils";
-import { ISidebarDragDropProps, SidebarLeftContentItemProps } from "~src/types";
+import { SidebarDragDropProps, SidebarLeftContentItemProps } from "~src/types";
 
 export default {
   title: "SidebarLeftContentItem",
@@ -24,7 +24,7 @@ enum ICONS_COLORS {
   blue = "#3e69e4",
 }
 
-export const Default: Story<SidebarLeftContentItemProps & ISidebarDragDropProps> = () => {
+export const Default: Story<SidebarLeftContentItemProps & SidebarDragDropProps> = () => {
   return (
     <SidebarLeftContentItem
       isDrag={false}

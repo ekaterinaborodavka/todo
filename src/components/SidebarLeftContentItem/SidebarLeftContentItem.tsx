@@ -6,7 +6,7 @@ import { COLORS } from "~src/colors";
 import { Context } from "~src/context/context";
 import { TypeTodo } from "~src/utils/utils";
 import { countTodos, findIndexOfSidebarElement } from "~src/utils/todoUtils";
-import { ISidebarDragDropProps, SidebarLeftContentItemProps } from "~src/types";
+import { SidebarDragDropProps, SidebarLeftContentItemProps } from "~src/types";
 
 const StyledIcon = styled.i<{ color: string }>`
   color: ${(props) => props.color};
@@ -43,7 +43,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps & ISidebarDragDropProps> = ({
+export const SidebarLeftContentItem: React.FC<SidebarLeftContentItemProps & SidebarDragDropProps> = ({
   typeTodo,
   color,
   icon,

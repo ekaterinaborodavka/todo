@@ -88,7 +88,7 @@ export interface SidebarLeftContentItemProps {
   typeTodo: string;
 }
 
-export interface ISidebarDragDropProps {
+export interface SidebarDragDropProps {
   isDrag: boolean;
   // eslint-disable-next-line no-unused-vars
   dragStart?: (e: React.DragEvent<HTMLLIElement>, list?: SidebarLeftContentItemProps) => void;

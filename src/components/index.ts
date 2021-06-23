@@ -30,3 +30,4 @@ export * from "./Reference/Reference";
 export * from "./CompletedTodo/CompletedTodo";
 export * from "./ParametersListItem/ParametersListItem";
 export * from "./ParametersList/ParametersList";
+export * from "./SidebarLeftContentItem/SidebarLeftContentItem";

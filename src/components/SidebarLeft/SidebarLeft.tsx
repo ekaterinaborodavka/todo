@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import styled from "styled-components/macro";
 import { useTranslation } from "react-i18next";
 
@@ -91,19 +91,22 @@ export const SidebarLeft: React.FC = () => {
   } = useStateFlags(false);
   const [inputValue, setInputValue] = useState("");
 
-  const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-  };
+  }, []);
 
-  const handleSubmitInput = (e: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleSubmitInput = useCallback(
+    (e: React.FormEvent<HTMLFormElement | HTMLButtonElement>) => {
+      e.preventDefault();
 
-    if (inputValue.trim()) {
-      setUserList(addNewListItem(isTextValid(userList, inputValue), userList));
-    }
+      if (inputValue.trim()) {
+        setUserList(addNewListItem(isTextValid(userList, inputValue), userList));
+      }
 
-    setInputValue("");
-  };
+      setInputValue("");
+    },
+    [inputValue, setUserList, userList]
+  );
 
   return (
     <SidebarLeftContext.Provider value={{ isSidebarOpened }}>
