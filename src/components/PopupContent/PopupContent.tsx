@@ -9,7 +9,7 @@ interface PopupContentProps {
 
 export const PopupContent: React.FC<PopupContentProps> = ({ onClose, children }) => {
   return (
-    <ClickAwayListener onClickAway={onClose}>
+    <ClickAwayListener onClickAway={onClose} onContextMenu={onClose}>
       <Wrapper>{children}</Wrapper>
     </ClickAwayListener>
   );

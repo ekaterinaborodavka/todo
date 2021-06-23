@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 interface PopupContextProps {
+  onClose: () => void;
   togglePopup: () => void;
 }
 

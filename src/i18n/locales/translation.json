@@ -19,5 +19,6 @@
   "AddPlannedTodo": "Добавьте задачу со сроком сегодня",
   "Assigned": "Назначенные Вам",
   "CompletedTodo": "Завершенные",
-  "AllTodo": "Все"
+  "AllTodo": "Все",
+  "ActionsType": "Тип действия"
 }
