@@ -61,7 +61,6 @@ export const SortTodoList: React.FC = () => {
   const { flag: isReversedList, toggleFlag: toggleReverseList } = useStateFlags(false);
   const history = useHistory();
   const path = history.location.pathname;
-
   const isShowSortButton = useCallback(() => {
     if (PathNameMain.home === path || PathNameMain.myDay === path) {
       return true;

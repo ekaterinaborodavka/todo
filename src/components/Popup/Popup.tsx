@@ -2,13 +2,15 @@ import React, { useCallback } from "react";
 
 import { PopupContent } from "~components";
 import { useStateFlags } from "~src/hooks/useStateFlags";
+import { PopupContext } from "../../context/popupContext";
 
 interface PopupProps {
-  button: React.ElementType;
+  button?: React.ElementType;
+  isOpen?: boolean;
 }
 
-export const Popup: React.FC<PopupProps> = ({ button: Button, children }) => {
-  const { flag: isPopupOpened, toggleFlag: togglePopup, setFlagFalse: setHidePopup } = useStateFlags(false);
+export const Popup: React.FC<PopupProps> = ({ isOpen, button: Button, children }) => {
+  const { flag: isPopupOpened, toggleFlag: togglePopup, setFlagFalse: setHidePopup } = useStateFlags(isOpen || false);
 
   const onClose = useCallback(() => {
     if (isPopupOpened) {
@@ -18,8 +20,10 @@ export const Popup: React.FC<PopupProps> = ({ button: Button, children }) => {
 
   return (
     <>
-      {isPopupOpened ? <PopupContent onClose={onClose}>{children}</PopupContent> : null}
-      <Button onClick={togglePopup} />
+      <PopupContext.Provider value={{ onClose, togglePopup }}>
+        {isPopupOpened ? <PopupContent onClose={onClose}>{children}</PopupContent> : null}
+        {Button ? <Button onClick={togglePopup} /> : null}
+      </PopupContext.Provider>
     </>
   );
 };

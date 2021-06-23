@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components/macro";
 import ClickAwayListener from "react-click-away-listener";
-import { PopupContext } from "~src/context/popupContext";
 
 const slideDown = keyframes`
 0% {
@@ -24,10 +23,8 @@ interface PopupContentProps {
 
 export const PopupContent: React.FC<PopupContentProps> = ({ onClose, children }) => {
   return (
-    <PopupContext.Provider value={{ onClose }}>
-      <ClickAwayListener onClickAway={onClose}>
-        <Wrapper>{children}</Wrapper>
-      </ClickAwayListener>
-    </PopupContext.Provider>
+    <ClickAwayListener onClickAway={onClose}>
+      <Wrapper>{children}</Wrapper>
+    </ClickAwayListener>
   );
 };

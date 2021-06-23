@@ -36,10 +36,10 @@ export interface ListOptionsItemProps {
 }
 
 export const ListOptionsItem: React.FC<ListOptionsItemProps> = ({ icon, title, onClick }) => {
-  const { onClose } = useContext(PopupContext);
+  const { togglePopup } = useContext(PopupContext);
 
   return (
-    <StyledListItem onClick={onClose}>
+    <StyledListItem onClick={togglePopup}>
       <StyledButton type="button" onClick={onClick} data-value={title}>
         <i className={icon} />
         <StyledListText>{title}</StyledListText>
