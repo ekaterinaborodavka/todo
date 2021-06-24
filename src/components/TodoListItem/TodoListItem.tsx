@@ -7,7 +7,7 @@ import { actionOptions, SortOptions } from "~src/utils/utils";
 import { OptionsContent } from "~src/components";
 import { useStateFlags } from "~src/hooks/useStateFlags";
 
-import { changeTodosList, toggleCompletedTodo, toggleImportantTodo } from "~src/utils/todoUtils";
+import { changeTodosList, toggleCompletedTodo, toggleImportantTodo, findInd } from "~src/utils/todoUtils";
 
 import { StyledContainer, StyledIcon, StyledButton } from "./TodoListItem.styled";
 
@@ -28,7 +28,7 @@ export interface Todo {
 
 export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }) => {
   const { t } = useTranslation();
-  const { todos, updateTodo, setTodos } = useContext(Context);
+  const { todos, updateTodo, setTodos, setCurrentTodo } = useContext(Context);
   const { flag: isOpen, toggleFlag: toggleFlag } = useStateFlags(false);
 
   const onToggleCompletedTodo = useCallback(() => {
@@ -59,6 +59,12 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }
     [todos, id, setTodos]
   );
 
+  const onCurrentTodo = useCallback(() => {
+    const ind = findInd(id, todos);
+    const currentTodo = todos[ind];
+    setCurrentTodo(currentTodo);
+  }, [setCurrentTodo, id, todos]);
+
   return (
     <>
       <StyledContainer onContextMenu={onRightButtonMousePress}>
@@ -66,7 +72,7 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }
           onClick={onToggleCompletedTodo}
           className={completed ? "fa fa-check-circle" : "fa fa-circle-thin"}
         />
-        <StyledButton>{title}</StyledButton>
+        <StyledButton onClick={onCurrentTodo}>{title}</StyledButton>
         <StyledIcon onClick={onToggleImportantTodo} className={important ? "fa fa-star" : "fa fa-star-o"} />
       </StyledContainer>
 
