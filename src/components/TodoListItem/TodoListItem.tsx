@@ -9,7 +9,6 @@ import { OptionsContent } from "~src/components";
 import {
   changeTodosList,
   onCloseOpenedPopups,
-  // findIsPopupOpenedTodo,
   toggleCompletedTodo,
   toggleImportantTodo,
   toggleIsPopupOpenedTodo,

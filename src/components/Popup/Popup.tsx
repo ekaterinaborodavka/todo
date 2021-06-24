@@ -2,9 +2,9 @@ import React, { useCallback, useContext } from "react";
 
 import { PopupContent } from "~components";
 import { useStateFlags } from "~src/hooks/useStateFlags";
-import { Context } from "../../context/context";
-import { PopupContext } from "../../context/popupContext";
-import { onCloseOpenedPopups } from "../../utils/todoUtils";
+import { Context } from "~src/context/context";
+import { PopupContext } from "~src/context/popupContext";
+import { onCloseOpenedPopups } from "~src//utils/todoUtils";
 
 interface PopupProps {
   button?: React.ElementType;
