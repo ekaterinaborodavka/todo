@@ -14,6 +14,8 @@ interface ContextProps {
   // eslint-disable-next-line no-unused-vars
   addTodo: (value: string, todoType: string) => void;
   // eslint-disable-next-line no-unused-vars
+  deleteTodo: (id: number) => void;
+  // eslint-disable-next-line no-unused-vars
   updateTodo: (item: Todo, id: number) => void;
   totalParams: ParametersItem[];
   setTotalParams: React.Dispatch<React.SetStateAction<ParametersItem[]>>;

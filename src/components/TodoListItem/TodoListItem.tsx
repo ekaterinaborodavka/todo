@@ -5,9 +5,15 @@ import { Context } from "~src/context/context";
 import { ListOptions, Popup } from "~src/components";
 import { actionOptions, SortOptions } from "~src/utils/utils";
 import { OptionsContent } from "~src/components";
-import { useStateFlags } from "~src/hooks/useStateFlags";
 
-import { changeTodosList, toggleCompletedTodo, toggleImportantTodo } from "~src/utils/todoUtils";
+import {
+  changeTodosList,
+  onCloseOpenedPopups,
+  // findIsPopupOpenedTodo,
+  toggleCompletedTodo,
+  toggleImportantTodo,
+  toggleIsPopupOpenedTodo,
+} from "~src/utils/todoUtils";
 
 import { StyledContainer, StyledIcon, StyledButton } from "./TodoListItem.styled";
 
@@ -24,12 +30,12 @@ export interface Todo {
   assigned: boolean;
   home?: boolean;
   allTodo?: boolean;
+  isPopupOpened?: boolean;
 }
 
-export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }) => {
+export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, isPopupOpened }) => {
   const { t } = useTranslation();
-  const { todos, updateTodo, setTodos } = useContext(Context);
-  const { flag: isOpen, toggleFlag: toggleFlag } = useStateFlags(false);
+  const { todos, updateTodo, setTodos, deleteTodo } = useContext(Context);
 
   const onToggleCompletedTodo = useCallback(() => {
     const newItem = toggleCompletedTodo(id, todos);
@@ -41,12 +47,19 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }
     updateTodo(newItem, id);
   }, [id, todos, updateTodo]);
 
+  const onToggleIsPopupOpenedTodo = useCallback(() => {
+    const newItem = toggleIsPopupOpenedTodo(id, todos);
+    updateTodo(newItem, id);
+  }, [id, todos, updateTodo]);
+
   const onRightButtonMousePress = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
-      toggleFlag();
+      onCloseOpenedPopups(todos);
+      setTodos(todos);
+      onToggleIsPopupOpenedTodo();
     },
-    [toggleFlag]
+    [onToggleIsPopupOpenedTodo, setTodos, todos]
   );
 
   const onChangeTodos = useCallback(
@@ -54,9 +67,9 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }
       const value = currentTarget.getAttribute("data-value");
       const currentValue = value ? value : SortOptions.default;
       const newTodos = changeTodosList(todos, currentValue, id);
-      setTodos(newTodos);
+      Array.isArray(newTodos) ? deleteTodo(id) : updateTodo(newTodos, id);
     },
-    [todos, id, setTodos]
+    [todos, id, updateTodo, deleteTodo]
   );
 
   return (
@@ -70,8 +83,8 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id }
         <StyledIcon onClick={onToggleImportantTodo} className={important ? "fa fa-star" : "fa fa-star-o"} />
       </StyledContainer>
 
-      {isOpen ? (
-        <Popup isOpen={isOpen}>
+      {isPopupOpened ? (
+        <Popup isOpen={isPopupOpened}>
           <OptionsContent title={t("ActionsType")} right="70%">
             <ListOptions options={actionOptions} onClick={onChangeTodos} />
           </OptionsContent>

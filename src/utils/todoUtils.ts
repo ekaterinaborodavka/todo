@@ -15,6 +15,7 @@ export const createTodoItem = (title: string, todoType: string): Todo => {
     assigned: false,
     timeCompleted: 0,
     [todoType]: true,
+    isPopupOpened: false,
   };
 };
 
@@ -40,6 +41,11 @@ export const addNewTodo = (title: string, todos: Todo[], todoType: string): Todo
   return newTodos;
 };
 
+export const deleteCurrentTodo = (id: number, todos: Todo[]): Todo[] => {
+  const ind = findInd(id, todos);
+  return [...todos.slice(0, ind), ...todos.slice(ind + 1)];
+};
+
 export const findInd = (id: number, todos: Todo[]): number => {
   return todos.findIndex((todo) => todo.id === id);
 };
@@ -54,6 +60,20 @@ export const toggleImportantTodo = (id: number, todos: Todo[]): Todo => {
   const ind = findInd(id, todos);
   const oldItem = todos[ind];
   return { ...oldItem, important: !oldItem.important };
+};
+
+export const toggleIsPopupOpenedTodo = (id: number, todos: Todo[]): Todo => {
+  const ind = findInd(id, todos);
+  const oldItem = todos[ind];
+  return { ...oldItem, isPopupOpened: !oldItem.isPopupOpened };
+};
+
+export const onCloseOpenedPopups = (todos: Todo[]): Todo[] => {
+  const currentTodos = todos.map((todo) => {
+    todo.isPopupOpened = false;
+    return todo;
+  });
+  return currentTodos;
 };
 
 export const update = (todos: Todo[], newItem: Todo, id: number): Todo[] => {
@@ -89,26 +109,22 @@ export const sortItemsList = (todos: Todo[], value: string): Todo[] => {
       return currentTodos;
   }
 };
-export const changeTodosList = (todos: Todo[], value: string, id: number): Todo[] => {
+export const changeTodosList = (todos: Todo[], value: string, id: number): Todo[] | Todo => {
   const currentTodos = todos.slice();
   switch (value) {
     case ActionOptions.importance:
-      const newImportantTodo = toggleImportantTodo(id, currentTodos);
-      return update(currentTodos, newImportantTodo, id);
+      return toggleImportantTodo(id, currentTodos);
 
     case ActionOptions.myDayList:
       const index = findInd(id, currentTodos);
       const oldItem = todos[index];
-      const currentItem = { ...oldItem, myDay: !oldItem.myDay };
-      return update(currentTodos, currentItem, id);
+      return { ...oldItem, myDay: !oldItem.myDay };
 
     case ActionOptions.completed:
-      const newTodo = toggleCompletedTodo(id, currentTodos);
-      return update(currentTodos, newTodo, id);
+      return toggleCompletedTodo(id, currentTodos);
 
     case ActionOptions.delete:
-      const ind = findInd(id, todos);
-      return [...todos.slice(0, ind), ...todos.slice(ind + 1)];
+      return currentTodos;
 
     default:
       return currentTodos;
