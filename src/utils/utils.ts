@@ -65,9 +65,15 @@ export enum ActionOptions {
   // eslint-disable-next-line no-unused-vars
   importance = "Пометить как важное",
   // eslint-disable-next-line no-unused-vars
+  unimportance = "Пометить как неважное",
+  // eslint-disable-next-line no-unused-vars
   myDayList = "Добавить в 'Мой день'",
   // eslint-disable-next-line no-unused-vars
+  myDayListDelete = "Удалить из 'Мой день'",
+  // eslint-disable-next-line no-unused-vars
   completed = "Отметить как выполненное",
+  // eslint-disable-next-line no-unused-vars
+  uncompleted = "Отметить как невыполненное",
   // eslint-disable-next-line no-unused-vars
   delete = "Удалить",
 }

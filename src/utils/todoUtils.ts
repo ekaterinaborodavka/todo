@@ -62,6 +62,12 @@ export const toggleImportantTodo = (id: number, todos: Todo[]): Todo => {
   return { ...oldItem, important: !oldItem.important };
 };
 
+export const toggleMyDayTodo = (id: number, todos: Todo[]): Todo => {
+  const index = findInd(id, todos);
+  const oldItem = todos[index];
+  return { ...oldItem, myDay: !oldItem.myDay };
+};
+
 export const toggleIsPopupOpenedTodo = (id: number, todos: Todo[]): Todo => {
   const ind = findInd(id, todos);
   const oldItem = todos[ind];
@@ -114,18 +120,18 @@ export const changeTodosList = (todos: Todo[], value: string, id: number): Todo[
   switch (value) {
     case ActionOptions.importance:
       return toggleImportantTodo(id, currentTodos);
-
+    case ActionOptions.unimportance:
+      return toggleImportantTodo(id, currentTodos);
     case ActionOptions.myDayList:
-      const index = findInd(id, currentTodos);
-      const oldItem = todos[index];
-      return { ...oldItem, myDay: !oldItem.myDay };
-
+      return toggleMyDayTodo(id, currentTodos);
+    case ActionOptions.myDayListDelete:
+      return toggleMyDayTodo(id, currentTodos);
     case ActionOptions.completed:
       return toggleCompletedTodo(id, currentTodos);
-
+    case ActionOptions.uncompleted:
+      return toggleCompletedTodo(id, currentTodos);
     case ActionOptions.delete:
       return currentTodos;
-
     default:
       return currentTodos;
   }
