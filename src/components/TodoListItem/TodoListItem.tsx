@@ -8,7 +8,6 @@ import { OptionsContent } from "~src/components";
 
 import {
   changeTodosList,
-  onCloseOpenedPopups,
   toggleCompletedTodo,
   toggleImportantTodo,
   toggleIsPopupOpenedTodo,
@@ -34,7 +33,7 @@ export interface Todo {
 
 export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, isPopupOpened }) => {
   const { t } = useTranslation();
-  const { todos, updateTodo, setTodos, deleteTodo } = useContext(Context);
+  const { todos, updateTodo, deleteTodo } = useContext(Context);
 
   const onToggleCompletedTodo = useCallback(() => {
     const newItem = toggleCompletedTodo(id, todos);
@@ -54,11 +53,9 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, 
   const onRightButtonMousePress = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
-      onCloseOpenedPopups(todos);
-      setTodos(todos);
       onToggleIsPopupOpenedTodo();
     },
-    [onToggleIsPopupOpenedTodo, setTodos, todos]
+    [onToggleIsPopupOpenedTodo]
   );
 
   const onChangeTodos = useCallback(
