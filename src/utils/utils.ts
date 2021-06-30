@@ -231,28 +231,6 @@ export const sortVariant = [
   },
 ];
 
-export const actionOptions = [
-  {
-    id: 21,
-    icon: Icons.star,
-    title: ActionOptions.importance,
-  },
-  {
-    id: 22,
-    icon: Icons.sun,
-    title: ActionOptions.myDayList,
-  },
-  {
-    id: 23,
-    icon: Icons.check,
-    title: ActionOptions.completed,
-  },
-  {
-    id: 24,
-    icon: Icons.delete,
-    title: ActionOptions.delete,
-  },
-];
 export const parametersList = [
   {
     id: 1,

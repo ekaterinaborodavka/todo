@@ -42,8 +42,7 @@ export const addNewTodo = (title: string, todos: Todo[], todoType: string): Todo
 };
 
 export const deleteCurrentTodo = (id: number, todos: Todo[]): Todo[] => {
-  const ind = findInd(id, todos);
-  return [...todos.slice(0, ind), ...todos.slice(ind + 1)];
+  return todos.filter((todo) => todo.id !== id);
 };
 
 export const findInd = (id: number, todos: Todo[]): number => {
@@ -178,4 +177,35 @@ export const isTextValid = (list: SidebarLeftContentItemProps[], searchText: str
   }
 
   return `${searchText} (${validText})`;
+};
+
+interface Actions {
+  id: number;
+  icon: string;
+  title: string;
+}
+
+export const getActionsList = (important: boolean, completed: boolean, myDay: boolean): Actions[] => {
+  return [
+    {
+      id: 21,
+      icon: Icons.star,
+      title: important ? ActionOptions.unimportance : ActionOptions.importance,
+    },
+    {
+      id: 22,
+      icon: Icons.sun,
+      title: myDay ? ActionOptions.myDayListDelete : ActionOptions.myDayList,
+    },
+    {
+      id: 23,
+      icon: Icons.check,
+      title: completed ? ActionOptions.uncompleted : ActionOptions.completed,
+    },
+    {
+      id: 24,
+      icon: Icons.delete,
+      title: ActionOptions.delete,
+    },
+  ];
 };

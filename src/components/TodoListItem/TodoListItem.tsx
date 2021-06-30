@@ -3,11 +3,12 @@ import { useTranslation } from "react-i18next";
 
 import { Context } from "~src/context/context";
 import { ListOptions, Popup } from "~src/components";
-import { ActionOptions, Icons, SortOptions } from "~src/utils/utils";
+import { SortOptions } from "~src/utils/utils";
 import { OptionsContent } from "~src/components";
 
 import {
   changeTodosList,
+  getActionsList,
   toggleCompletedTodo,
   toggleImportantTodo,
   toggleIsPopupOpenedTodo,
@@ -67,28 +68,7 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, 
     },
     [todos, id, updateTodo, deleteTodo]
   );
-  const actionOptions = [
-    {
-      id: 21,
-      icon: Icons.star,
-      title: important ? ActionOptions.unimportance : ActionOptions.importance,
-    },
-    {
-      id: 22,
-      icon: Icons.sun,
-      title: myDay ? ActionOptions.myDayListDelete : ActionOptions.myDayList,
-    },
-    {
-      id: 23,
-      icon: Icons.check,
-      title: completed ? ActionOptions.uncompleted : ActionOptions.completed,
-    },
-    {
-      id: 24,
-      icon: Icons.delete,
-      title: ActionOptions.delete,
-    },
-  ];
+  const actionOptions = getActionsList(important, completed, myDay);
 
   return (
     <>
