@@ -66,7 +66,12 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, 
       const value = currentTarget.getAttribute("data-value");
       const currentValue = value ? value : SortOptions.default;
       const newTodos = changeTodosList(todos, currentValue, id);
-      Array.isArray(newTodos) ? deleteTodo(id) : updateTodo(newTodos, id);
+      if (!Array.isArray(newTodos)) {
+        newTodos.isPopupOpened = !newTodos.isPopupOpened;
+        updateTodo(newTodos, id);
+        return;
+      }
+      deleteTodo(id);
     },
     [todos, id, updateTodo, deleteTodo]
   );
