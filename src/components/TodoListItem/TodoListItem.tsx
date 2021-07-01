@@ -6,9 +6,9 @@ import { ListOptions, Popup } from "~src/components";
 import { SortOptions } from "~src/utils/utils";
 import { OptionsContent } from "~src/components";
 
-
 import {
   changeTodosList,
+  findInd,
   getActionsList,
   toggleCompletedTodo,
   toggleImportantTodo,
@@ -36,8 +36,7 @@ export interface Todo {
 export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, isPopupOpened, myDay }) => {
   const { t } = useTranslation();
 
-  const { todos, updateTodo, deleteTodo } = useContext(Context);
-
+  const { todos, updateTodo, deleteTodo, setCurrentTodo } = useContext(Context);
 
   const onToggleCompletedTodo = useCallback(() => {
     const newItem = toggleCompletedTodo(id, todos);
