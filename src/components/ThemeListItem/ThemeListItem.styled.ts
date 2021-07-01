@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import { COLORS } from "~src/colors";
 
 const StyledButton = styled.button<{ colorGradLeft: string; colorGradBottom: string }>`

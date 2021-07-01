@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components/macro";
 import { COLORS } from "~src/colors";
 
 const slideLeft = keyframes`
