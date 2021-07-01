@@ -7,7 +7,7 @@ import { Header, Main, SidebarLeft, TodoDetails, Todo } from "~components";
 import { theme } from "~src/theme/theme";
 import { ParametersItem, PathNameMain, SidebarLeftContentItemProps, ThemeNames } from "~src/types";
 import { Context } from "~src/context/context";
-import { addNewTodo, search, update } from "~src/utils/todoUtils";
+import { addNewTodo, deleteCurrentTodo, search, update } from "~src/utils/todoUtils";
 import {
   parametersTotalList,
   parametersApplicationsList,
@@ -34,6 +34,12 @@ export const App: React.FC = () => {
   const addTodo = useCallback(
     (value: string, todoType: string) => {
       setTodos(addNewTodo(value, todos, todoType));
+    },
+    [todos]
+  );
+  const deleteTodo = useCallback(
+    (id: number) => {
+      setTodos(deleteCurrentTodo(id, todos));
     },
     [todos]
   );
@@ -89,6 +95,7 @@ export const App: React.FC = () => {
         searchValue,
         setSearchValue,
         addTodo,
+        deleteTodo,
         updateTodo,
         totalParams,
         setTotalParams,

@@ -65,9 +65,15 @@ export enum ActionOptions {
   // eslint-disable-next-line no-unused-vars
   importance = "Пометить как важное",
   // eslint-disable-next-line no-unused-vars
+  unimportance = "Пометить как неважное",
+  // eslint-disable-next-line no-unused-vars
   myDayList = "Добавить в 'Мой день'",
   // eslint-disable-next-line no-unused-vars
+  myDayListDelete = "Удалить из 'Мой день'",
+  // eslint-disable-next-line no-unused-vars
   completed = "Отметить как выполненное",
+  // eslint-disable-next-line no-unused-vars
+  uncompleted = "Отметить как невыполненное",
   // eslint-disable-next-line no-unused-vars
   delete = "Удалить",
 }
@@ -225,28 +231,6 @@ export const sortVariant = [
   },
 ];
 
-export const actionOptions = [
-  {
-    id: 21,
-    icon: Icons.star,
-    title: ActionOptions.importance,
-  },
-  {
-    id: 22,
-    icon: Icons.sun,
-    title: ActionOptions.myDayList,
-  },
-  {
-    id: 23,
-    icon: Icons.check,
-    title: ActionOptions.completed,
-  },
-  {
-    id: 24,
-    icon: Icons.delete,
-    title: ActionOptions.delete,
-  },
-];
 export const parametersList = [
   {
     id: 1,
