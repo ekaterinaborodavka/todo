@@ -6,6 +6,7 @@ import { ListOptions, Popup } from "~src/components";
 import { SortOptions } from "~src/utils/utils";
 import { OptionsContent } from "~src/components";
 
+
 import {
   changeTodosList,
   getActionsList,
@@ -34,7 +35,9 @@ export interface Todo {
 
 export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, isPopupOpened, myDay }) => {
   const { t } = useTranslation();
+
   const { todos, updateTodo, deleteTodo } = useContext(Context);
+
 
   const onToggleCompletedTodo = useCallback(() => {
     const newItem = toggleCompletedTodo(id, todos);
@@ -70,6 +73,12 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, 
   );
   const actionOptions = getActionsList(important, completed, myDay);
 
+  const onCurrentTodo = useCallback(() => {
+    const ind = findInd(id, todos);
+    const currentTodo = todos[ind];
+    setCurrentTodo(currentTodo);
+  }, [setCurrentTodo, id, todos]);
+
   return (
     <>
       <StyledContainer onContextMenu={onRightButtonMousePress}>
@@ -77,7 +86,7 @@ export const TodoListItem: React.FC<Todo> = ({ title, completed, important, id, 
           onClick={onToggleCompletedTodo}
           className={completed ? "fa fa-check-circle" : "fa fa-circle-thin"}
         />
-        <StyledButton>{title}</StyledButton>
+        <StyledButton onClick={onCurrentTodo}>{title}</StyledButton>
         <StyledIcon onClick={onToggleImportantTodo} className={important ? "fa fa-star" : "fa fa-star-o"} />
       </StyledContainer>
 
